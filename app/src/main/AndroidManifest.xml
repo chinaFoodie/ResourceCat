@@ -320,7 +320,7 @@
             android:windowSoftInputMode="adjustPan"></activity>
         <!--会议详情会议中等界面-->
         <activity
-            android:name=".activity.MeetingDetailsActivity"
+            android:name=".activity.EnterMeetingActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGraySettingDept">
+
+    <include
+        android:id="@+id/include_meeting_details"
+        layout="@layout/base_title_layout"></include>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include_meeting_details">
+
+        <RelativeLayout
+            android:id="@+id/meeting_title_content"
+            android:layout_width="match_parent"
+            android:layout_height="156dp"
+            android:background="@color/colorWhite">
+
+            <LinearLayout
+                android:id="@+id/ll_minutes_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="22.5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="10"
+                    android:textSize="32.5sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="分"
+                    android:textSize="@dimen/base_mid_title_text16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="10"
+                    android:textSize="32.5sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="秒"
+                    android:textSize="@dimen/base_mid_title_text16" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_meeting_had_minute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_minutes_count"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="11.5dp"
+                android:text="会议开始还有"
+                android:textColor="@color/colorGrayAddDept"
+                android:textSize="@dimen/base_mid_title_text14" />
+
+            <ImageView
+                android:id="@+id/img_horizontal_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/tv_meeting_had_minute"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorGrayAddDept" />
+
+            <TextView
+                android:id="@+id/tv_click_watch_menber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_horizontal_line"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:text="点击查看参会人员"
+                android:textColor="@color/colorWhiteMainTab"
+                android:textSize="@dimen/base_mid_title_text14" />
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="7dp"
+                android:src="@mipmap/img_singed_down" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_meeting_menber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/meeting_title_content"
+            android:background="@color/colorWhite"></android.support.v7.widget.RecyclerView>
+
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="180dp"
+            android:layout_alignParentLeft="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_meeting_details_left" />
+
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="180dp"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_meeting_details_right" />
+    </RelativeLayout>
+</RelativeLayout>

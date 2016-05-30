@@ -20,10 +20,14 @@ import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
 import com.cn.clound.base.common.utils.TelephoneUtil;
+import com.cn.clound.bean.BaseModel;
 import com.cn.clound.bean.metting.HistoryMeetingModel;
+import com.cn.clound.easemob.db.InviteMessgeDao;
 import com.cn.clound.http.MyHttpHelper;
+import com.cn.clound.view.AlertDialog;
 import com.cn.clound.view.refreshlinearlayout.PullToRefreshBase;
 import com.cn.clound.view.refreshlinearlayout.PullToRefreshScrollView;
+import com.hyphenate.chat.EMClient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,6 +49,7 @@ public class HistoryMettingFragment extends BaseFragment {
 
     private HistoryMettingRecyclerAdapter adapter;
     private int HTTP_QUERY_HISTORY_MEETING = 143;
+    private int HTTP_DELETE_HISTORY_MEETING = 144;
     private MyHttpHelper httpHelper;
     private List<HistoryMeetingModel.HistoryMeeting.MeetingModel> listMeeting = new ArrayList<>();
 
@@ -57,7 +62,7 @@ public class HistoryMettingFragment extends BaseFragment {
                     HistoryMeetingModel hmm = (HistoryMeetingModel) msg.obj;
                     if (hmm != null && hmm.getData().getResult().size() > 0) {
                         listMeeting = hmm.getData().getResult();
-                        adapter = new HistoryMettingRecyclerAdapter(getActivity(), listMeeting);
+                        adapter = new HistoryMettingRecyclerAdapter(getActivity(), listMeeting, handler);
                         recyclerview.setAdapter(adapter);
                     } else {
                         Toastor.showToast(getActivity(), "暂无数据");
@@ -65,9 +70,35 @@ public class HistoryMettingFragment extends BaseFragment {
                 } else {
                     Toastor.showToast(getActivity(), msg.obj.toString());
                 }
+            } else if (msg.arg1 == HTTP_DELETE_HISTORY_MEETING) {
+                if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
+                    httpHelper.postStringBack(HTTP_QUERY_HISTORY_MEETING, AppConfig.QUERY_MINE_HISTORY_MEETING, history(), handler, HistoryMeetingModel.class);
+                    Toastor.showToast(getActivity(), msg.obj.toString());
+                } else {
+                    Toastor.showToast(getActivity(), msg.obj.toString());
+                }
+            } else if (msg.what == 1002) {
+                final int index = (int) msg.obj;
+                new AlertDialog(getActivity()).builder().setCancelable(false).setTitle("温馨提示").setPositiveButton("确定", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        httpHelper.postStringBack(HTTP_DELETE_HISTORY_MEETING, AppConfig.DELETE_MINE_HISTORY_MEETING, delParames(listMeeting.get(index).getMeetingId()), handler, BaseModel.class);
+                    }
+                }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                    }
+                }).setMsg("是否确认删除此会议？").show();
             }
         }
     };
+
+    private HashMap<String, String> delParames(String meetingId) {
+        HashMap<String, String> del = new HashMap<String, String>();
+        del.put("token", TelephoneUtil.getIMEI(getActivity()));
+        del.put("meetingId", meetingId);
+        return del;
+    }
 
     @Override
     protected int getMainContentViewId() {

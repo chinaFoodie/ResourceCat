@@ -16,13 +16,12 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import com.cn.clound.R;
-import com.cn.clound.activity.MeetingDetailsActivity;
+import com.cn.clound.activity.EnterMeetingActivity;
 import com.cn.clound.adapter.MineMettingRecyclerAdapter;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
 import com.cn.clound.base.common.utils.TelephoneUtil;
-import com.cn.clound.bean.BaseModel;
 import com.cn.clound.bean.metting.MyMettingModel;
 import com.cn.clound.http.MyHttpHelper;
 import com.cn.clound.view.refreshlinearlayout.PullToRefreshBase;
@@ -134,7 +133,7 @@ public class MineMettingFtagment extends BaseFragment implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_enter_meeting:
-                startActivity(new Intent(getActivity(), MeetingDetailsActivity.class));
+                startActivity(new Intent(getActivity(), EnterMeetingActivity.class));
                 break;
         }
     }
