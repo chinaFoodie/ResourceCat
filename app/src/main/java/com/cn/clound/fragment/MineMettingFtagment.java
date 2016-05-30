@@ -1,6 +1,7 @@
 package com.cn.clound.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import com.cn.clound.R;
+import com.cn.clound.activity.MeetingDetailsActivity;
 import com.cn.clound.adapter.MineMettingRecyclerAdapter;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
@@ -132,7 +134,7 @@ public class MineMettingFtagment extends BaseFragment implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_enter_meeting:
-                Toastor.showToast(getActivity(), "进入会场");
+                startActivity(new Intent(getActivity(), MeetingDetailsActivity.class));
                 break;
         }
     }
