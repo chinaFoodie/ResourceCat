@@ -9,6 +9,7 @@
         layout="@layout/base_title_layout"></include>
 
     <RelativeLayout
+        android:id="@+id/rl_mid_enter_meeting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/include_meeting_details">
@@ -100,7 +101,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/meeting_title_content"
-            android:background="@color/colorWhite"></android.support.v7.widget.RecyclerView>
+            android:background="@color/colorWhite"
+            android:visibility="gone"></android.support.v7.widget.RecyclerView>
 
         <ImageView
             android:layout_width="58dp"
@@ -116,4 +118,29 @@
             android:scaleType="fitXY"
             android:src="@mipmap/img_meeting_details_right" />
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/input_menu"
+        android:layout_below="@id/rl_mid_enter_meeting">
+
+        <com.hyphenate.easeui.widget.EaseChatMessageList
+            android:id="@+id/message_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.hyphenate.easeui.widget.EaseVoiceRecorderView
+            android:id="@+id/voice_recorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <com.hyphenate.easeui.widget.EaseChatInputMenu
+        android:id="@+id/input_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

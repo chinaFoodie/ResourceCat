@@ -5,7 +5,7 @@ import com.cn.clound.bean.BaseModel;
 import java.util.List;
 
 /**
- * 会场模型
+ * 进入会场模型
  *
  * @author ChunfaLee(ly09219@gamil.com)
  * @date 2016-5-30 17:10:04
