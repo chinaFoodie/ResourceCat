@@ -10,7 +10,7 @@ import java.util.List;
  * @author ChunfaLee(ly09219@gamil.com)
  * @date 2016-5-30 17:10:04
  */
-public class StadiumModel extends BaseModel {
+public class EnterStadiumModel extends BaseModel {
     public Stadium data;
 
     public Stadium getData() {

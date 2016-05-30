@@ -111,6 +111,7 @@ public class AppConfig {
     public static String QUERY_MINE_HISTORY_MEETING = HOST_URL + "/meeting/getHistory";
     //删除我的历史会议
     public static String DELETE_MINE_HISTORY_MEETING = HOST_URL + "/meeting/remove";
+
     /**********************接口地址配置 end************************/
 
     /***************部门管理静态变量*************/
