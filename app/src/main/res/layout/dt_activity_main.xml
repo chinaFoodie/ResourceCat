@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cn.clound.activity.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/main_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorGrayMainTab"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_main_work"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:clickable="true">
+
+
+            <ImageView
+                android:id="@+id/img_main_work"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/btn_main_work_press" />
+
+            <TextView
+                android:id="@+id/tv_main_work"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_main_work"
+                android:layout_centerHorizontal="true"
+                android:text="云工作"
+                android:textColor="@color/colorBlueMainTab"
+                android:textSize="@dimen/base_mid_title_text12" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_main_message"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:clickable="true">
+
+
+            <ImageView
+                android:id="@+id/img_main_message"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/btn_main_message_normal" />
+
+            <TextView
+                android:id="@+id/tv_main_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_main_message"
+                android:layout_centerHorizontal="true"
+                android:text="消息"
+                android:textColor="@color/colorWhiteMainTab"
+                android:textSize="@dimen/base_mid_title_text12" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_main_contacts"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:clickable="true">
+
+
+            <ImageView
+                android:id="@+id/img_main_contacts"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/btn_main_contacts_normal" />
+
+            <TextView
+                android:id="@+id/tv_main_contacts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_main_contacts"
+                android:layout_centerHorizontal="true"
+                android:text="通讯录"
+                android:textColor="@color/colorWhiteMainTab"
+                android:textSize="@dimen/base_mid_title_text12" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/main_frame_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/main_bottom"></FrameLayout>
+</RelativeLayout>

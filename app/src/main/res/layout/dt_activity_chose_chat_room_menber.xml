@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_title_layout"></include>
+
+    <FrameLayout
+        android:id="@+id/fl_contacts_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/contact_main_search_bar"
+                layout="@layout/ease_search_bar_with_padding" />
+
+            <ListView
+                android:id="@+id/main_contacts_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/contact_main_search_bar"
+                android:background="@android:color/transparent" />
+
+            <com.cn.clound.view.SideBar
+                android:id="@+id/main_contacts_sidebar"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/contact_main_search_bar"
+                android:background="@android:color/transparent"
+                android:clickable="true" />
+
+            <TextView
+                android:id="@+id/floating_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ease_show_head_toast_bg"
+                android:gravity="center"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:textColor="@android:color/white"
+                android:textSize="40sp"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGraySettingDept" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_chat_menber"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_chose_menber_count"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:background="@color/colorBuleJoin"
+            android:gravity="center"
+            android:text="@string/sure"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/base_mid_title_text17" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_title_layout"></include>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/unallocated_swipeRefreshLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_unallocated_dept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/unallocated_swipeRefreshLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <com.cn.clound.base.view.SwipeMenuRecyclerView
+            android:id="@+id/swipe_menu_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.cn.clound.base.view.SwipeMenuRecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

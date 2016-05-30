@@ -1,0 +1,112 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">云在教育</string>
+    <string name="base_mid_title">中间标题</string>
+    <plurals name="fuzzydatetime__seconds_ago">
+        <item quantity="one">%d 秒前</item>
+        <item quantity="other">%d 秒前</item>
+    </plurals>
+    <plurals name="fuzzydatetime__minutes_ago">
+        <item quantity="one">%d 分钟前</item>
+        <item quantity="other">%d 分钟前</item>
+    </plurals>
+    <plurals name="fuzzydatetime__hours_ago">
+        <item quantity="one">%d 小时前</item>
+        <item quantity="other">%d 小时前</item>
+    </plurals>
+    <plurals name="fuzzydatetime__days_ago">
+        <item quantity="one">%d 天前</item>
+        <item quantity="other">%d 天前</item>
+    </plurals>
+    <plurals name="fuzzydatetime__weeks_ago">
+        <item quantity="one">%d 周前</item>
+        <item quantity="other">%d 周前</item>
+    </plurals>
+    <plurals name="fuzzydatetime__months_ago">
+        <item quantity="one">%d 月前</item>
+        <item quantity="other">%d 月前</item>
+    </plurals>
+    <plurals name="fuzzydatetime__years_ago">
+        <item quantity="one">%d 年前</item>
+        <item quantity="other">%d 年前</item>
+    </plurals>
+
+    <string name="dt_settings">设置</string>
+    <string name="dt_save">保存</string>
+    <string name="dt_sure">确定</string>
+    <string name="dept_settings">部门设置</string>
+
+    <string name="mid_title_work">云工作</string>
+    <string name="mid_title_message">消息</string>
+    <string name="mid_title_contacts">通讯录</string>
+
+    <string name="activity_data_center">数据中心</string>
+    <string name="activity_cloud_meeting">云会议</string>
+    <string name="activity_approval">审批</string>
+    <string name="activity_sign">签到</string>
+
+    <string name="man_contact_header_join">邀请联系人</string>
+    <string name="man_contact_header_up_down">上下级单位</string>
+    <string name="man_contact_header_org">组织架构</string>
+    <string name="dt_responsible">单位负责人</string>
+    <string name="man_contact_header_group">我的群聊</string>
+    <string name="man_contact_header_group_unallocated">未分配部门成员</string>
+    <string name="contact_org_list">部门管理</string>
+    <string name="add_org">添加部门</string>
+    <string name="add_responsible">添加负责人</string>
+
+    <string name="phone_contacts_join_wechat">微信邀请</string>
+    <string name="phone_contacts_join_qq">手机QQ邀请</string>
+    <string name="phone_contacts_join_phone">手机号邀请</string>
+
+    <string name="person_info">个人信息</string>
+    <string name="person_duty">职位：</string>
+    <string name="person_area">地区：</string>
+    <string name="person_unit">单位：</string>
+    <string name="dt_name">姓名</string>
+    <string name="dt_phone">手机号</string>
+    <string name="dt_duty">职位</string>
+
+    <string name="dept_name">部门名称</string>
+    <style name="dt_chat_room_name">群组名称</style>
+    <string name="dept_manager">部门负责人</string>
+    <string name="dept_delete">删除部门</string>
+
+    <!-- 下拉刷新加载 -->
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+
+    <string name="add_charge_desc">*该主管未加入组织架构从手机号添加</string>
+    <string name="tip_input_phone">请输入手机号</string>
+    <string name="tip_input_psw">请输入密码</string>
+
+    <string name="day">"1 天"</string>
+    <string name="days">"<xliff:g id="DAYS">%s</xliff:g> 天"</string>
+    <string name="hour">"1 小时"</string>
+    <string name="hours" msgid="2071487018566991613">"<xliff:g id="HOURS">%s</xliff:g> 小时"</string>
+    <string name="minute">"1 分钟"</string>
+    <string name="minutes">"<xliff:g id="MINUTES">%s</xliff:g> 分钟"</string>
+    <string name="every_day">"每天"</string>
+    <string name="never">"一律不"</string>
+    <string name="day_concat">", "</string>
+    <string name="clock_instructions">"选择要显示的时钟。"</string>
+    <string name="analog_gadget">"模拟时钟"</string>
+    <string name="settings">"设置"</string>
+    <string name="alarm_in_silent_mode_title">"静音模式下闹钟响"</string>
+    <string name="alarm_in_silent_mode_summary">"手机处于静音模式时，闹钟仍会响"</string>
+    <string name="snooze_duration_title">"再响间隔"</string>
+    <string name="default_label">"闹钟"</string>
+
+
+    <string name="pull_to_refresh_pull_label">下拉刷新…</string>
+    <string name="pull_to_refresh_release_label">松开刷新…</string>
+    <string name="pull_to_refresh_refreshing_label">更新中…</string>
+
+    <!-- Just use standard Pull Down String when pulling up. These can be set for languages which require it -->
+    <string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string>
+    <string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string>
+    <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
+</resources>

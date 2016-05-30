@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_title_layout"></include>
+
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/map_singed_location"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"></com.baidu.mapapi.map.MapView>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_singed_loacation_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom_submit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#76bd3a"
+            android:gravity="center"
+            android:text="提交"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/base_mid_title_text16" />
+    </LinearLayout>
+</LinearLayout>

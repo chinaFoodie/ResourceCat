@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_activity_choose_meeting_date"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGraySettingDept"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_title_layout"></include>
+
+    <com.cn.clound.base.view.StickyLayout
+        android:id="@+id/sticky_meeting_time_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/sticky_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/colorGraySettingDept">
+
+                <TextView
+                    android:id="@+id/tv_meetings_month"
+                    style="@style/textview_location_15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="三月" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_prev_month"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@id/tv_meetings_month">
+
+                    <ImageView
+                        android:id="@+id/img_prev_month"
+                        android:layout_width="10dp"
+                        android:layout_height="16dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="6dp"
+                        android:src="@mipmap/sign_rl_left" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_next_month"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/tv_meetings_month">
+
+                    <ImageView
+                        android:id="@+id/img_next_month"
+                        android:layout_width="10dp"
+                        android:layout_height="16dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="6dp"
+                        android:src="@mipmap/sign_rl_right" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <ViewFlipper
+                android:id="@+id/calendar_flipper"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_mid_line" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sticky_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0.5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:background="@color/colorWhite"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="设置会议时间"
+                android:textColor="#90909a"
+                android:textSize="16sp" />
+
+            <ExpandableListView
+                android:id="@+id/expand_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0.5dp"
+                android:background="@color/colorWhite"
+                android:divider="@null"
+                android:scrollbars="none">
+
+            </ExpandableListView>
+        </LinearLayout>
+    </com.cn.clound.base.view.StickyLayout>
+</LinearLayout>

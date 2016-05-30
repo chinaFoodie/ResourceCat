@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <com.hyphenate.easeui.widget.CircleImageView
+            android:id="@+id/dept_manager_circleimage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="5dp"></com.hyphenate.easeui.widget.CircleImageView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/dept_manager_circleimage"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/dept_manager_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="姓名"
+                    android:textColor="@color/colorDarkContactHeader"
+                    android:textSize="@dimen/base_mid_title_text15" />
+
+                <TextView
+                    android:id="@+id/tv_dept_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@id/dept_manager_name"
+                    android:gravity="center_vertical"
+                    android:text="@string/activity_approval"
+                    android:textColor="@color/colorDarkContactHeader"
+                    android:textSize="@dimen/base_mid_title_text15" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/dept_manager_phone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:text="13388164925"
+                android:textColor="@color/colorWhiteMainTab" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_is_settings"
+            android:layout_width="53dp"
+            android:layout_height="21dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/img_menber_is_settings"
+            android:visibility="gone" />
+
+        <CheckBox
+            android:id="@+id/ishx_or_isfriends"
+            style="@style/CustomCheckboxTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="26dp"
+            android:checked="false"
+            android:clickable="false" />
+
+        <ImageView
+            android:id="@+id/img_or_isfriends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="26dp"
+            android:src="@mipmap/img_dont_choose"
+            android:visibility="gone" />
+    </RelativeLayout>
+</LinearLayout>

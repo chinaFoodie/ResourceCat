@@ -1,0 +1,30 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="base_mid_title_text22">22sp</dimen>
+    <dimen name="base_mid_title_text20">20sp</dimen>
+    <dimen name="base_mid_title_text18">18sp</dimen>
+    <dimen name="base_mid_title_text17">17sp</dimen>
+    <dimen name="base_mid_title_text16">16sp</dimen>
+    <dimen name="base_mid_title_text15">15sp</dimen>
+    <dimen name="base_mid_title_text14">14sp</dimen>
+    <dimen name="base_mid_title_text12">12sp</dimen>
+    <dimen name="shadow_width">15.0dip</dimen>
+    <dimen name="slidingmenu_offset">0.0dip</dimen>
+    <dimen name="slidingmenu_leftset">0.0dip</dimen>
+    <!--通用尺寸-->
+    <!--General sizes-->
+    <dimen name="WheelItemSpace">8dp</dimen>
+    <dimen name="WheelPadding">8dp</dimen>
+    <dimen name="WheelTextSize">20sp</dimen>
+
+    <dimen name="WheelLabelTextSize">12sp</dimen>
+
+    <dimen name="size_updatebar_content_height">48dp</dimen>
+    <dimen name="size_updatebar_padding">12dp</dimen>
+
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+</resources>

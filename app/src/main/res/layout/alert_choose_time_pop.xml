@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pop_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:id="@+id/tv_cancel_get_date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/colorBlueMainTab"
+            android:textSize="@dimen/base_mid_title_text15" />
+
+        <TextView
+            android:id="@+id/tv_sure_get_date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/colorBlueMainTab"
+            android:textSize="@dimen/base_mid_title_text15" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="214dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp">
+
+        <com.cn.clound.view.wheelpicker.views.WheelView
+            android:id="@+id/wheel_start_hour"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorBlueMainTab" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text=":" />
+
+        <com.cn.clound.view.wheelpicker.views.WheelView
+            android:id="@+id/wheel_start_minute"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorGraySettingDept" />
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="一" />
+
+        <com.cn.clound.view.wheelpicker.views.WheelView
+            android:id="@+id/wheel_end_hour"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorBlueMainTab" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text=":" />
+
+        <com.cn.clound.view.wheelpicker.views.WheelView
+            android:id="@+id/wheel_end_minute"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorGraySettingDept" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_title_layout"></include>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <View
+            android:id="@+id/view_mid"
+            android:layout_width="0.5dp"
+            android:layout_height="16dp"
+            android:layout_centerInParent="true"
+            android:background="@color/color_mid_line"></View>
+
+        <RelativeLayout
+            android:id="@+id/rl_mine_sign"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/view_mid">
+
+            <TextView
+                android:id="@+id/tv_mine_sign"
+                style="@style/textview_main_tab_head_16"
+                android:layout_width="66dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="我的签到"
+                android:textColor="@color/colorBlueMainTab" />
+
+            <ImageView
+                android:id="@+id/img_mine_bottom"
+                android:layout_width="60dp"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="4dp"
+                android:background="@color/colorBlueMainTab" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_group_sign"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/view_mid">
+
+            <TextView
+                android:id="@+id/tv_group_sign"
+                style="@style/textview_input_head_16"
+                android:layout_width="66dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="团队签到" />
+
+            <ImageView
+                android:id="@+id/img_group_bottom"
+                android:layout_width="60dp"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="4dp"
+                android:visibility="gone"
+                android:background="@color/colorBlueMainTab" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/sign_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+</LinearLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGraySettingDept">
+
+    <include
+        android:id="@+id/include_org_list"
+        layout="@layout/base_title_layout"></include>
+
+    <RelativeLayout
+        android:id="@+id/rl_org_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_add_org"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="添加部门" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/tv_add_org"
+            android:src="@mipmap/dt_img_add_org" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_org_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/rl_org_list"
+        android:background="@color/colorWhite"
+        android:layout_below="@id/include_org_list"></ListView>
+
+
+</RelativeLayout>

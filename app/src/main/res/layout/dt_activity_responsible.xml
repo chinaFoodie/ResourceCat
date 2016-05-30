@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include_responsible"
+        layout="@layout/base_title_layout"></include>
+
+    <RelativeLayout
+        android:id="@+id/ll_add_responsible_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="46dp"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorGraySettingDept" />
+
+        <TextView
+            android:id="@+id/tv_add_responsible"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="6dp"
+            android:gravity="center"
+            android:text="添加负责人"
+            android:textColor="@color/colorBuleJoin" />
+
+        <ImageView
+            android:id="@+id/img_add_responsible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/tv_add_responsible"
+            android:src="@mipmap/dt_img_add_org" />
+    </RelativeLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/responsible_swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_add_responsible_bottom"
+        android:layout_below="@id/include_responsible">
+
+        <com.cn.clound.base.view.SwipeMenuRecyclerView
+            android:id="@+id/responsible_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.cn.clound.base.view.SwipeMenuRecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</RelativeLayout>

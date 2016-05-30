@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include_dept"
+        layout="@layout/base_title_layout"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorGraySettingDept"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/ll_dept_name"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/ll_contacts_info"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorWhite"
+            android:paddingLeft="30dp">
+
+            <TextView
+                android:id="@+id/tv_dept_name"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:text="@string/dept_name"
+                android:textColor="@color/colorDarkContactHeader"
+                android:textSize="@dimen/base_mid_title_text16" />
+
+            <EditText
+                android:id="@+id/et_dept_name_value"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tv_dept_name"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:paddingLeft="6dp"
+                android:textColor="@color/colorBlackPerson"
+                android:textSize="@dimen/base_mid_title_text16" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+        <RelativeLayout
+            android:id="@+id/ll_dept_manager"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/colorWhite"
+            android:paddingLeft="30dp">
+
+            <TextView
+                android:id="@+id/tv_dept_manager"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:text="@string/dept_manager"
+                android:textColor="@color/colorDarkContactHeader"
+                android:textSize="@dimen/base_mid_title_text16" />
+
+            <TextView
+                android:id="@+id/tv_dept_manager_value"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/tv_dept_manager"
+                android:gravity="center_vertical"
+                android:text="@string/dept_manager"
+                android:textColor="@color/colorWhiteMainTab"
+                android:textSize="@dimen/base_mid_title_text16"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/img_dept_manager_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/tv_dept_manager"
+                android:gravity="center_vertical"
+                android:src="@mipmap/img_dept_no_settings" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="15dp"
+                android:src="@mipmap/dt_arrow_to" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/ll_dept_delete"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorWhite">
+
+            <TextView
+                android:id="@+id/tv_dept_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center_vertical"
+                android:text="@string/dept_delete"
+                android:textColor="@color/red_delete"
+                android:textSize="@dimen/base_mid_title_text17" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

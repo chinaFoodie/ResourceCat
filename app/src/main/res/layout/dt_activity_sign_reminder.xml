@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGraySettingDept"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_title_layout"></include>
+
+    <LinearLayout
+        android:id="@+id/ll_no_sign_reminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="还未设置签到提醒!"
+            android:textColor="#7f7f7f"
+            android:textSize="@dimen/base_mid_title_text16" />
+
+        <RelativeLayout
+            android:id="@+id/rl_to_add_sign_reminder"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="52dp"
+            android:background="@color/colorBlueMainTab">
+
+            <TextView
+                android:id="@+id/tv_add_sign_reminder"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:text="新增签到提醒"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/base_mid_title_text17" />
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/tv_add_sign_reminder"
+                android:src="@mipmap/dt_img_add" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <com.cn.clound.base.view.SwipeMenuRecyclerView
+        android:id="@+id/sign_swipe_menu_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"></com.cn.clound.base.view.SwipeMenuRecyclerView>
+</LinearLayout>

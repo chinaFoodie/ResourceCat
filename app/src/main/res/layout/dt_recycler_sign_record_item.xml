@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <ImageView
+        android:id="@+id/img_recycler_location"
+        android:layout_width="16dp"
+        android:layout_height="22dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:src="@mipmap/img_recycler_location" />
+
+    <TextView
+        android:id="@+id/tv_sign_record_time"
+        style="@style/textview_main_tab_head_16"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/img_recycler_location"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="16:10" />
+
+    <TextView
+        android:id="@+id/tv_sign_record_address"
+        style="@style/textview_main_tab_head_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@id/tv_sign_record_time"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="16:10" />
+</RelativeLayout>

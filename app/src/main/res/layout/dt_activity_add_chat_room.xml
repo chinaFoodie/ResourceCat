@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include_add_chat_room"
+        layout="@layout/base_title_layout"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorGraySettingDept"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/ll_chat_room_name"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorWhite"
+            android:paddingLeft="30dp">
+
+            <TextView
+                android:id="@+id/tv_chat_room_name"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:text="群组名称"
+                android:textColor="@color/colorDarkContactHeader"
+                android:textSize="@dimen/base_mid_title_text16" />
+
+            <EditText
+                android:id="@+id/et_add_chat_room_name"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tv_chat_room_name"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="输入群主名称名称"
+                android:paddingLeft="6dp"
+                android:textColor="@color/colorGrayAddDept"
+                android:textSize="@dimen/base_mid_title_text16" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

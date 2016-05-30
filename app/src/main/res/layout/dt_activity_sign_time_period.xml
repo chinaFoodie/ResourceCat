@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGraySettingDept"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_title_layout"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="214dp"
+        android:layout_marginTop="38dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp">
+
+        <com.cn.clound.view.wheelpicker.views.WheelView
+            android:id="@+id/wheel_view_mor_after"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.cn.clound.view.wheelpicker.views.WheelView
+                android:id="@+id/wheel_view_hours"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <com.cn.clound.view.wheelpicker.views.WheelView
+                android:id="@+id/wheel_view_minute"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_to_set_time_cycle"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorWhite">
+
+        <TextView
+            android:id="@+id/chongfu_cycle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:gravity="center_vertical"
+            android:text="重复周期"
+            android:textColor="#2f2f2f"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/img_arrow_ro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/dt_arrow_to" />
+
+        <RelativeLayout
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/img_arrow_ro">
+
+            <TextView
+                android:id="@+id/tv_sign_zhouqi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="每天"
+                android:textColor="#b9b9c4"
+                android:textSize="17sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGraySettingDept">
+
+    <include
+        android:id="@+id/include_dept_choose"
+        layout="@layout/base_title_layout"></include>
+
+    <ListView
+        android:id="@+id/lv_dept_choose_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include_dept_choose"
+        android:background="@color/colorWhite"></ListView>
+
+
+</RelativeLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGraySettingDept"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_title_layout"></include>
+
+    <LinearLayout
+        android:id="@+id/ll_get_meeting_hostess"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="会议主持:"
+            android:textColor="@color/colorBlackPerson"
+            android:textSize="@dimen/base_mid_title_text16" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="选择会议主持人"
+            android:textColor="@color/colorGrayAddDept"
+            android:textSize="@dimen/base_mid_title_text16" />
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/dt_arrow_to" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_hostess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0.5dp"
+        android:background="@color/colorWhite"></android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/ll_meeting_get_joined_menber"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="0.5dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="参会人员:"
+            android:textColor="@color/colorBlackPerson"
+            android:textSize="@dimen/base_mid_title_text16" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="选择参会人员"
+            android:textColor="@color/colorGrayAddDept"
+            android:textSize="@dimen/base_mid_title_text16" />
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/dt_arrow_to" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_joined_menber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0.5dp"
+        android:background="@color/colorWhite"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

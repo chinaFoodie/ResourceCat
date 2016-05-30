@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorGraySettingDept">
+
+        <RelativeLayout
+            android:id="@+id/rl_group_sign_month"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/tv_current_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="dadada"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/base_mid_title_text16" />
+
+            <TextView
+                android:id="@+id/tv_current_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tv_current_date"
+                android:text="tetet"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/base_mid_title_text16" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_prev_day"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/rl_group_sign_month">
+
+            <ImageView
+                android:id="@+id/img_prev_day"
+                android:layout_width="10dp"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="6dp"
+                android:src="@mipmap/sign_rl_left" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_next_day"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/rl_group_sign_month">
+
+            <ImageView
+                android:id="@+id/img_next_day"
+                android:layout_width="10dp"
+                android:layout_height="16dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:src="@mipmap/sign_rl_right" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <include layout="@layout/dt_recycler_group_record_item"></include>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_group_record"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

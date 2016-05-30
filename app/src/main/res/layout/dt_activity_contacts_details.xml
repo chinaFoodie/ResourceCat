@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include
+        android:id="@+id/include_contacts_details"
+        layout="@layout/base_title_layout"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_contacts_detail_header"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@mipmap/dt_contacts_head_bg">
+
+                <com.hyphenate.easeui.widget.CircleImageView
+                    android:id="@+id/civ_contacts_details_head"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/img_join_header_qq" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/civ_contacts_details_head"
+                    android:layout_marginTop="12dp">
+
+                    <ImageView
+                        android:id="@+id/img_contact_details_add_or_delete"
+                        android:layout_width="96dp"
+                        android:layout_height="32dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/dt_img_add_contacts"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_contacts_info"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@id/rl_contacts_detail_header"
+                android:layout_marginLeft="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/person_info"
+                    android:textColor="@color/colorBlueMainTab"
+                    android:textSize="@dimen/base_mid_title_text17"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_contacts_duty"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@id/ll_contacts_info"
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/person_duty"
+                    android:textColor="@color/colorWhiteMainTab"
+                    android:textSize="@dimen/base_mid_title_text17" />
+
+                <TextView
+                    android:id="@+id/tv_contact_duty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorBlackPerson"
+                    android:textSize="@dimen/base_mid_title_text17" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_contacts_area"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@id/ll_contacts_duty"
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/person_area"
+                    android:textColor="@color/colorWhiteMainTab"
+                    android:textSize="@dimen/base_mid_title_text17" />
+
+                <TextView
+                    android:id="@+id/tv_contact_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorBlackPerson"
+                    android:textSize="@dimen/base_mid_title_text17" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_contacts_unit"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@id/ll_contacts_area"
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/person_unit"
+                    android:textColor="@color/colorWhiteMainTab"
+                    android:textSize="@dimen/base_mid_title_text17" />
+
+                <TextView
+                    android:id="@+id/tv_contact_dept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorBlackPerson"
+                    android:textSize="@dimen/base_mid_title_text17" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGraySettingDept" />
+
+    <RelativeLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="58dp">
+
+        <View
+            android:id="@+id/mid_bottom"
+            android:layout_width="0.5dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:background="@color/colorGraySettingDept"></View>
+
+        <RelativeLayout
+            android:id="@+id/contact_details_send_msg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/mid_bottom">
+
+            <TextView
+                android:id="@+id/tv_send_message"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="发消息"
+                android:textColor="@color/colorBlueMainTab"
+                android:textSize="@dimen/base_mid_title_text17" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@id/tv_send_message"
+                android:src="@mipmap/dt_send_message" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/contact_details_call"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/mid_bottom">
+
+            <TextView
+                android:id="@+id/tv_call_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="打电话"
+                android:textColor="@color/colorBlueMainTab"
+                android:textSize="@dimen/base_mid_title_text17" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@id/tv_call_phone"
+                android:src="@mipmap/dt_call_phone" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

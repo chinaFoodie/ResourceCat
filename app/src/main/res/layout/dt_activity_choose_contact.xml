@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_title_layout"></include>
+
+    <RelativeLayout
+        android:id="@+id/rl_choose_contact_un_allocated"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <com.hyphenate.easeui.widget.CircleImageView
+            android:id="@+id/img_org_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="5dp"
+            android:src="@mipmap/img_contact_header_unallocted"></com.hyphenate.easeui.widget.CircleImageView>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/img_org_avatar">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:text="未分配部门成员"
+                android:textColor="@color/colorDarkContactHeader"
+                android:textSize="@dimen/base_mid_title_text17" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:src="@mipmap/dt_arrow_to" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_join_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/join_contacts_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+
+            <com.cn.clound.view.SideBar
+                android:id="@+id/join_contacts_sidebar"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="@android:color/transparent"
+                android:clickable="true" />
+
+            <TextView
+                android:id="@+id/join_contacts_floating_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ease_show_head_toast_bg"
+                android:gravity="center"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:textColor="@android:color/white"
+                android:textSize="40sp"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </FrameLayout>
+</LinearLayout>

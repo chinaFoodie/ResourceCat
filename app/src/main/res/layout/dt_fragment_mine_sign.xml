@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.cn.clound.base.view.StickyLayout
+        android:id="@+id/sticky_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/sticky_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/colorGraySettingDept">
+
+                <TextView
+                    android:id="@+id/tv_mine_sign_month"
+                    style="@style/textview_location_15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="三月" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_prev_month"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@id/tv_mine_sign_month">
+
+                    <ImageView
+                        android:id="@+id/img_prev_month"
+                        android:layout_width="10dp"
+                        android:layout_height="16dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="6dp"
+                        android:src="@mipmap/sign_rl_left" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_next_month"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/tv_mine_sign_month">
+
+                    <ImageView
+                        android:id="@+id/img_next_month"
+                        android:layout_width="10dp"
+                        android:layout_height="16dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="6dp"
+                        android:src="@mipmap/sign_rl_right" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorWhite">
+
+                <TextView
+                    style="@style/weekName"
+                    android:text="日"
+                    android:textColor="#177ed6" />
+
+                <TextView
+                    style="@style/weekName"
+                    android:text="一" />
+
+                <TextView
+                    style="@style/weekName"
+                    android:text="二" />
+
+                <TextView
+                    style="@style/weekName"
+                    android:text="三" />
+
+                <TextView
+                    style="@style/weekName"
+                    android:text="四" />
+
+                <TextView
+                    style="@style/weekName"
+                    android:text="五" />
+
+                <TextView
+                    style="@style/weekName"
+                    android:text="六"
+                    android:textColor="#177ed6" />
+            </LinearLayout>
+
+            <ViewFlipper
+                android:id="@+id/calendar_flipper"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_mid_line" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sticky_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@mipmap/img_sign_cycler_header">
+
+                <TextView
+                    android:id="@+id/tv_current_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="24dp"
+                    android:gravity="center"
+                    android:text="dadada"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/base_mid_title_text16" />
+
+                <TextView
+                    android:id="@+id/tv_current_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/tv_current_date"
+                    android:text="tetet"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/base_mid_title_text16" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_sign_record"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </com.cn.clound.base.view.StickyLayout>
+</LinearLayout>

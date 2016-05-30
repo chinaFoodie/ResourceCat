@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/include_org_list_detail"
+        layout="@layout/base_title_layout"></include>
+
+    <RelativeLayout
+        android:id="@+id/ll_org_details_list"
+        android:layout_width="fill_parent"
+        android:layout_height="46dp"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorGraySettingDept" />
+
+        <View
+            android:id="@+id/ll_menu_mid_view"
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            android:background="@color/colorGraySettingDept" />
+
+        <TextView
+            android:id="@+id/tv_add_menber"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_toLeftOf="@id/ll_menu_mid_view"
+            android:gravity="center"
+            android:text="添加成员"
+            android:textColor="@color/colorBuleJoin" />
+
+        <TextView
+            android:id="@+id/tv_dept_settings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_toRightOf="@id/ll_menu_mid_view"
+            android:gravity="center"
+            android:text="部门设置"
+            android:textColor="@color/colorBuleJoin" />
+    </RelativeLayout>
+
+    <com.cn.clound.base.view.SwipeMenuRecyclerView
+        android:id="@+id/swipe_menu_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_org_details_list"
+        android:layout_below="@id/include_org_list_detail" />
+
+    <ListView
+        android:id="@+id/normal_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_org_details_list"
+        android:layout_below="@id/include_org_list_detail"
+        android:divider="@null"
+        android:scrollbars="none"
+        android:visibility="gone"></ListView>
+
+</RelativeLayout>

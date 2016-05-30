@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/img_login_bg">
+
+    <LinearLayout
+        android:id="@+id/ll_login_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="46dp"
+                android:gravity="center"
+                android:text="用户名:"
+                android:textColor="@color/colorWhiteMainTab"
+                android:textSize="@dimen/base_mid_title_text16" />
+
+            <EditText
+                android:id="@+id/et_login_username"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/tip_input_phone"
+                android:paddingLeft="4dp"
+                android:phoneNumber="true"
+                android:textColor="@color/colorInput"
+                android:textSize="@dimen/base_mid_title_text15" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorWhiteMainTab"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="46dp"
+                android:gravity="center"
+                android:text="密  码:"
+                android:textColor="@color/colorWhiteMainTab"
+                android:textSize="@dimen/base_mid_title_text16" />
+
+            <EditText
+                android:id="@+id/et_login_password"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/tip_input_psw"
+                android:numeric="integer"
+                android:paddingLeft="4dp"
+                android:password="true"
+                android:textColor="@color/colorInput"
+                android:textSize="@dimen/base_mid_title_text15" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="150dp"
+        android:layout_above="@id/ll_login_info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="42dp"
+        android:src="@mipmap/img_login_logo" />
+
+    <TextView
+        android:id="@+id/tv_do_login"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_below="@id/ll_login_info"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_cicle_rect"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="登录"
+        android:textColor="@color/colorWhite" />
+
+    <TextView
+        android:id="@+id/tv_login_forget_password"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_below="@id/tv_do_login"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:text="忘记密码>"
+        android:textColor="@color/colorBlueMainTab"
+        android:textSize="@dimen/base_mid_title_text16" />
+
+</RelativeLayout>

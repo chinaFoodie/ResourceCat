@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorMidnightBlue">#0000CD</color>
+    <color name="colorSlateGray">#323f4c</color>
+    <color name="black">#000000</color>
+    <!--颜色整理start-->
+    <color name="colorBlueMainTab">#52a1f2</color>
+    <color name="colorWhiteMainTab">#90909a</color>
+    <color name="colorGrayMainTab">#fafafa</color>
+    <color name="colorDarkContactHeader">#2f2f2f</color>
+    <color name="colorBuleJoin">#5fa8f3</color>
+    <color name="colorBlackPerson">#2f2f2f</color>
+    <color name="colorGraySettingDept">#e7eaee</color>
+    <color name="colorGrayAddDept">#b9b9c4</color>
+    <color name="colorInput">#d4d4e2</color>
+    <color name="color_mid_line">#e7eaee</color>
+    <color name="color_meeting_net">#97bef6</color>
+    <color name="color_meeting_off">#f6b258</color>
+
+    <!--iso7对话框-->
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="actionsheet_blue">#037BFF</color>
+    <color name="actionsheet_red">#FD4A2E</color>
+    <color name="actionsheet_gray">#8F8F8F</color>
+    <color name="public_list_first">#fbf7f7</color>
+    <color name="public_list_next">#cdcecd</color>
+    <color name="clear">#00ffffff</color>
+    <color name="high_grey">#5d5d5d</color>
+    <color name="btn_content">#157efb</color>
+    <color name="red_delete">#ff370f</color>
+</resources>

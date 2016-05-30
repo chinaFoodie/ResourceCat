@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+    <ImageView
+        android:layout_width="2dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="65dp"
+        android:background="@mipmap/img_singed_top_bg" />
+
+    <ImageView
+        android:id="@+id/img_singed_time_line_yuan"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="58dp"
+        android:src="@mipmap/img_singed_time_line_yuan" />
+
+    <RelativeLayout
+        android:id="@+id/tl_last_sign"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/img_singed_time_line_yuan"
+        android:background="@mipmap/img_singed_time_line_item">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_sign_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="时间"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/base_mid_title_text18" />
+
+            <TextView
+                android:id="@+id/tv_sign_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="地点"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/base_mid_title_text18" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
