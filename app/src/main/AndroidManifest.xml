@@ -332,6 +332,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan"></activity>
+        <!--会议详情界面-->
+        <activity
+            android:name=".activity.MeetingDetailsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
         <!--审批-->
         <activity
             android:name=".activity.ApprovalActivity"
