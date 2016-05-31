@@ -51,20 +51,20 @@ public class MineMettingRecyclerAdapter extends RecyclerView.Adapter {
             ((MyViewHolder) holder).tvMeetingType.setText("实体会议");
             ((MyViewHolder) holder).tvMeetingType.setBackgroundResource(R.color.color_meeting_off);
         }
-        final int[] secondCount = new int[listMetting.size()];//{1080000, 108003, 1080054, 1340800, 104800, 108030, 108200, 10800, 108040, 1082300};
+        final long[] secondCount = new long[listMetting.size()];//{1080000, 108003, 1080054, 1340800, 104800, 108030, 108200, 10800, 108040, 1082300};
         for (int i = 0; i < listMetting.size(); i++) {
-            int temp = (int) DateUtil.string2Date(listMetting.get(position).getBeginAt(), "yyyy-MM-dd HH:mm").getTime();
-            secondCount[i] = (int) (temp - (new Date().getTime()));
+            long temp = DateUtil.string2Date(listMetting.get(position).getBeginAt(), "yyyy-MM-dd HH:mm").getTime();
+            secondCount[i] = temp - System.currentTimeMillis();
         }
         ((MyViewHolder) holder).tvHour.post(new Runnable() {
             @Override
             public void run() {
                 if (secondCount[position] > 0) {
                     secondCount[position]--;
-                    int d = secondCount[position] / 86400;
-                    int h = secondCount[position] / 3600 % 24;
-                    int m = secondCount[position] / 60 % 60;
-                    int s = secondCount[position] % 60;
+                    long d = secondCount[position] / 86400;
+                    long h = secondCount[position] / 3600 % 24;
+                    long m = secondCount[position] / 60 % 60;
+                    long s = secondCount[position] % 60;
                     StringBuffer day = new StringBuffer();
                     StringBuffer hour = new StringBuffer();
                     StringBuffer minute = new StringBuffer();

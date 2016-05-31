@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGraySettingDept">
+
+    <include
+        android:id="@+id/include_cloud_metting"
+        layout="@layout/base_title_layout"></include>
+
+    <RelativeLayout
+        android:id="@+id/rl_fragment_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/include_cloud_metting"
+        android:background="@color/colorWhite">
+
+        <View
+            android:id="@+id/view_mid"
+            android:layout_width="0.5dp"
+            android:layout_height="16dp"
+            android:layout_centerInParent="true"
+            android:background="@color/color_mid_line"></View>
+
+        <RelativeLayout
+            android:id="@+id/rl_mine_sign"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/view_mid">
+
+            <TextView
+                android:id="@+id/tv_mine_meeting"
+                style="@style/textview_main_tab_head_16"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="发布中会议"
+                android:textColor="@color/colorBlueMainTab" />
+
+            <ImageView
+                android:id="@+id/img_mine_meeting"
+                android:layout_width="72dp"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="4dp"
+                android:background="@color/colorBlueMainTab" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_group_sign"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/view_mid">
+
+            <TextView
+                android:id="@+id/tv_history_metting"
+                style="@style/textview_input_head_16"
+                android:layout_width="66dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="历史会议" />
+
+            <ImageView
+                android:id="@+id/img_history_metting"
+                android:layout_width="60dp"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="4dp"
+                android:background="@color/colorBlueMainTab"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/metting_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_fragment_title"></FrameLayout>
+</RelativeLayout>
