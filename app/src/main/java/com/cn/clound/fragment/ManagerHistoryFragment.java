@@ -16,7 +16,6 @@ import com.cn.clound.base.BaseFragment;
  * @date 2016-5-31 10:31:47
  */
 public class ManagerHistoryFragment extends BaseFragment {
-
     @Override
     protected int getMainContentViewId() {
         return 0;

@@ -46,7 +46,6 @@ public class PublishingMeetingFragment extends BaseFragment {
      * 初始化视图
      */
     private void init() {
-
     }
 
     @Override
