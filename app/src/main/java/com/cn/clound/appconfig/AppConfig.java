@@ -113,6 +113,10 @@ public class AppConfig {
     public static String DELETE_MINE_HISTORY_MEETING = HOST_URL + "/meeting/remove";
     //进入会场
     public static String ENTER_MEETING = HOST_URL + "/meeting/enter";
+    //会议管理-发布中的会议
+    public static String GET_PUBLISH_MEETING = HOST_URL + "/meetingMng/getTop";
+    //会议管理-历史会议
+    public static String GET_MANAGER_HISTORY_MEETING = HOST_URL + "/meetingMng/getHistory";
 
     /**********************接口地址配置 end************************/
 

@@ -24,10 +24,21 @@ import java.util.List;
 public class MineMettingRecyclerAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<MyMettingModel.MeetingData.MineMetting> listMetting;
+    private long[] count;
+    private OnItemClickLitener onItemClickLitener;
+
+    public void setOnItemClickLitener(OnItemClickLitener onItemClickLitener) {
+        this.onItemClickLitener = onItemClickLitener;
+    }
 
     public MineMettingRecyclerAdapter(Context context, List<MyMettingModel.MeetingData.MineMetting> listMetting) {
         this.context = context;
         this.listMetting = listMetting;
+        count = new long[listMetting.size()];
+        for (int i = 0; i < listMetting.size(); i++) {
+            Date temp = DateUtil.string2Date(listMetting.get(i).getBeginAt() + ":00", "yyyy-MM-dd HH:mm:ss");
+            count[i] = (temp.getTime() - new Date().getTime()) / 1000;
+        }
     }
 
     @Override
@@ -51,20 +62,19 @@ public class MineMettingRecyclerAdapter extends RecyclerView.Adapter {
             ((MyViewHolder) holder).tvMeetingType.setText("实体会议");
             ((MyViewHolder) holder).tvMeetingType.setBackgroundResource(R.color.color_meeting_off);
         }
-        final long[] secondCount = new long[listMetting.size()];//{1080000, 108003, 1080054, 1340800, 104800, 108030, 108200, 10800, 108040, 1082300};
-        for (int i = 0; i < listMetting.size(); i++) {
-            long temp = DateUtil.string2Date(listMetting.get(position).getBeginAt(), "yyyy-MM-dd HH:mm").getTime();
-            secondCount[i] = temp - System.currentTimeMillis();
-        }
+//        final long[] secondCount = new long[listMetting.size()];//{1080000, 108003, 1080054, 1340800, 104800, 108030, 108200, 10800, 108040, 1082300};
+//        for (int i = 0; i < listMetting.size(); i++) {
+//            secondCount[i] = temp - System.currentTimeMillis();
+//        }
         ((MyViewHolder) holder).tvHour.post(new Runnable() {
             @Override
             public void run() {
-                if (secondCount[position] > 0) {
-                    secondCount[position]--;
-                    long d = secondCount[position] / 86400;
-                    long h = secondCount[position] / 3600 % 24;
-                    long m = secondCount[position] / 60 % 60;
-                    long s = secondCount[position] % 60;
+                if (count[position] > 0) {
+                    count[position]--;
+                    long d = count[position] / 86400;
+                    long h = count[position] / 3600 % 24;
+                    long m = count[position] / 60 % 60;
+                    long s = count[position] % 60;
                     StringBuffer day = new StringBuffer();
                     StringBuffer hour = new StringBuffer();
                     StringBuffer minute = new StringBuffer();
@@ -95,6 +105,23 @@ public class MineMettingRecyclerAdapter extends RecyclerView.Adapter {
                 }
             }
         });
+        if (onItemClickLitener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = holder.getLayoutPosition();
+                    onItemClickLitener.onItemClick(holder.itemView, pos);
+                }
+            });
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int pos = holder.getLayoutPosition();
+                    onItemClickLitener.onItemLongClick(holder.itemView, pos);
+                    return true;
+                }
+            });
+        }
     }
 
     @Override

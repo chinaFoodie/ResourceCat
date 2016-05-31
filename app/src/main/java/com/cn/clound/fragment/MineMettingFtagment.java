@@ -17,7 +17,9 @@ import android.widget.ScrollView;
 
 import com.cn.clound.R;
 import com.cn.clound.activity.EnterMeetingActivity;
+import com.cn.clound.activity.MeetingDetailsActivity;
 import com.cn.clound.adapter.MineMettingRecyclerAdapter;
+import com.cn.clound.adapter.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
@@ -39,7 +41,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016-5-23 16:14:22
  */
-public class MineMettingFtagment extends BaseFragment implements View.OnClickListener {
+public class MineMettingFtagment extends BaseFragment implements View.OnClickListener, OnItemClickLitener {
     @Bind(R.id.ptrScrollView_home)
     PullToRefreshScrollView mPtrScrollView;
     @Bind(R.id.recycler_mine_metting)
@@ -63,6 +65,7 @@ public class MineMettingFtagment extends BaseFragment implements View.OnClickLis
                             lsitMeeting = mmm.getDate().getResult();
                             adapter = new MineMettingRecyclerAdapter(getActivity(), lsitMeeting);
                             recyclerview.setAdapter(adapter);
+                            adapter.setOnItemClickLitener(MineMettingFtagment.this);
                         } else {
                             Toastor.showToast(getActivity(), "暂无数据");
                         }
@@ -136,6 +139,16 @@ public class MineMettingFtagment extends BaseFragment implements View.OnClickLis
                 startActivity(new Intent(getActivity(), EnterMeetingActivity.class));
                 break;
         }
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        startActivity(new Intent(getActivity(), MeetingDetailsActivity.class));
+    }
+
+    @Override
+    public void onItemLongClick(View view, int position) {
+
     }
 
     private class GetDataTask extends AsyncTask<Void, Void, String[]> {

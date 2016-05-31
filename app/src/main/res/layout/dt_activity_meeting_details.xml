@@ -2,6 +2,134 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorGraySettingDept"
     android:orientation="vertical">
 
+    <include layout="@layout/base_title_layout"></include>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:id="@+id/tv_meeting_details_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="桐梓县教育局工作会议"
+            android:textColor="@color/colorBlackPerson"
+            android:textSize="@dimen/base_mid_title_text16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/tv_meeting_details_name"
+            android:background="@color/color_meeting_net"
+            android:gravity="center_vertical"
+            android:padding="4dp"
+            android:text="网络会议"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/base_mid_title_text16" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_details_meeting_times"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"></android.support.v7.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGraySettingDept"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_meeting_dis_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="会议讨论:"
+                android:textColor="@color/colorWhiteMainTab"
+                android:textSize="@dimen/base_mid_title_text15" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tv_meeting_dis_title"
+                android:gravity="center"
+                android:text="允许"
+                android:textColor="@color/colorWhiteMainTab"
+                android:textSize="@dimen/base_mid_title_text15" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_meeting_sign_type_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="签到类型:"
+                android:textColor="@color/colorWhiteMainTab"
+                android:textSize="@dimen/base_mid_title_text15" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tv_meeting_sign_type_title"
+                android:gravity="center"
+                android:text="网络签到"
+                android:textColor="@color/colorWhiteMainTab"
+                android:textSize="@dimen/base_mid_title_text15" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:text="参会人员"
+            android:textColor="@color/colorBlackPerson"
+            android:textSize="@dimen/base_mid_title_text16" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_joined_menber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 </LinearLayout>

@@ -385,7 +385,7 @@ public abstract class LoadingLayout extends FrameLayout implements
             animP.stop();
             animP = null;
         }
-        mImgPerson.setImageResource(R.drawable.refreshing_image_frame_08);
+        mImgPerson.setImageResource(R.drawable.refreshing_image_frame_01);
 //		mImgPerson.setImageDrawable(getResources().getDrawable(
 //				R.drawable.app_refresh_people_0));
         if (mImgGoods.getVisibility() == View.VISIBLE) {
