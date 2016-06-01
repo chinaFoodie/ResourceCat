@@ -57,6 +57,7 @@ public class AAAAActivity extends BaseActivity implements FragActCoon, OnItemCli
     private ActFragCoon actFragCoon;
     private int HTTP_CREATE_CHAT_ROOM = 119;
     private int HTTP_ADD_CHAT_MENBER = 123;
+    private int HTTP_ADD_PUBLISH_PERSON = 150;
     private MyHttpHelper httpHelper;
     private String groupNo, groupName;
     private String hxIMGroupId;
@@ -113,6 +114,13 @@ public class AAAAActivity extends BaseActivity implements FragActCoon, OnItemCli
                     intent.putExtra("chatType", Constant.CHATTYPE_GROUP);
                     intent.putExtra("userId", hxIMGroupId);
                     startActivity(intent);
+                    AAAAActivity.this.finish();
+                } else {
+                    Toastor.showToast(AAAAActivity.this, msg.obj.toString());
+                }
+            } else if (msg.arg1 == HTTP_ADD_PUBLISH_PERSON) {
+                if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
+                    AAAAActivity.this.setResult(1007);
                     AAAAActivity.this.finish();
                 } else {
                     Toastor.showToast(AAAAActivity.this, msg.obj.toString());
@@ -252,18 +260,35 @@ public class AAAAActivity extends BaseActivity implements FragActCoon, OnItemCli
                 sendBroadcast(new Intent(ACTION));
                 if (null != groupNo && !"".equals(groupNo)) {
                     httpHelper.postStringBack(HTTP_ADD_CHAT_MENBER, AppConfig.ADD_CHAT_GROUP_MENBER, addParames(groupNo), handler, BaseModel.class);
-                } else if (come != null && come.equals("meeting")) {
-                    Intent intent = new Intent();
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("meeting_back_data", (Serializable) PublicDataUtil.listBottom);
-                    intent.putExtras(bundle);
-                    this.setResult(1006, intent);
-                    this.finish();
+                } else if (come != null) {
+                    if (come.equals("meeting")) {
+                        Intent intent = new Intent();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("meeting_back_data", (Serializable) PublicDataUtil.listBottom);
+                        intent.putExtras(bundle);
+                        this.setResult(1006, intent);
+                        this.finish();
+                    } else {
+                        //Todo 添加会议发布人
+                        httpHelper.postStringBack(HTTP_ADD_PUBLISH_PERSON, AppConfig.ADD_MEETING_PUBLISH_PERSON, addPublish(), handler, BaseModel.class);
+                    }
                 } else {
                     httpHelper.postStringBack(HTTP_CREATE_CHAT_ROOM, AppConfig.CREATE_CHAT_ROOM, createParames(""), handler, ChatRoomInfoModel.class);
                 }
                 break;
         }
+    }
+
+    /**
+     * 添加会议发布人
+     *
+     * @return
+     */
+    private HashMap<String, String> addPublish() {
+        HashMap<String, String> parames = new HashMap<String, String>();
+        parames.put("token", TelephoneUtil.getIMEI(this));
+        parames.put("users", getUsers(PublicDataUtil.listBottom));
+        return parames;
     }
 
     /**

@@ -170,7 +170,10 @@ public class CloudMeetingActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.tv_manager_issued_people:
                 //Todo 发布人管理
-
+                startActivity(new Intent(this, PublishPersonManagerActivity.class));
+                if (popMenu != null && popMenu.isShowing()) {
+                    popMenu.dismiss();
+                }
                 break;
             case R.id.ll_base_back:
                 finish();

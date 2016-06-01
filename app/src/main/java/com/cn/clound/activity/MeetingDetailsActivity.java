@@ -49,6 +49,8 @@ public class MeetingDetailsActivity extends BaseActivity implements View.OnClick
     TextView tvMeetingType;
     @Bind(R.id.tv_meeting_dis_value)
     TextView tvMeetingDis;
+    @Bind(R.id.tv_meeting_sign_type_value)
+    TextView tvMeetingSignType;
 
     private int HTTP_QUERY_MEETING_DETAILS = 148;
     private MyHttpHelper httpHelper;
@@ -75,6 +77,7 @@ public class MeetingDetailsActivity extends BaseActivity implements View.OnClick
                         tvMeetingName.setText(mdm.getData().getName());
                         tvMeetingType.setText(mdm.getData().getTypeStr());
                         tvMeetingDis.setText(mdm.getData().getCanTalk().equals("0") ? "不允许" : "允许");
+                        tvMeetingSignType.setText(mdm.getData().getSignTypeStr());
                     }
                 } else {
                     Toastor.showToast(MeetingDetailsActivity.this, msg.obj.toString());
