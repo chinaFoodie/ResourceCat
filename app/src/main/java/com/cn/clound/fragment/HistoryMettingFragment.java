@@ -1,6 +1,7 @@
 package com.cn.clound.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,8 +15,10 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 
 import com.cn.clound.R;
+import com.cn.clound.activity.MeetingDetailsActivity;
 import com.cn.clound.adapter.HistoryMettingRecyclerAdapter;
 import com.cn.clound.adapter.MineMettingRecyclerAdapter;
+import com.cn.clound.adapter.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
@@ -41,7 +44,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016年5月23日 16:15:28
  */
-public class HistoryMettingFragment extends BaseFragment {
+public class HistoryMettingFragment extends BaseFragment implements OnItemClickLitener {
     @Bind(R.id.ptrScrollView_history)
     PullToRefreshScrollView pullToRefreshScrollView;
     @Bind(R.id.recycler_history_metting)
@@ -64,8 +67,7 @@ public class HistoryMettingFragment extends BaseFragment {
                         listMeeting = hmm.getData().getResult();
                         adapter = new HistoryMettingRecyclerAdapter(getActivity(), listMeeting, handler);
                         recyclerview.setAdapter(adapter);
-                    } else {
-                        Toastor.showToast(getActivity(), "暂无数据");
+                        adapter.setOnItemClickLitener(HistoryMettingFragment.this);
                     }
                 } else {
                     Toastor.showToast(getActivity(), msg.obj.toString());
@@ -186,6 +188,16 @@ public class HistoryMettingFragment extends BaseFragment {
 
     @Override
     public void onFragmentSaveInstanceState(Fragment fragment, Bundle outState) {
+
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        startActivity(new Intent(getActivity(), MeetingDetailsActivity.class).putExtra("meeting_id", listMeeting.get(position).getMeetingId()));
+    }
+
+    @Override
+    public void onItemLongClick(View view, int position) {
 
     }
 

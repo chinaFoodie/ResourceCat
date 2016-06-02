@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGraySettingDept">
+
+    <include
+        android:id="@+id/include_publish_person_manager"
+        layout="@layout/base_title_layout"></include>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_publish_manager_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include_publish_person_manager"
+        android:background="@color/colorWhite"></android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/ll_add_publish_manager_person"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGraySettingDept" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/img_publish_manager_add"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/dt_img_add_org" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/img_publish_manager_add"
+                android:gravity="center"
+                android:text="添加会议发布人"
+                android:textColor="@color/colorBlueMainTab"
+                android:textSize="@dimen/base_mid_title_text16" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

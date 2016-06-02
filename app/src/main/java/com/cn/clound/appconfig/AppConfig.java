@@ -117,6 +117,14 @@ public class AppConfig {
     public static String GET_PUBLISH_MEETING = HOST_URL + "/meetingMng/getTop";
     //会议管理-历史会议
     public static String GET_MANAGER_HISTORY_MEETING = HOST_URL + "/meetingMng/getHistory";
+    //查询会议详情
+    public static String QUERY_MEETING_DETAILS = HOST_URL + "/meeting/getDetail";
+    //获取会议发布人员
+    public static String GET_PUBLISH_MEETING_PERSON = HOST_URL + "/meetingMng/getManagers";
+    //添加会议发布人
+    public static String ADD_MEETING_PUBLISH_PERSON = HOST_URL + "/meetingMng/setManager";
+    //会议考情统计
+    public static String GET_ABSENT_AND_LATE_MEETING_MENBER = HOST_URL + "/meetingMng/attendStatistics";
 
     /**********************接口地址配置 end************************/
 

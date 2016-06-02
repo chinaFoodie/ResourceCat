@@ -339,6 +339,20 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan"></activity>
+        <!--历史会议管理详情界面-->
+        <activity
+            android:name=".activity.MeetingManagerDetailsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <!--会议发布人管理界面-->
+        <activity
+            android:name=".activity.PublishPersonManagerActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
         <!--审批-->
         <activity
             android:name=".activity.ApprovalActivity"

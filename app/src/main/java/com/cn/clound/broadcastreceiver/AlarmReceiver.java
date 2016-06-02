@@ -51,7 +51,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         try {
             AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
             audioManager.setSpeakerphoneOn(true);
-            AssetFileDescriptor afd = am.openFd("sign.wav");
+            AssetFileDescriptor afd = am.openFd("sign.mp3");
             m1 = new MediaPlayer();
             m1.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
             m1.prepare();

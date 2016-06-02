@@ -20,11 +20,11 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:gravity="center_vertical"
-            android:text="桐梓县教育局工作会议"
             android:textColor="@color/colorBlackPerson"
             android:textSize="@dimen/base_mid_title_text16" />
 
         <TextView
+            android:id="@+id/tv_meeting_details_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -72,13 +72,13 @@
                 android:textSize="@dimen/base_mid_title_text15" />
 
             <TextView
+                android:id="@+id/tv_meeting_dis_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/tv_meeting_dis_title"
                 android:gravity="center"
-                android:text="允许"
                 android:textColor="@color/colorWhiteMainTab"
                 android:textSize="@dimen/base_mid_title_text15" />
         </RelativeLayout>
@@ -99,13 +99,13 @@
                 android:textSize="@dimen/base_mid_title_text15" />
 
             <TextView
+                android:id="@+id/tv_meeting_sign_type_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/tv_meeting_sign_type_title"
                 android:gravity="center"
-                android:text="网络签到"
                 android:textColor="@color/colorWhiteMainTab"
                 android:textSize="@dimen/base_mid_title_text15" />
         </RelativeLayout>

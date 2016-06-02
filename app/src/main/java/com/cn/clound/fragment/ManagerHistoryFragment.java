@@ -1,6 +1,7 @@
 package com.cn.clound.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,7 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cn.clound.R;
+import com.cn.clound.activity.MeetingDetailsActivity;
+import com.cn.clound.activity.MeetingManagerDetailsActivity;
 import com.cn.clound.adapter.HistoryManagerRecyclerAdapter;
+import com.cn.clound.adapter.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
@@ -20,7 +24,9 @@ import com.cn.clound.base.common.utils.TelephoneUtil;
 import com.cn.clound.bean.metting.MyMettingModel;
 import com.cn.clound.http.MyHttpHelper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -30,13 +36,14 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016-5-31 10:31:47
  */
-public class ManagerHistoryFragment extends BaseFragment {
+public class ManagerHistoryFragment extends BaseFragment implements OnItemClickLitener {
     @Bind(R.id.recycler_manager_history)
     RecyclerView recyclerView;
 
     private int HTTP_GET_MANAGER_HISTORY = 147;
     private MyHttpHelper httpHelper;
     private HistoryManagerRecyclerAdapter adapter;
+    private List<MyMettingModel.MeetingData.MineMetting> listMeeting = new ArrayList<>();
 
     Handler handler = new Handler() {
         @Override
@@ -46,8 +53,10 @@ public class ManagerHistoryFragment extends BaseFragment {
                 if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
                     MyMettingModel mmm = (MyMettingModel) msg.obj;
                     if (mmm != null) {
-                        adapter = new HistoryManagerRecyclerAdapter(getActivity(), mmm.getDate().getResult());
+                        listMeeting = mmm.getDate().getResult();
+                        adapter = new HistoryManagerRecyclerAdapter(getActivity(), listMeeting);
                         recyclerView.setAdapter(adapter);
+                        adapter.setOnItemClickLitener(ManagerHistoryFragment.this);
                     }
                 } else {
                     Toastor.showToast(getActivity(), msg.obj.toString());
@@ -135,6 +144,16 @@ public class ManagerHistoryFragment extends BaseFragment {
 
     @Override
     public void onFragmentSaveInstanceState(Fragment fragment, Bundle outState) {
+
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        startActivity(new Intent(getActivity(), MeetingManagerDetailsActivity.class).putExtra("meeting_id", listMeeting.get(position).getMeetingId()));
+    }
+
+    @Override
+    public void onItemLongClick(View view, int position) {
 
     }
 }

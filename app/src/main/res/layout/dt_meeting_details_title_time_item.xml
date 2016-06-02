@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="46dp">
+
+    <TextView
+        android:id="@+id/tv_meeting_details_title_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="6月1日"
+        android:textSize="@dimen/base_mid_title_text16" />
+
+    <TextView
+        android:id="@+id/tv_meeting_details_title_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_meeting_details_title_date"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="08:00-09:00"
+        android:textSize="@dimen/base_mid_title_text12" />
+
+    <ImageView
+        android:id="@+id/img_meeting_title_time_choosed"
+        android:layout_width="60dp"
+        android:layout_height="2dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:background="@color/colorBlueMainTab"
+        android:gravity="center" />
+</RelativeLayout>

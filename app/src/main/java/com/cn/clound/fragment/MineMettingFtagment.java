@@ -143,7 +143,7 @@ public class MineMettingFtagment extends BaseFragment implements View.OnClickLis
 
     @Override
     public void onItemClick(View view, int position) {
-        startActivity(new Intent(getActivity(), MeetingDetailsActivity.class));
+        startActivity(new Intent(getActivity(), MeetingDetailsActivity.class).putExtra("meeting_id", lsitMeeting.get(position).getMeetingId()));
     }
 
     @Override

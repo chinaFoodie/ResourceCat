@@ -1,6 +1,7 @@
 package com.cn.clound.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,7 +15,9 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 
 import com.cn.clound.R;
+import com.cn.clound.activity.MeetingDetailsActivity;
 import com.cn.clound.adapter.MineMettingRecyclerAdapter;
+import com.cn.clound.adapter.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
@@ -36,7 +39,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016-5-31 10:28:21
  */
-public class PublishingMeetingFragment extends BaseFragment {
+public class PublishingMeetingFragment extends BaseFragment implements OnItemClickLitener {
     @Bind(R.id.ptrScrollView_home)
     PullToRefreshScrollView mPtrScrollView;
     @Bind(R.id.recycler_mine_metting)
@@ -58,6 +61,7 @@ public class PublishingMeetingFragment extends BaseFragment {
                             lsitMeeting = mmm.getDate().getResult();
                             adapter = new MineMettingRecyclerAdapter(getActivity(), lsitMeeting);
                             recyclerview.setAdapter(adapter);
+                            adapter.setOnItemClickLitener(PublishingMeetingFragment.this);
                         } else {
                             Toastor.showToast(getActivity(), "暂无数据");
                         }
@@ -155,6 +159,16 @@ public class PublishingMeetingFragment extends BaseFragment {
 
     @Override
     public void onFragmentSaveInstanceState(Fragment fragment, Bundle outState) {
+
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        startActivity(new Intent(getActivity(), MeetingDetailsActivity.class).putExtra("meeting_id", lsitMeeting.get(position).getMeetingId()));
+    }
+
+    @Override
+    public void onItemLongClick(View view, int position) {
 
     }
 

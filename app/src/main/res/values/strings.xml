@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">云在教育</string>
+    <string name="app_name">知源猫</string>
     <string name="base_mid_title">中间标题</string>
     <plurals name="fuzzydatetime__seconds_ago">
         <item quantity="one">%d 秒前</item>
