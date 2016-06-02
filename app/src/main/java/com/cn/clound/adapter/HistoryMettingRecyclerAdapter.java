@@ -25,6 +25,11 @@ public class HistoryMettingRecyclerAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<HistoryMeetingModel.HistoryMeeting.MeetingModel> listMetting;
     private Handler handler;
+    private OnItemClickLitener onItemClickLitener;
+
+    public void setOnItemClickLitener(OnItemClickLitener onItemClickLitener) {
+        this.onItemClickLitener = onItemClickLitener;
+    }
 
     public HistoryMettingRecyclerAdapter(Context context, List<HistoryMeetingModel.HistoryMeeting.MeetingModel> listMetting, Handler handler) {
         this.context = context;
@@ -62,6 +67,14 @@ public class HistoryMettingRecyclerAdapter extends RecyclerView.Adapter {
                 handler.sendMessage(msg);
             }
         });
+        if (onItemClickLitener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickLitener.onItemClick(holder.itemView, position);
+                }
+            });
+        }
     }
 
     @Override

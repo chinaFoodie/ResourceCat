@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.base.view.SwipeMenuLayout;
 import com.cn.clound.bean.metting.MyMettingModel;
 
 import java.util.List;
@@ -22,6 +21,11 @@ import java.util.List;
 public class HistoryManagerRecyclerAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<MyMettingModel.MeetingData.MineMetting> listMetting;
+    private OnItemClickLitener onItemClickLitener;
+
+    public void setOnItemClickLitener(OnItemClickLitener onItemClickLitener) {
+        this.onItemClickLitener = onItemClickLitener;
+    }
 
     public HistoryManagerRecyclerAdapter(Context context, List<MyMettingModel.MeetingData.MineMetting> listMetting) {
         this.context = context;
@@ -38,7 +42,6 @@ public class HistoryManagerRecyclerAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        final SwipeMenuLayout item = (SwipeMenuLayout) holder.itemView;
         ((MyViewHolder) holder).tvMeetingName.setText(listMetting.get(position).getName());
         ((MyViewHolder) holder).tvMeetingDate.setText(listMetting.get(position).getBeginAt().substring(0, listMetting.get(position).getBeginAt().indexOf(" ")));
         ((MyViewHolder) holder).tvMeetingTime.setText(listMetting.get(position).getBeginAt().substring(listMetting.get(position).getBeginAt().indexOf(" ") + 1) + "-" + listMetting.get(position).getEndAt().substring(listMetting.get(position).getEndAt().indexOf(" ") + 1));
@@ -48,6 +51,14 @@ public class HistoryManagerRecyclerAdapter extends RecyclerView.Adapter {
         } else {
             ((MyViewHolder) holder).tvMeetingType.setText("实体会议");
             ((MyViewHolder) holder).tvMeetingType.setBackgroundResource(R.color.color_meeting_off);
+        }
+        if (onItemClickLitener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickLitener.onItemClick(holder.itemView, position);
+                }
+            });
         }
     }
 
