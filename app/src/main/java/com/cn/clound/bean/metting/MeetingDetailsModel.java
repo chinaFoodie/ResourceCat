@@ -2,6 +2,7 @@ package com.cn.clound.bean.metting;
 
 import com.cn.clound.bean.BaseModel;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016年5月31日 19:21:00
  */
-public class MeetingDetailsModel extends BaseModel {
+public class MeetingDetailsModel extends BaseModel implements Serializable {
     private MeetingDetails data;
 
     public MeetingDetails getData() {
@@ -21,7 +22,7 @@ public class MeetingDetailsModel extends BaseModel {
         this.data = data;
     }
 
-    public class MeetingDetails {
+    public class MeetingDetails implements Serializable {
         private String canTalk;
         private String name;
         private String signTypeStr;
@@ -29,10 +30,19 @@ public class MeetingDetailsModel extends BaseModel {
         private List<DetailTime> times;
         private String typeStr;
         private String userSize;
+        private String description;
         private List<DetailUser> users;
 
         public String getCanTalk() {
             return canTalk;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
         }
 
         public void setCanTalk(String canTalk) {
@@ -95,7 +105,7 @@ public class MeetingDetailsModel extends BaseModel {
             this.users = users;
         }
 
-        public class DetailTime {
+        public class DetailTime implements Serializable {
             private String beginAt;
             private String detailId;
             private String endAt;
@@ -125,10 +135,19 @@ public class MeetingDetailsModel extends BaseModel {
             }
         }
 
-        public class DetailUser {
+        public class DetailUser implements Serializable {
             private String headImg;
             private String name;
             private String userId;
+            private String role;
+
+            public String getRole() {
+                return role;
+            }
+
+            public void setRole(String role) {
+                this.role = role;
+            }
 
             public String getHeadImg() {
                 return headImg;

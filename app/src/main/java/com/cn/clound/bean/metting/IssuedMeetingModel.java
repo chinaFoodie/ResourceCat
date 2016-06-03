@@ -52,10 +52,19 @@ public class IssuedMeetingModel extends BaseBean implements Serializable {
         }
 
         public class Meeting implements Serializable {
+            private String id;
             private String mDescription;
             private String mIsSpeak;
             private String mName;
             private String mType;
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
 
             public String getmDescription() {
                 return mDescription;
@@ -114,6 +123,15 @@ public class IssuedMeetingModel extends BaseBean implements Serializable {
         public class MeetingUser implements Serializable {
             private String mRole;
             private String userId;
+            private String name;
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
 
             public String getmRole() {
                 return mRole;

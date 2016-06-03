@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class AppConfig {
     //请求主地址
-    public static String HOST_URL = "http://192.168.0.107:7070";
+    public static String HOST_URL = "http://192.168.0.107:7070";//http://192.168.0.112:8080/interface_server
     //WeChatA PP_ID
     public static String APP_ID = "wx6c1b5dd66261416e";
     // Tencent QQ APP_ID
@@ -135,6 +135,8 @@ public class AppConfig {
     public static String END_MEETING = HOST_URL + "/meeting/end";
     //用户退出会场
     public static String LEAVE_MEETING = HOST_URL + "/meeting/leave";
+    //修改会议
+    public static String UPDATE_MEETING = HOST_URL + "/meetingMng/update";
 
     /**********************接口地址配置 end************************/
 

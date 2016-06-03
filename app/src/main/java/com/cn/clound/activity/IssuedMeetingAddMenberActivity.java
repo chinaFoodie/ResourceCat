@@ -61,8 +61,9 @@ public class IssuedMeetingAddMenberActivity extends BaseActivity implements View
     private IssuedMeetingModel imm;
     private MeetingMenberRecyclerAdapter menberAdapter;
     private MeetingMenberRecyclerAdapter hostessAdapter;
-
+    private String flag = "";
     private int HTTP_CREATE_MEETING = 141;
+    private int HTTP_UPDATE_MEETING = 160;
     private MyHttpHelper httpHelper;
 
     Handler handler = new Handler() {
@@ -75,6 +76,12 @@ public class IssuedMeetingAddMenberActivity extends BaseActivity implements View
             } else if (msg.what == 102) {
                 hostessAdapter = new MeetingMenberRecyclerAdapter(IssuedMeetingAddMenberActivity.this, listHostess);
                 recyclerHostess.setAdapter(hostessAdapter);
+            } else if (msg.arg1 == HTTP_UPDATE_MEETING) {
+                if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
+                    Toastor.showToast(IssuedMeetingAddMenberActivity.this, "更新会议成功");
+                } else {
+                    Toastor.showToast(IssuedMeetingAddMenberActivity.this, msg.obj.toString());
+                }
             } else if (msg.arg1 == HTTP_CREATE_MEETING) {
                 if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
                     Toastor.showToast(IssuedMeetingAddMenberActivity.this, "发布会议成功");
@@ -104,11 +111,27 @@ public class IssuedMeetingAddMenberActivity extends BaseActivity implements View
         llBack.setOnClickListener(this);
         tvBaseRight.setVisibility(View.VISIBLE);
         tvBaseRight.setOnClickListener(this);
-        tvBaseRight.setText("发布");
+        flag = this.getIntent().getStringExtra("meeting_update");
         llJoinedMenber.setOnClickListener(this);
         llHostess.setOnClickListener(this);
         httpHelper = MyHttpHelper.getInstance(this);
         imm = (IssuedMeetingModel) this.getIntent().getSerializableExtra("meeting_add_menber_model");
+        if (flag.equals("update")) {
+            tvBaseRight.setText("更新");
+            for (IssuedMeetingModel.IssuedMeeting.MeetingUser mu : imm.getData().getUsers()) {
+                BottomUserModel bum = new BottomUserModel();
+                bum.setUserId(mu.getUserId());
+                bum.setUserName(mu.getName());
+                bum.setUserHead("");
+                if (mu.getmRole().equals("2")) {
+                    listHostess.add(bum);
+                } else {
+                    listMenber.add(bum);
+                }
+            }
+        } else {
+            tvBaseRight.setText("发布");
+        }
         DividerItemDecoration dividerVERTICAL = new DividerItemDecoration(DividerItemDecoration.VERTICAL);
         dividerVERTICAL.setSize(1);
         dividerVERTICAL.setColor(0xFFDDDDDD);
@@ -212,7 +235,11 @@ public class IssuedMeetingAddMenberActivity extends BaseActivity implements View
                 this.finish();
                 break;
             case R.id.tv_base_right:
-                httpHelper.postStringBack(HTTP_CREATE_MEETING, AppConfig.CREATE_MEETING, createMeeting(), handler, BaseModel.class);
+                if (flag.equals("update")) {
+                    httpHelper.postStringBack(HTTP_UPDATE_MEETING, AppConfig.UPDATE_MEETING, updateMeeting(), handler, BaseModel.class);
+                } else {
+                    httpHelper.postStringBack(HTTP_CREATE_MEETING, AppConfig.CREATE_MEETING, createMeeting(), handler, BaseModel.class);
+                }
                 break;
             case R.id.ll_meeting_get_joined_menber:
                 startActivityForResult(new Intent(this, AAAAActivity.class).putExtra("come_from_meeting", "meeting"), 6705);
@@ -223,6 +250,23 @@ public class IssuedMeetingAddMenberActivity extends BaseActivity implements View
             default:
                 break;
         }
+    }
+
+    private HashMap<String, String> updateMeeting() {
+        HashMap<String, String> create = new HashMap<String, String>();
+        create.put("token", TelephoneUtil.getIMEI(this));
+        String data = "";
+        for (int i = 0; i < imm.getData().getUsers().size(); i++) {
+            imm.getData().getUsers().get(i).setName(null);
+        }
+        try {
+            JSONObject json = new JSONObject(GsonTools.obj2json(imm));
+            data = json.getString("data");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        create.put("data", data);
+        return create;
     }
 
     private HashMap<String, String> createMeeting() {

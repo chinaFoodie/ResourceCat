@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 
 import com.cn.clound.R;
+import com.cn.clound.activity.IssuedMettingActivity;
 import com.cn.clound.activity.MeetingDetailsActivity;
 import com.cn.clound.adapter.MineMettingRecyclerAdapter;
 import com.cn.clound.adapter.OnItemClickLitener;
@@ -22,6 +23,7 @@ import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
 import com.cn.clound.base.common.utils.TelephoneUtil;
+import com.cn.clound.bean.metting.MeetingDetailsModel;
 import com.cn.clound.bean.metting.MyMettingModel;
 import com.cn.clound.http.MyHttpHelper;
 import com.cn.clound.view.refreshlinearlayout.PullToRefreshBase;
@@ -47,6 +49,8 @@ public class PublishingMeetingFragment extends BaseFragment implements OnItemCli
 
     private MineMettingRecyclerAdapter adapter;
     private int HTTP_GET_PUBLISH_MEETING = 146;
+    private int HTTP_QUERY_MEETING_DETAILS = 159;
+    private int index;
     private MyHttpHelper httpHelper;
     private List<MyMettingModel.MeetingData.MineMetting> lsitMeeting = new ArrayList<>();
     Handler handler = new Handler() {
@@ -66,6 +70,18 @@ public class PublishingMeetingFragment extends BaseFragment implements OnItemCli
                             Toastor.showToast(getActivity(), "暂无数据");
                         }
                     }
+                } else {
+                    Toastor.showToast(getActivity(), msg.obj.toString());
+                }
+            } else if (msg.arg1 == HTTP_QUERY_MEETING_DETAILS) {
+                if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
+                    MeetingDetailsModel mdm = (MeetingDetailsModel) msg.obj;
+                    Intent update = new Intent(getActivity(), IssuedMettingActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("update_meeting_info", mdm);
+                    update.putExtra("meeting_id", lsitMeeting.get(index).getMeetingId());
+                    update.putExtras(bundle);
+                    startActivity(update);
                 } else {
                     Toastor.showToast(getActivity(), msg.obj.toString());
                 }
@@ -164,7 +180,15 @@ public class PublishingMeetingFragment extends BaseFragment implements OnItemCli
 
     @Override
     public void onItemClick(View view, int position) {
-        startActivity(new Intent(getActivity(), MeetingDetailsActivity.class).putExtra("meeting_id", lsitMeeting.get(position).getMeetingId()));
+        index = position;
+        httpHelper.postStringBack(HTTP_QUERY_MEETING_DETAILS, AppConfig.QUERY_MEETING_DETAILS, detailsParmeas(lsitMeeting.get(position).getMeetingId()), handler, MeetingDetailsModel.class);
+    }
+
+    private HashMap<String, String> detailsParmeas(String meetingId) {
+        HashMap<String, String> details = new HashMap<String, String>();
+        details.put("id", meetingId);
+        details.put("token", TelephoneUtil.getIMEI(getActivity()));
+        return details;
     }
 
     @Override

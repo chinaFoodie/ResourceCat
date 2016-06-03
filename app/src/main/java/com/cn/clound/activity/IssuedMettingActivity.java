@@ -19,9 +19,12 @@ import com.cn.clound.R;
 import com.cn.clound.adapter.MeetingTimeRecyclerAdapter;
 import com.cn.clound.base.BaseActivity;
 import com.cn.clound.bean.metting.IssuedMeetingModel;
+import com.cn.clound.bean.metting.MeetingDetailsModel;
 import com.cn.clound.bean.metting.MeetingTimeExpandModel;
 import com.cn.clound.bean.metting.MeetingTimeModel;
+import com.cn.clound.bean.metting.MyMettingModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +65,8 @@ public class IssuedMettingActivity extends BaseActivity implements View.OnClickL
     private int GET_RESULT = 6704;
     private List<MeetingTimeModel> listData = new ArrayList<MeetingTimeModel>();
     private String meetingType, whetherDis;// 1
-
+    private MeetingDetailsModel mineMetting;
+    private String flag;
     private IssuedMeetingModel imm;
 
     Handler handler = new Handler() {
@@ -70,8 +74,7 @@ public class IssuedMettingActivity extends BaseActivity implements View.OnClickL
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 101) {
-                expandAdapter = new MeetingTimeRecyclerAdapter(IssuedMettingActivity.this, listData);
-                recyclerView.setAdapter(expandAdapter);
+                expandAdapter.notifyDataSetChanged();
             }
         }
     };
@@ -95,8 +98,35 @@ public class IssuedMettingActivity extends BaseActivity implements View.OnClickL
         llleft.setOnClickListener(this);
         tvBaseLeft.setText("取消");
         tvBaseRight.setText("下一步");
-        meetingType = "1";//网络会议
-        whetherDis = "0";//不讨论
+        mineMetting = (MeetingDetailsModel) this.getIntent().getSerializableExtra("update_meeting_info");
+        flag = "create";
+        if (mineMetting != null) {
+            flag = "update";
+            if (mineMetting.getData().getTypeStr().equals("网络会议")) {
+                meetingType = "1";//网络会议
+            } else {
+                meetingType = "2";
+            }
+            whetherDis = mineMetting.getData().getCanTalk();
+            etMeetingName.setText(mineMetting.getData().getName());
+            etMeetingDesc.setText(mineMetting.getData().getDescription());
+            String predate = "";
+            for (MeetingDetailsModel.MeetingDetails.DetailTime dt : mineMetting.getData().getTimes()) {
+                MeetingTimeModel mt1 = new MeetingTimeModel();
+                mt1.setMeetingTime(dt.getBeginAt().substring(dt.getBeginAt().indexOf(" ")) + "-" + dt.getEndAt().substring(dt.getEndAt().indexOf(" ") + 1));
+                mt1.setMeetingDate(dt.getBeginAt().substring(0, dt.getBeginAt().indexOf(" ")));
+                if (!predate.equals("") && predate.equals(dt.getBeginAt().substring(0, dt.getBeginAt().indexOf(" ")))) {
+                    mt1.setMeetingUpdate("删除");
+                } else {
+                    mt1.setMeetingUpdate("添加");
+                }
+                predate = (dt.getBeginAt().substring(0, dt.getBeginAt().indexOf(" ")));
+                listData.add(mt1);
+            }
+        } else {
+            meetingType = "1";//网络会议
+            whetherDis = "0";//不讨论
+        }
 
         if (meetingType.equals("1")) {
             imgNetMeeting.setImageResource(R.mipmap.img_no_choose);
@@ -124,6 +154,8 @@ public class IssuedMettingActivity extends BaseActivity implements View.OnClickL
         imgMeetingNotDis.setOnClickListener(this);
         imgNetMeeting.setOnClickListener(this);
         imgOffMeeting.setOnClickListener(this);
+        expandAdapter = new MeetingTimeRecyclerAdapter(IssuedMettingActivity.this, listData);
+        recyclerView.setAdapter(expandAdapter);
     }
 
     @Override
@@ -168,6 +200,7 @@ public class IssuedMettingActivity extends BaseActivity implements View.OnClickL
             if (data != null) {
                 Bundle bundle = data.getExtras();
                 List<MeetingTimeExpandModel> listExpand = (List<MeetingTimeExpandModel>) bundle.getSerializable("meeting_time_list");
+                listData.clear();
                 for (int i = 0; i < listExpand.size(); i++) {
                     MeetingTimeModel mte = new MeetingTimeModel();
                     mte.setMeetingTime(listExpand.get(i).getMeetingTime());
@@ -196,7 +229,9 @@ public class IssuedMettingActivity extends BaseActivity implements View.OnClickL
                 this.finish();
                 break;
             case R.id.ll_issued_meeting_date:
-                startActivityForResult(new Intent(this, ChooseMeetingDateActivity.class), GET_RESULT);
+                Intent timtIntent = new Intent(this, ChooseMeetingDateActivity.class);
+                timtIntent.putExtra("update_meeting_list", (Serializable) listData);
+                startActivityForResult(timtIntent, GET_RESULT);
                 break;
             case R.id.tv_base_right:
                 imm = new IssuedMeetingModel();
@@ -206,18 +241,33 @@ public class IssuedMettingActivity extends BaseActivity implements View.OnClickL
                 meeting.setmIsSpeak(whetherDis);
                 meeting.setmName(etMeetingName.getText().toString());
                 meeting.setmType(meetingType);
+                if (flag.equals("update")) {
+                    meeting.setId(this.getIntent().getStringExtra("meeting_id"));
+                }
                 List<IssuedMeetingModel.IssuedMeeting.MeetingTime> listMt = new ArrayList<>();
                 for (MeetingTimeModel mtm : listData) {
                     IssuedMeetingModel.IssuedMeeting.MeetingTime mt = new IssuedMeetingModel().new IssuedMeeting().new MeetingTime();
-                    mt.setBeginAt("2016-" + mtm.getMeetingDate() + " " + mtm.getMeetingTime().substring(0, mtm.getMeetingTime().indexOf("-")));
-                    mt.setEndAt("2016-" + mtm.getMeetingDate() + " " + mtm.getMeetingTime().substring(mtm.getMeetingTime().indexOf("-") + 1));
+                    mt.setBeginAt(mtm.getMeetingDate() + " " + mtm.getMeetingTime().substring(0, mtm.getMeetingTime().indexOf("-")));
+                    mt.setEndAt(mtm.getMeetingDate() + " " + mtm.getMeetingTime().substring(mtm.getMeetingTime().indexOf("-") + 1));
                     listMt.add(mt);
                 }
                 im.setTimes(listMt);
                 im.setMeeting(meeting);
+                if (flag.equals("update")) {
+                    List<IssuedMeetingModel.IssuedMeeting.MeetingUser> listUpdate = new ArrayList<>();
+                    for (MeetingDetailsModel.MeetingDetails.DetailUser du : mineMetting.getData().getUsers()) {
+                        IssuedMeetingModel.IssuedMeeting.MeetingUser mu = new IssuedMeetingModel().new IssuedMeeting().new MeetingUser();
+                        mu.setUserId(du.getUserId());
+                        mu.setmRole(du.getRole());
+                        mu.setName(du.getName());
+                        listUpdate.add(mu);
+                    }
+                    im.setUsers(listUpdate);
+                }
                 imm.setData(im);
                 Intent addMenber = new Intent(this, IssuedMeetingAddMenberActivity.class);
                 Bundle bundle = new Bundle();
+                addMenber.putExtra("meeting_update", flag);
                 bundle.putSerializable("meeting_add_menber_model", imm);
                 addMenber.putExtras(bundle);
                 startActivity(addMenber);

@@ -31,6 +31,7 @@ import com.cn.clound.base.BaseActivity;
 import com.cn.clound.base.common.assist.Toastor;
 import com.cn.clound.base.view.StickyLayout;
 import com.cn.clound.bean.metting.MeetingTimeExpandModel;
+import com.cn.clound.bean.metting.MeetingTimeModel;
 import com.cn.clound.view.dialog.TimePickerDialog;
 
 import java.io.Serializable;
@@ -82,6 +83,7 @@ public class ChooseMeetingDateActivity extends BaseActivity implements View.OnCl
     private String chooseDate = "";
     private MeetingTimeExpandAdapter expandAdapter;
     private List<MeetingTimeExpandModel> listExpand = new ArrayList<MeetingTimeExpandModel>();
+    private List<MeetingTimeModel> listPreData = new ArrayList<MeetingTimeModel>();
     private TimePickerDialog ep;
 
     Handler handler = new Handler() {
@@ -110,6 +112,8 @@ public class ChooseMeetingDateActivity extends BaseActivity implements View.OnCl
                 expandAdapter.notifyDataSetChanged();
             } else if (msg.what == 103) {
                 expandAdapter.notifyDataSetChanged();
+            } else if (msg.what == 104) {
+                adapter.refreshAdapter(listClick);
             }
         }
     };
@@ -128,6 +132,7 @@ public class ChooseMeetingDateActivity extends BaseActivity implements View.OnCl
      * 初始化视图
      */
     private void init() {
+        listPreData = (List<MeetingTimeModel>) getIntent().getSerializableExtra("update_meeting_list");
         tvMidTitle.setText("设置会议时间");
         llleft.setVisibility(View.VISIBLE);
         llleft.setOnClickListener(this);
@@ -156,6 +161,35 @@ public class ChooseMeetingDateActivity extends BaseActivity implements View.OnCl
         expandableListView.setAdapter(expandAdapter);
         expandableListView.setGroupIndicator(null);
         ep = new TimePickerDialog(ChooseMeetingDateActivity.this, R.style.ActionSheetDialogStyle);
+        if (listPreData != null) {
+            String predate = "";
+            MeetingTimeExpandModel mtem = null;
+            List<MeetingTimeExpandModel.MeetingTime> listmt = null;
+            for (MeetingTimeModel mtm : listPreData) {
+                if (!predate.equals(mtm.getMeetingDate())) {
+                    mtem = new MeetingTimeExpandModel();
+                    listmt = new ArrayList<>();//
+                    listClick.add(mtm.getMeetingDate());
+                }
+                if (mtm.getMeetingUpdate().equals("添加")) {
+                    mtem.setMeetingUpdate(mtm.getMeetingUpdate());
+                    mtem.setMeetingTime(mtm.getMeetingTime());
+                    mtem.setMeetingDate(mtm.getMeetingDate());
+                } else {
+                    MeetingTimeExpandModel.MeetingTime mt = new MeetingTimeExpandModel().new MeetingTime();
+                    mt.setUpdate(mtm.getMeetingUpdate());
+                    mt.setTime(mtm.getMeetingTime());
+                    mt.setDate(mtm.getMeetingDate());
+                    listmt.add(mt);
+                    mtem.setTimeList(listmt);
+                }
+                if (!predate.equals(mtm.getMeetingDate())) {
+                    listExpand.add(mtem);
+                }
+                predate = mtm.getMeetingDate();
+                handler.sendEmptyMessage(104);
+            }
+        }
     }
 
     private void addGridView() {
@@ -215,12 +249,12 @@ public class ChooseMeetingDateActivity extends BaseActivity implements View.OnCl
                             MeetingTimeExpandModel mtem = new MeetingTimeExpandModel();
                             mtem.setMeetingUpdate("添加");
                             mtem.setMeetingTime("00:00-00:00");
-                            mtem.setMeetingDate(chooseDate.substring(chooseDate.indexOf("-") + 1));
+                            mtem.setMeetingDate(chooseDate);//.substring(chooseDate.indexOf("-") + 1)
                             listExpand.add(mtem);
                         } else {
                             MeetingTimeExpandModel del = null;
                             for (MeetingTimeExpandModel mte : listExpand) {
-                                if (mte.getMeetingDate().equals(chooseDate.substring(chooseDate.indexOf("-") + 1))) {
+                                if (mte.getMeetingDate().equals(chooseDate)) {//.substring(chooseDate.indexOf("-") + 1)
                                     del = mte;
                                 }
                             }

@@ -2,6 +2,7 @@ package com.cn.clound.bean.metting;
 
 import com.cn.clound.bean.BaseModel;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016年5月23日 16:46:26
  */
-public class MyMettingModel extends BaseModel {
+public class MyMettingModel extends BaseModel implements Serializable {
 
     public MeetingData data;
 
@@ -22,7 +23,7 @@ public class MyMettingModel extends BaseModel {
         this.data = date;
     }
 
-    public class MeetingData {
+    public class MeetingData implements Serializable {
         public String totalCount;
         public String totalPage;
         public String pageNo;
@@ -60,7 +61,7 @@ public class MyMettingModel extends BaseModel {
             this.result = result;
         }
 
-        public class MineMetting {
+        public class MineMetting implements Serializable {
             private String topTimeId;
             private String type;
             private String beginAt;

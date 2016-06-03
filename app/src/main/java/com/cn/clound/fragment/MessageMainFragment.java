@@ -267,7 +267,7 @@ public class MessageMainFragment extends BaseFragment implements OnItemClickLite
                     String temp = emMessage.getStringAttribute("extended_msg_json", "");
                     if (!temp.equals("")) {
                         ExtendedChatModel ecm = GsonTools.getPerson(temp, ExtendedChatModel.class);
-                        if (conversation.getAllMessages().size() != 0 && !ecm.getMsgType().equals("MeetMessage")) {
+                        if (conversation.getAllMessages().size() != 0 && !ecm.getMsgType().equals("chat_join_me") && !ecm.getMsgType().equals("MeetMessage") && !ecm.getMsgType().equals("MeetState")) {//MeetState
                             sortList.add(new Pair<Long, EMConversation>(conversation.getLastMessage().getMsgTime(), conversation));
                         }
                     }

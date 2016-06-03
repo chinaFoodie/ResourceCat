@@ -147,42 +147,28 @@ public class CalendarMeetingAdapter extends BaseAdapter {
         }
         TextView textView = (TextView) convertView.findViewById(R.id.tvtext);
         String d = dayNumber[position].split("\\.")[0];
-//        String dv = dayNumber[position].split("\\.")[1];
-
-//        SpannableString sp = new SpannableString(d + "\n" + dv);
         SpannableString sp = new SpannableString(d);
-//        sp.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, d.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         sp.setSpan(new RelativeSizeSpan(1.2f), 0, d.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        if (dv != null || dv != "") {
-//            sp.setSpan(new RelativeSizeSpan(0.75f), d.length() + 1, dayNumber[position].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        }
-        // sp.setSpan(new ForegroundColorSpan(Color.MAGENTA), 14, 16,
-        // Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         textView.setText(sp);
         textView.setTextColor(Color.GRAY);
 
         if (position < daysOfMonth + dayOfWeek && position >= dayOfWeek) {
-            // 当前月信息显示
             if (isNeedMitMark(position)) {
                 textView.setBackgroundResource(R.drawable.dt_shape_circular);
                 textView.setTextColor(Color.WHITE);
             } else {
                 textView.setTextColor(Color.BLACK);// 当月字体设黑
-//			drawable = res.getDrawable(R.drawable.calendar_item_selected_bg);
                 textView.setBackgroundColor(context.getResources().getColor(R.color.colorWhite));
                 drawable = new ColorDrawable(Color.rgb(23, 126, 214));
             }
             if (position % 7 == 0 || position % 7 == 6) {
-                // 当前月信息显示
                 textView.setTextColor(Color.rgb(23, 126, 214));// 当月字体设黑
-//				drawable = res.getDrawable(R.drawable.calendar_item_selected_bg);
                 drawable = new ColorDrawable(Color.rgb(23, 126, 214));
             }
         }
         if (listClick != null && listClick.size() > 0) {
         } else {
             if (currentFlag == position) {
-//            drawable = new ColorDrawable(Color.rgb(23, 126, 214));
                 textView.setBackgroundResource(R.drawable.dt_red_shape_circular);
                 textView.setTextColor(Color.WHITE);
             }
