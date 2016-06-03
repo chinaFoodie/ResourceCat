@@ -125,6 +125,16 @@ public class AppConfig {
     public static String ADD_MEETING_PUBLISH_PERSON = HOST_URL + "/meetingMng/setManager";
     //会议考情统计
     public static String GET_ABSENT_AND_LATE_MEETING_MENBER = HOST_URL + "/meetingMng/attendStatistics";
+    //删除会议发布人
+    public static String DEL_MEETING_PUBLISH_PERSON = HOST_URL + "/meetingMng/deleteManager";
+    //会议签到
+    public static String MEETING_SIGN = HOST_URL + "/meeting/sign";
+    //开始会议
+    public static String START_MEETING = HOST_URL + "/meeting/begin";
+    //结束会议
+    public static String END_MEETING = HOST_URL + "/meeting/end";
+    //用户退出会场
+    public static String LEAVE_MEETING = HOST_URL + "/meeting/leave";
 
     /**********************接口地址配置 end************************/
 

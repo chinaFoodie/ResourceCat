@@ -18,16 +18,24 @@ import android.widget.ScrollView;
 import com.cn.clound.R;
 import com.cn.clound.activity.EnterMeetingActivity;
 import com.cn.clound.activity.MeetingDetailsActivity;
+import com.cn.clound.adapter.JoinMeetingRecyclerAdapter;
+import com.cn.clound.adapter.MeetingChatVoiceRecyclerAdapter;
 import com.cn.clound.adapter.MineMettingRecyclerAdapter;
 import com.cn.clound.adapter.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
 import com.cn.clound.base.common.utils.TelephoneUtil;
+import com.cn.clound.bean.metting.EnterStadiumModel;
 import com.cn.clound.bean.metting.MyMettingModel;
 import com.cn.clound.http.MyHttpHelper;
+import com.cn.clound.view.CustomProgress;
 import com.cn.clound.view.refreshlinearlayout.PullToRefreshBase;
 import com.cn.clound.view.refreshlinearlayout.PullToRefreshScrollView;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMConversation;
+import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.utils.EaseCommonUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,7 +59,10 @@ public class MineMettingFtagment extends BaseFragment implements View.OnClickLis
 
     private MineMettingRecyclerAdapter adapter;
     private int HTTP_GET_MINE_MEETING = 142;
+    private int HTTP_ENTER_METTING = 145;
     private MyHttpHelper httpHelper;
+    private CustomProgress progress;
+    private boolean IS_NEED_REFRESH = false;
     private List<MyMettingModel.MeetingData.MineMetting> lsitMeeting = new ArrayList<>();
     Handler handler = new Handler() {
         @Override
@@ -73,6 +84,20 @@ public class MineMettingFtagment extends BaseFragment implements View.OnClickLis
                 } else {
                     Toastor.showToast(getActivity(), msg.obj.toString());
                 }
+            } else if (msg.arg1 == HTTP_ENTER_METTING) {
+                if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
+                    EnterStadiumModel esm = (EnterStadiumModel) msg.obj;
+                    Intent enter = new Intent(getActivity(), EnterMeetingActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("enter_stadium_model", esm);
+                    enter.putExtras(bundle);
+                    startActivity(enter);
+                } else {
+                    Toastor.showToast(getActivity(), msg.obj.toString());
+                }
+            }
+            if (progress != null && progress.isShowing()) {
+                progress.dismiss();
             }
         }
     };
@@ -111,6 +136,8 @@ public class MineMettingFtagment extends BaseFragment implements View.OnClickLis
      * 初始化视图
      */
     private void init() {
+        progress = new CustomProgress(getActivity(), "请稍候...");
+        progress.show();
         mPtrScrollView
                 .setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
                     public void onRefresh(
@@ -136,9 +163,16 @@ public class MineMettingFtagment extends BaseFragment implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_enter_meeting:
-                startActivity(new Intent(getActivity(), EnterMeetingActivity.class));
+                progress.show();
+                httpHelper.postStringBack(HTTP_ENTER_METTING, AppConfig.ENTER_MEETING, enterParmars(), handler, EnterStadiumModel.class);
                 break;
         }
+    }
+
+    private HashMap<String, String> enterParmars() {
+        HashMap<String, String> enter = new HashMap<String, String>();
+        enter.put("token", TelephoneUtil.getIMEI(getActivity()));
+        return enter;
     }
 
     @Override
@@ -173,7 +207,9 @@ public class MineMettingFtagment extends BaseFragment implements View.OnClickLis
 
     @Override
     public void onFragmentResumed(Fragment fragment) {
-
+        if (IS_NEED_REFRESH) {
+            httpHelper.postStringBack(HTTP_GET_MINE_MEETING, AppConfig.GET_MINE_MEETING, getParames(), handler, MyMettingModel.class);
+        }
     }
 
     @Override
@@ -183,12 +219,12 @@ public class MineMettingFtagment extends BaseFragment implements View.OnClickLis
 
     @Override
     public void onFragmentStopped(Fragment fragment) {
-
+        IS_NEED_REFRESH = true;
     }
 
     @Override
     public void onFragmentDestroyed(Fragment fragment) {
-
+        IS_NEED_REFRESH = false;
     }
 
     @Override

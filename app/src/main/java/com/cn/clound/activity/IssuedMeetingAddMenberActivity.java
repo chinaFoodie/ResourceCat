@@ -188,7 +188,7 @@ public class IssuedMeetingAddMenberActivity extends BaseActivity implements View
                     handler.sendEmptyMessage(101);
                 } else {
                     listHostess = (List<BottomUserModel>) b.getSerializable("meeting_back_data");
-                    for (BottomUserModel bum : listMenber) {
+                    for (BottomUserModel bum : listHostess) {
                         IssuedMeetingModel.IssuedMeeting.MeetingUser mu = new IssuedMeetingModel().new IssuedMeeting().new MeetingUser();
                         mu.setmRole("2");
                         mu.setUserId(bum.getUserId());

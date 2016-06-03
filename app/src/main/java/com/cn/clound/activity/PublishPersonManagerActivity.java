@@ -19,8 +19,13 @@ import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseActivity;
 import com.cn.clound.base.common.assist.Toastor;
 import com.cn.clound.base.common.utils.TelephoneUtil;
+import com.cn.clound.bean.BaseModel;
 import com.cn.clound.bean.metting.MeetingPublishPersonModel;
+import com.cn.clound.easemob.db.InviteMessgeDao;
 import com.cn.clound.http.MyHttpHelper;
+import com.cn.clound.view.AlertDialog;
+import com.cn.clound.view.CustomProgress;
+import com.hyphenate.chat.EMClient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,8 +51,10 @@ public class PublishPersonManagerActivity extends BaseActivity implements View.O
 
     private MyHttpHelper httpHelper;
     private int HTTP_GET_PUBLISH_MEETING_MANAGER_PERSON = 149;
+    private int HTTP_DEL_PUBLISH_MEETING_MANAGER_PERSON = 153;
     private List<MeetingPublishPersonModel.MeetingPublishPerson> listPerson = new ArrayList<>();
     private PublishMeetingPersonRecyclerAdapter adapter;
+    private CustomProgress progress;
 
     Handler handler = new Handler() {
         @Override
@@ -58,16 +65,45 @@ public class PublishPersonManagerActivity extends BaseActivity implements View.O
                     MeetingPublishPersonModel mppm = (MeetingPublishPersonModel) msg.obj;
                     if (mppm != null) {
                         listPerson = mppm.getData();
-                        adapter = new PublishMeetingPersonRecyclerAdapter(PublishPersonManagerActivity.this, listPerson);
+                        adapter = new PublishMeetingPersonRecyclerAdapter(PublishPersonManagerActivity.this, listPerson, handler);
                         recyclerView.setAdapter(adapter);
                         adapter.setOnItemClickLitener(PublishPersonManagerActivity.this);
                     }
                 } else {
                     Toastor.showToast(PublishPersonManagerActivity.this, msg.obj.toString());
                 }
+            } else if (msg.arg1 == HTTP_DEL_PUBLISH_MEETING_MANAGER_PERSON) {
+                if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
+                    httpHelper.postStringBack(HTTP_GET_PUBLISH_MEETING_MANAGER_PERSON, AppConfig.GET_PUBLISH_MEETING_PERSON, getPerson(), handler, MeetingPublishPersonModel.class);
+                } else {
+                    Toastor.showToast(PublishPersonManagerActivity.this, msg.obj.toString());
+                }
+            } else if (msg.what == 1002) {
+                final int index = (int) msg.obj;
+                new AlertDialog(PublishPersonManagerActivity.this).builder().setCancelable(false).setTitle("温馨提示").setPositiveButton("确定", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        progress.show();
+                        httpHelper.postStringBack(HTTP_DEL_PUBLISH_MEETING_MANAGER_PERSON, AppConfig.DEL_MEETING_PUBLISH_PERSON, delParmeas(listPerson.get(index).getUserNo()), handler, BaseModel.class);
+                    }
+                }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                    }
+                }).setMsg("确认删除？").show();
+            }
+            if (progress != null && progress.isShowing()) {
+                progress.dismiss();
             }
         }
     };
+
+    private HashMap<String, String> delParmeas(String userId) {
+        HashMap<String, String> del = new HashMap<String, String>();
+        del.put("token", TelephoneUtil.getIMEI(this));
+        del.put("userId", userId);
+        return del;
+    }
 
     @Override
     protected int getMainContentViewId() {
@@ -84,6 +120,8 @@ public class PublishPersonManagerActivity extends BaseActivity implements View.O
      */
     private void init() {
         httpHelper = MyHttpHelper.getInstance(this);
+        progress = new CustomProgress(this, "加载中...");
+        progress.show();
         llBack.setVisibility(View.VISIBLE);
         tvMidTitle.setText("发布人管理");
         llBack.setOnClickListener(this);

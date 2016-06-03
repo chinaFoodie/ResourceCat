@@ -2,6 +2,7 @@ package com.cn.clound.bean.metting;
 
 import com.cn.clound.bean.BaseModel;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * @author ChunfaLee(ly09219@gamil.com)
  * @date 2016-5-30 17:10:04
  */
-public class EnterStadiumModel extends BaseModel {
+public class EnterStadiumModel extends BaseModel implements Serializable {
     public Stadium data;
 
     public Stadium getData() {
@@ -21,7 +22,7 @@ public class EnterStadiumModel extends BaseModel {
         this.data = data;
     }
 
-    public class Stadium {
+    public class Stadium implements Serializable {
         private String beginAt;
         private String endAt;
         private String groupId;
@@ -29,8 +30,17 @@ public class EnterStadiumModel extends BaseModel {
         private String isSign;
         private String meetingType;
         private String signType;
+        private String isHost;
         private String state;
         private List<MeetingUser> users;
+
+        public String getIsHost() {
+            return isHost;
+        }
+
+        public void setIsHost(String isHost) {
+            this.isHost = isHost;
+        }
 
         public String getBeginAt() {
             return beginAt;
@@ -104,7 +114,7 @@ public class EnterStadiumModel extends BaseModel {
             this.users = users;
         }
 
-        public class MeetingUser {
+        public class MeetingUser implements Serializable {
             private String attendState;
             private String headImg;
             private String name;

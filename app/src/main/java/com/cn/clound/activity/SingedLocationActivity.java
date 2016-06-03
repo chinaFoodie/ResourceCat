@@ -73,13 +73,22 @@ public class SingedLocationActivity extends BaseActivity implements View.OnClick
     private int index;
     private BDLocation bdLocation;
     private int HTTP_USER_SIGNIN = 132;
+    private int HTTP_MEETING_SIGN = 154;
     private MyHttpHelper httpHelper;
+    private String timeId;
 
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.arg1 == HTTP_USER_SIGNIN) {
+                if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
+                    Toastor.showToast(SingedLocationActivity.this, "签到成功");
+                    SingedLocationActivity.this.finish();
+                } else {
+                    Toastor.showToast(SingedLocationActivity.this, msg.obj.toString());
+                }
+            } else if (msg.arg1 == HTTP_MEETING_SIGN) {
                 if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
                     Toastor.showToast(SingedLocationActivity.this, "签到成功");
                     SingedLocationActivity.this.finish();
@@ -154,6 +163,7 @@ public class SingedLocationActivity extends BaseActivity implements View.OnClick
         initLocation();
         mLocationClient.registerLocationListener(myListener);    //注册监听函数
         mLocationClient.start();
+        timeId = this.getIntent().getStringExtra("timeId");
     }
 
     /**
@@ -211,11 +221,25 @@ public class SingedLocationActivity extends BaseActivity implements View.OnClick
                 break;
             case R.id.ll_bottom_submit:
                 progress.show();
-                httpHelper.postStringBack(HTTP_USER_SIGNIN, AppConfig.USER_SIGNIN, signIn(), handler, BaseModel.class);
+                if (timeId != null && !timeId.equals("")) {
+                    httpHelper.postStringBack(HTTP_MEETING_SIGN, AppConfig.MEETING_SIGN, meetingSign(timeId), handler, BaseModel.class);
+                } else {
+                    httpHelper.postStringBack(HTTP_USER_SIGNIN, AppConfig.USER_SIGNIN, signIn(), handler, BaseModel.class);
+                }
                 break;
             default:
                 break;
         }
+    }
+
+    private HashMap<String, String> meetingSign(String timeId) {
+        HashMap<String, String> sign = new HashMap<String, String>();
+        sign.put("token", TelephoneUtil.getIMEI(this));
+        sign.put("signLoc", listPoi.get(index).getPoi().getName());
+        sign.put("signLat", bdLocation.getLatitude() + "");
+        sign.put("signLon", bdLocation.getLongitude() + "");
+        sign.put("timeId", timeId);
+        return sign;
     }
 
     /**

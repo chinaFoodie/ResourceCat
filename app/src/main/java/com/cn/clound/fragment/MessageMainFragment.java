@@ -253,7 +253,6 @@ public class MessageMainFragment extends BaseFragment implements OnItemClickLite
         // 获取所有会话，包括陌生人
         Map<String, EMConversation> conversations = EMClient.getInstance().chatManager().getAllConversations();
         // 过滤掉messages size为0的conversation
-
         /**
          * 如果在排序过程中有新消息收到，lastMsgTime会发生变化
          * 影响排序过程，Collection.sort会产生异常
@@ -263,10 +262,15 @@ public class MessageMainFragment extends BaseFragment implements OnItemClickLite
         List<Pair<Long, EMConversation>> sortList = new ArrayList<Pair<Long, EMConversation>>();
         synchronized (conversations) {
             for (EMConversation conversation : conversations.values()) {
-                if (conversation.getAllMessages().size() != 0) {
-                    //if(conversation.getType() != EMConversationType.ChatRoom){
-                    sortList.add(new Pair<Long, EMConversation>(conversation.getLastMessage().getMsgTime(), conversation));
-                    //}
+                EMMessage emMessage = conversation.getLastMessage();
+                if (emMessage != null) {
+                    String temp = emMessage.getStringAttribute("extended_msg_json", "");
+                    if (!temp.equals("")) {
+                        ExtendedChatModel ecm = GsonTools.getPerson(temp, ExtendedChatModel.class);
+                        if (conversation.getAllMessages().size() != 0 && !ecm.getMsgType().equals("MeetMessage")) {
+                            sortList.add(new Pair<Long, EMConversation>(conversation.getLastMessage().getMsgTime(), conversation));
+                        }
+                    }
                 }
             }
         }

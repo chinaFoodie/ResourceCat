@@ -255,7 +255,7 @@ public class AAAAActivity extends BaseActivity implements FragActCoon, OnItemCli
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_chose_menber_count:
-                String come = getIntent().getExtras().getString("come_from_meeting");
+                String come = getIntent().getStringExtra("come_from_meeting");
                 progress.show();
                 sendBroadcast(new Intent(ACTION));
                 if (null != groupNo && !"".equals(groupNo)) {

@@ -67,7 +67,9 @@
     <string name="dt_duty">职位</string>
 
     <string name="dept_name">部门名称</string>
+
     <style name="dt_chat_room_name">群组名称</style>
+
     <string name="dept_manager">部门负责人</string>
     <string name="dept_delete">删除部门</string>
 
@@ -99,7 +101,6 @@
     <string name="alarm_in_silent_mode_summary">"手机处于静音模式时，闹钟仍会响"</string>
     <string name="snooze_duration_title">"再响间隔"</string>
     <string name="default_label">"闹钟"</string>
-
 
     <string name="pull_to_refresh_pull_label">下拉刷新…</string>
     <string name="pull_to_refresh_release_label">松开刷新…</string>

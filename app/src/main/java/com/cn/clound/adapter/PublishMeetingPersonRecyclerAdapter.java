@@ -2,6 +2,8 @@ package com.cn.clound.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cn.clound.R;
+import com.cn.clound.base.view.SwipeMenuLayout;
 import com.cn.clound.bean.metting.MeetingPublishPersonModel;
 import com.hyphenate.easeui.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -29,6 +32,7 @@ public class PublishMeetingPersonRecyclerAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<MeetingPublishPersonModel.MeetingPublishPerson> listPerson;
     private OnItemClickLitener onItemClickLitener;
+    private Handler handler;
 
     public void setOnItemClickLitener(OnItemClickLitener onItemClickLitener) {
         this.onItemClickLitener = onItemClickLitener;
@@ -48,9 +52,10 @@ public class PublishMeetingPersonRecyclerAdapter extends RecyclerView.Adapter {
             .displayer(new SimpleBitmapDisplayer()) // default
             .build();
 
-    public PublishMeetingPersonRecyclerAdapter(Context context, List<MeetingPublishPersonModel.MeetingPublishPerson> listPerson) {
+    public PublishMeetingPersonRecyclerAdapter(Context context, List<MeetingPublishPersonModel.MeetingPublishPerson> listPerson, Handler handler) {
         this.context = context;
         this.listPerson = listPerson;
+        this.handler = handler;
     }
 
     @Override
@@ -63,6 +68,7 @@ public class PublishMeetingPersonRecyclerAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+        final SwipeMenuLayout item = (SwipeMenuLayout) holder.itemView;
         ((MyViewHolder) holder).tvDeptName.setText(listPerson.get(position).getName());
         ((MyViewHolder) holder).tvDeptPhone.setText(listPerson.get(position).getDepName());
         ((MyViewHolder) holder).tvDeptLevle.setVisibility(View.GONE);
@@ -75,6 +81,16 @@ public class PublishMeetingPersonRecyclerAdapter extends RecyclerView.Adapter {
                 }
             });
         }
+        ((MyViewHolder) holder).tvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                item.smoothCloseMenu();
+                Message msg = new Message();
+                msg.what = 1002;
+                msg.obj = position;
+                handler.sendMessage(msg);
+            }
+        });
     }
 
     @Override
@@ -87,9 +103,11 @@ public class PublishMeetingPersonRecyclerAdapter extends RecyclerView.Adapter {
         TextView tvDeptPhone;
         ImageView tvDeptLevle;
         CircleImageView imgAvatar;
+        TextView tvDelete;
 
         public MyViewHolder(View itemView) {
             super(itemView);
+            tvDelete = (TextView) itemView.findViewById(R.id.btDelete);
             imgAvatar = (CircleImageView) itemView.findViewById(R.id.dept_avatar);
             tvDeptLevle = (ImageView) itemView.findViewById(R.id.is_joined);
             tvDeptName = (TextView) itemView.findViewById(R.id.tv_dept_name);
