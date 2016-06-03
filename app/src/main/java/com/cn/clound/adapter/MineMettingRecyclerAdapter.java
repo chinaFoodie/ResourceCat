@@ -55,7 +55,7 @@ public class MineMettingRecyclerAdapter extends RecyclerView.Adapter {
         ((MyViewHolder) holder).llMettingDisCount.setVisibility(View.VISIBLE);
         ((MyViewHolder) holder).tvMeetingName.setText(listMetting.get(position).getName());
         ((MyViewHolder) holder).tvMeetingTime.setText(listMetting.get(position).getBeginAt() + "-" + listMetting.get(position).getEndAt().substring(listMetting.get(position).getEndAt().indexOf(" ") + 1));
-        if (listMetting.get(position).getTypeStr().equals("1")) {
+        if (listMetting.get(position).getType().equals("1")) {
             ((MyViewHolder) holder).tvMeetingType.setText("网络会议");
             ((MyViewHolder) holder).tvMeetingType.setBackgroundResource(R.color.color_meeting_net);
         } else {

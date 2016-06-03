@@ -8,7 +8,21 @@
         android:id="@+id/img_chat_menber_head"
         android:layout_width="46dp"
         android:layout_height="46dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/img_join_header_qq" />
+
+    <TextView
+        android:id="@+id/tv_menber_absent_or_late"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/shape_gray_cicle_rect"
+        android:padding="3dp"
+        android:text="缺席"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/base_mid_title_text12"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_chat_menber_name"
@@ -17,5 +31,6 @@
         android:layout_below="@id/img_chat_menber_head"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:text="ddddd" />
 </RelativeLayout>

@@ -50,7 +50,7 @@ public class HistoryMettingRecyclerAdapter extends RecyclerView.Adapter {
         final SwipeMenuLayout item = (SwipeMenuLayout) holder.itemView;
         ((MyViewHolder) holder).tvMeetingName.setText(listMetting.get(position).getName());
         ((MyViewHolder) holder).tvMeetingTime.setText(listMetting.get(position).getBeginAt() + "-" + listMetting.get(position).getEndAt().substring(listMetting.get(position).getEndAt().indexOf(" ") + 1));
-        if (listMetting.get(position).getTypeStr().equals("1")) {
+        if (listMetting.get(position).getTypeStr().equals("网络会议")) {
             ((MyViewHolder) holder).tvMeetingType.setText("网络会议");
             ((MyViewHolder) holder).tvMeetingType.setBackgroundResource(R.color.color_meeting_net);
         } else {

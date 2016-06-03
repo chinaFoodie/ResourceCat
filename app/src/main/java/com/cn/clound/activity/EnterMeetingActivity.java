@@ -13,6 +13,7 @@ import android.os.PersistableBundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -403,6 +404,32 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
     }
 
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            if (esm.getData().getState().equals("1") && esm.getData().getIsSign().equals("1")) {
+                if (esm.getData().getState().equals("1") && esm.getData().getIsSign().equals("1")) {
+                    new AlertDialog(this).builder().setCancelable(false).setTitle("温馨提示").setPositiveButton("确定", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            progress.show();
+                            httpHelper.postStringBack(HTTP_LEAVE_MEETING, AppConfig.LEAVE_MEETING, startMeeting(), handler, BaseModel.class);
+                        }
+                    }).setNegativeButton("取消", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                        }
+                    }).setMsg("是否确认离开会场？").show();
+                }
+            } else {
+                EnterMeetingActivity.this.finish();
+            }
+            return true;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_base_back:
@@ -418,6 +445,8 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
                         public void onClick(View v) {
                         }
                     }).setMsg("是否确认离开会场？").show();
+                } else {
+                    this.finish();
                 }
                 break;
             case R.id.tv_base_right:

@@ -61,9 +61,18 @@ public class JoinMeetingRecyclerAdapter extends RecyclerView.Adapter<JoinMeeting
 
     @Override
     public void onBindViewHolder(final JoinMeetingRecyclerAdapter.MyViewHolder holder, final int position) {
-        if (position < listUser.size()) {
-            holder.tvDeptName.setText(listUser.get(position).getName());
-            ImageLoader.getInstance().displayImage(listUser.get(position).getHeadImg(), holder.imgAvatar, options);
+        holder.tvDeptName.setText(listUser.get(position).getName());
+        ImageLoader.getInstance().displayImage(listUser.get(position).getHeadImg(), holder.imgAvatar, options);
+        if (listUser.get(position).getAttendState().equals("0")) {
+            holder.tvAbsentOrLeave.setText("离场");
+            holder.tvAbsentOrLeave.setVisibility(View.VISIBLE);
+            holder.tvAbsentOrLeave.setBackgroundResource(R.drawable.shape_gray_cicle_rect);
+        } else if (listUser.get(position).getAttendState().equals("1")) {
+            holder.tvAbsentOrLeave.setVisibility(View.GONE);
+        } else {
+            holder.tvAbsentOrLeave.setText("缺席");
+            holder.tvAbsentOrLeave.setVisibility(View.VISIBLE);
+            holder.tvAbsentOrLeave.setBackgroundResource(R.drawable.shape_red_cicle_rect);
         }
         //设置Item事件监听
         if (mOnItemClickLitener != null) {
@@ -93,11 +102,13 @@ public class JoinMeetingRecyclerAdapter extends RecyclerView.Adapter<JoinMeeting
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tvDeptName;
         CircleImageView imgAvatar;
+        TextView tvAbsentOrLeave;
 
         public MyViewHolder(View view) {
             super(view);
             tvDeptName = (TextView) view.findViewById(R.id.tv_chat_menber_name);
             imgAvatar = (CircleImageView) view.findViewById(R.id.img_chat_menber_head);
+            tvAbsentOrLeave = (TextView) view.findViewById(R.id.tv_menber_absent_or_late);
         }
     }
 }
