@@ -7,17 +7,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cn.clound.R;
+import com.cn.clound.base.common.time.DateUtil;
 import com.hyphenate.chat.EMMessage;
+import com.hyphenate.chat.EMTextMessageBody;
 import com.hyphenate.chat.EMVoiceMessageBody;
+import com.hyphenate.easeui.model.ExtendedChatModel;
+import com.hyphenate.easeui.utils.GsonTools;
 import com.hyphenate.easeui.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,26 +75,58 @@ public class MeetingChatVoiceRecyclerAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        EMVoiceMessageBody voiceBody = (EMVoiceMessageBody) messages.get(position).getBody();
-        if (holder instanceof FromViewHolder) {
-            ImageLoader.getInstance().displayImage("", ((FromViewHolder) holder).userAvatarView, options);
-            ((FromViewHolder) holder).imgVoice.setImageResource(com.hyphenate.easeui.R.drawable.voice_to_icon);
-            if (voiceBody.getLength() > 0) {
-                ((FromViewHolder) holder).voiceLengthView.setText(voiceBody.getLength() + "\"");
-                ((FromViewHolder) holder).voiceLengthView.setVisibility(View.VISIBLE);
+        String temp = messages.get(position).getStringAttribute("extended_msg_json", "");
+        ExtendedChatModel extendedChatModel = GsonTools.getPerson(temp, ExtendedChatModel.class);
+        if (extendedChatModel != null && extendedChatModel.getMsgType().equals("MeetState")) {
+            EMTextMessageBody voiceBody = (EMTextMessageBody) messages.get(position).getBody();
+            if (holder instanceof FromViewHolder) {
+                ((FromViewHolder) holder).rlContent.setVisibility(View.GONE);
+                ((FromViewHolder) holder).tvMsgState.setVisibility(View.VISIBLE);
+                ((FromViewHolder) holder).tvMsgState.setText(voiceBody.getMessage());
             } else {
-                ((FromViewHolder) holder).voiceLengthView.setVisibility(View.GONE);
+                ((ComeViewHolder) holder).rlContent.setVisibility(View.GONE);
+                ((ComeViewHolder) holder).tvMsgState.setVisibility(View.VISIBLE);
+                ((ComeViewHolder) holder).tvMsgState.setText(voiceBody.getMessage());
             }
         } else {
-            ImageLoader.getInstance().displayImage("", ((ComeViewHolder) holder).userAvatarView, options);
-            ((ComeViewHolder) holder).imgVoice.setImageResource(com.hyphenate.easeui.R.drawable.voice_from_icon);
-            if (voiceBody.getLength() > 0) {
-                ((ComeViewHolder) holder).voiceLengthView.setText(voiceBody.getLength() + "\"");
-                ((ComeViewHolder) holder).voiceLengthView.setVisibility(View.VISIBLE);
+            EMVoiceMessageBody voiceBody = (EMVoiceMessageBody) messages.get(position).getBody();
+            long sho = 1;
+            if (position > 0) {
+                sho = (messages.get(position - 1).getMsgTime() - messages.get(position).getMsgTime()) / 60000;
+            }
+            if (holder instanceof FromViewHolder) {
+                ImageLoader.getInstance().displayImage("", ((FromViewHolder) holder).userAvatarView, options);
+                ((FromViewHolder) holder).imgVoice.setImageResource(com.hyphenate.easeui.R.drawable.voice_to_icon);
+                if (voiceBody.getLength() > 0) {
+                    ((FromViewHolder) holder).voiceLengthView.setText(voiceBody.getLength() + "\"");
+                    ((FromViewHolder) holder).voiceLengthView.setVisibility(View.VISIBLE);
+                } else {
+                    ((FromViewHolder) holder).voiceLengthView.setVisibility(View.GONE);
+                }
+                if (sho > 0) {
+                    ((FromViewHolder) holder).tvMsgState.setVisibility(View.VISIBLE);
+                    ((FromViewHolder) holder).tvMsgState.setText(DateUtil.transferLongToDate("MM-dd HH:mm:ss", messages.get(position).getMsgTime()));
+                } else {
+                    ((FromViewHolder) holder).tvMsgState.setVisibility(View.GONE);
+                }
             } else {
-                ((ComeViewHolder) holder).voiceLengthView.setVisibility(View.GONE);
+                ImageLoader.getInstance().displayImage("", ((ComeViewHolder) holder).userAvatarView, options);
+                ((ComeViewHolder) holder).imgVoice.setImageResource(com.hyphenate.easeui.R.drawable.voice_from_icon);
+                if (voiceBody.getLength() > 0) {
+                    ((ComeViewHolder) holder).voiceLengthView.setText(voiceBody.getLength() + "\"");
+                    ((ComeViewHolder) holder).voiceLengthView.setVisibility(View.VISIBLE);
+                } else {
+                    ((ComeViewHolder) holder).voiceLengthView.setVisibility(View.GONE);
+                }
+                if (sho > 0) {
+                    ((FromViewHolder) holder).tvMsgState.setVisibility(View.VISIBLE);
+                    ((FromViewHolder) holder).tvMsgState.setText(DateUtil.transferLongToDate("MM-dd HH:mm:ss", messages.get(position).getMsgTime()));
+                } else {
+                    ((FromViewHolder) holder).tvMsgState.setVisibility(View.GONE);
+                }
             }
         }
+        holder.setIsRecyclable(false);
         if (onItemClickLitener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -118,6 +156,8 @@ public class MeetingChatVoiceRecyclerAdapter extends RecyclerView.Adapter {
         ImageView imgVoice;
         TextView voiceLengthView;
         ImageView readStutausView;
+        TextView tvMsgState;
+        RelativeLayout rlContent;
 
         public FromViewHolder(View itemView) {
             super(itemView);
@@ -125,6 +165,8 @@ public class MeetingChatVoiceRecyclerAdapter extends RecyclerView.Adapter {
             imgVoice = (ImageView) itemView.findViewById(R.id.iv_voice);
             voiceLengthView = (TextView) itemView.findViewById(R.id.tv_length);
             readStutausView = (ImageView) itemView.findViewById(R.id.msg_status);
+            tvMsgState = (TextView) itemView.findViewById(R.id.timestamp);
+            rlContent = (RelativeLayout) itemView.findViewById(R.id.rl_msg_content);
         }
     }
 
@@ -134,6 +176,8 @@ public class MeetingChatVoiceRecyclerAdapter extends RecyclerView.Adapter {
         ImageView imgVoice;
         TextView voiceLengthView;
         ImageView readStutausView;
+        TextView tvMsgState;
+        RelativeLayout rlContent;
 
         public ComeViewHolder(View itemView) {
             super(itemView);
@@ -142,6 +186,8 @@ public class MeetingChatVoiceRecyclerAdapter extends RecyclerView.Adapter {
             imgVoice = (ImageView) itemView.findViewById(R.id.iv_voice);
             voiceLengthView = (TextView) itemView.findViewById(R.id.tv_length);
             readStutausView = (ImageView) itemView.findViewById(R.id.msg_status);
+            tvMsgState = (TextView) itemView.findViewById(R.id.timestamp);
+            rlContent = (RelativeLayout) itemView.findViewById(R.id.rl_msg_content);
         }
     }
 }

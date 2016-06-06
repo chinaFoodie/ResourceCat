@@ -32,7 +32,16 @@ public class EnterStadiumModel extends BaseModel implements Serializable {
         private String signType;
         private String isHost;
         private String state;
+        private String sBegin;
         private List<MeetingUser> users;
+
+        public String getsBegin() {
+            return sBegin;
+        }
+
+        public void setsBegin(String sBegin) {
+            this.sBegin = sBegin;
+        }
 
         public String getIsHost() {
             return isHost;

@@ -443,4 +443,17 @@ public class DateUtil {
         }
         return date;
     }
+
+    /**
+     * long转Date
+     *
+     * @param dateFormat
+     * @param millSec
+     * @return
+     */
+    public static String transferLongToDate(String dateFormat, Long millSec) {
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+        Date date = new Date(millSec);
+        return sdf.format(date);
+    }
 }

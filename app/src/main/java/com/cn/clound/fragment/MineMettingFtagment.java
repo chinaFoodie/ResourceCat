@@ -23,8 +23,10 @@ import com.cn.clound.adapter.MeetingChatVoiceRecyclerAdapter;
 import com.cn.clound.adapter.MineMettingRecyclerAdapter;
 import com.cn.clound.adapter.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
+import com.cn.clound.application.MyApplication;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
+import com.cn.clound.base.common.utils.GsonTools;
 import com.cn.clound.base.common.utils.TelephoneUtil;
 import com.cn.clound.bean.metting.EnterStadiumModel;
 import com.cn.clound.bean.metting.MyMettingModel;
@@ -34,7 +36,9 @@ import com.cn.clound.view.refreshlinearlayout.PullToRefreshBase;
 import com.cn.clound.view.refreshlinearlayout.PullToRefreshScrollView;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
+import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.EaseConstant;
+import com.hyphenate.easeui.model.ExtendedChatModel;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
 
 import java.util.ArrayList;
@@ -91,6 +95,22 @@ public class MineMettingFtagment extends BaseFragment implements View.OnClickLis
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("enter_stadium_model", esm);
                     enter.putExtras(bundle);
+                    if (esm.getData().getState().equals("1")) {
+                        EMMessage message = EMMessage.createTxtSendMessage(MyApplication.getInstance().getUm().getData().getUserInfo().getName() + "加入了会议", esm.getData().getGroupId());
+                        message.setChatType(EMMessage.ChatType.GroupChat);
+                        //自定义属性
+                        ExtendedChatModel exm = new ExtendedChatModel();
+                        exm.setSessionName(esm.getData().getGroupId());
+                        exm.setMsgType("MeetState");
+                        exm.setToUserNo(esm.getData().getGroupId());
+                        exm.setToUserAvatar("");
+                        exm.setToUSerNick(esm.getData().getGroupId());
+                        exm.setFromUserAvatar(MyApplication.getInstance().getUm().getData().getUserInfo().getHead());
+                        exm.setFromUserNick(MyApplication.getInstance().getUm().getData().getUserInfo().getName());
+                        exm.setFromUserNo(MyApplication.getInstance().getUm().getData().getUserInfo().getUserNo());
+                        message.setAttribute("extended_msg_json", GsonTools.obj2json(exm));
+                        EMClient.getInstance().chatManager().sendMessage(message);
+                    }
                     startActivity(enter);
                 } else {
                     Toastor.showToast(getActivity(), msg.obj.toString());

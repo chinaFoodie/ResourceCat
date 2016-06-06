@@ -206,6 +206,7 @@ public class AAAAActivity extends BaseActivity implements FragActCoon, OnItemCli
     @Override
     public void onActivityDestroyed(Activity activity) {
         PublicDataUtil.listHasCunZai.clear();
+        PublicDataUtil.listBottom.clear();
     }
 
     @Override

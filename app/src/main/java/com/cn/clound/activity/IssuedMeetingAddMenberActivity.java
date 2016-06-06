@@ -79,12 +79,18 @@ public class IssuedMeetingAddMenberActivity extends BaseActivity implements View
             } else if (msg.arg1 == HTTP_UPDATE_MEETING) {
                 if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
                     Toastor.showToast(IssuedMeetingAddMenberActivity.this, "更新会议成功");
+                    Intent manager = new Intent(IssuedMeetingAddMenberActivity.this, MeetingManagerActivity.class);
+                    startActivity(manager);
+                    IssuedMeetingAddMenberActivity.this.finish();
                 } else {
                     Toastor.showToast(IssuedMeetingAddMenberActivity.this, msg.obj.toString());
                 }
             } else if (msg.arg1 == HTTP_CREATE_MEETING) {
                 if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
                     Toastor.showToast(IssuedMeetingAddMenberActivity.this, "发布会议成功");
+                    Intent manager = new Intent(IssuedMeetingAddMenberActivity.this, MeetingManagerActivity.class);
+                    startActivity(manager);
+                    IssuedMeetingAddMenberActivity.this.finish();
                 } else {
                     Toastor.showToast(IssuedMeetingAddMenberActivity.this, msg.obj.toString());
                 }
@@ -242,9 +248,37 @@ public class IssuedMeetingAddMenberActivity extends BaseActivity implements View
                 }
                 break;
             case R.id.ll_meeting_get_joined_menber:
+                for (BottomUserModel bum : listHostess) {
+                    BottomUserModel bb = new BottomUserModel();
+                    bb.setUserId(bum.getUserId());
+                    bb.setUserName(bum.getUserName());
+                    bb.setUserHead(bum.getUserHead());
+                    PublicDataUtil.listHasCunZai.add(bb);
+                }
+                for (BottomUserModel bum : listMenber) {
+                    BottomUserModel bb = new BottomUserModel();
+                    bb.setUserId(bum.getUserId());
+                    bb.setUserName(bum.getUserName());
+                    bb.setUserHead(bum.getUserHead());
+                    PublicDataUtil.listBottom.add(bb);
+                }
                 startActivityForResult(new Intent(this, AAAAActivity.class).putExtra("come_from_meeting", "meeting"), 6705);
                 break;
             case R.id.ll_get_meeting_hostess:
+                for (BottomUserModel bum : listMenber) {
+                    BottomUserModel bb = new BottomUserModel();
+                    bb.setUserId(bum.getUserId());
+                    bb.setUserName(bum.getUserName());
+                    bb.setUserHead(bum.getUserHead());
+                    PublicDataUtil.listHasCunZai.add(bb);
+                }
+                for (BottomUserModel bum : listHostess) {
+                    BottomUserModel bb = new BottomUserModel();
+                    bb.setUserId(bum.getUserId());
+                    bb.setUserName(bum.getUserName());
+                    bb.setUserHead(bum.getUserHead());
+                    PublicDataUtil.listBottom.add(bb);
+                }
                 startActivityForResult(new Intent(this, AAAAActivity.class).putExtra("come_from_meeting", "meeting"), 6706);
                 break;
             default:

@@ -40,9 +40,11 @@ import com.cn.clound.view.AlertDialog;
 import com.cn.clound.view.CustomProgress;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMError;
+import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
+import com.hyphenate.chat.EMTextMessageBody;
 import com.hyphenate.chat.EMVoiceMessageBody;
 import com.hyphenate.easeui.EaseConstant;
 import com.hyphenate.easeui.controller.EaseUI;
@@ -106,6 +108,7 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
     private EnterStadiumModel esm;
     private MeetingChatVoiceRecyclerAdapter voiceAdapter;
     private CustomProgress progress;
+    private boolean NEED_REFRESH = false;
 
     Handler handler = new Handler() {
         @Override
@@ -126,6 +129,20 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
                 }
             } else if (msg.arg1 == HTTP_LEAVE_MEETING) {
                 if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
+                    EMMessage message = EMMessage.createTxtSendMessage(MyApplication.getInstance().getUm().getData().getUserInfo().getName() + "离开了会议", esm.getData().getGroupId());
+                    message.setChatType(EMMessage.ChatType.GroupChat);
+                    //自定义属性
+                    ExtendedChatModel exm = new ExtendedChatModel();
+                    exm.setSessionName(esm.getData().getGroupId());
+                    exm.setMsgType("MeetState");
+                    exm.setToUserNo(esm.getData().getGroupId());
+                    exm.setToUserAvatar("");
+                    exm.setToUSerNick(esm.getData().getGroupId());
+                    exm.setFromUserAvatar(MyApplication.getInstance().getUm().getData().getUserInfo().getHead());
+                    exm.setFromUserNick(MyApplication.getInstance().getUm().getData().getUserInfo().getName());
+                    exm.setFromUserNo(MyApplication.getInstance().getUm().getData().getUserInfo().getUserNo());
+                    message.setAttribute("extended_msg_json", GsonTools.obj2json(exm));
+                    EMClient.getInstance().chatManager().sendMessage(message);
                     EnterMeetingActivity.this.finish();
                 } else {
                     Toastor.showToast(EnterMeetingActivity.this, msg.obj.toString());
@@ -133,14 +150,20 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
             } else if (msg.arg1 == HTTP_ENTER_METTING) {
                 if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
                     esm = (EnterStadiumModel) msg.obj;
+                    listMu = esm.getData().getUsers();
+                    adapter = new JoinMeetingRecyclerAdapter(EnterMeetingActivity.this, listMu);
+                    recyclerview.setAdapter(adapter);
                     isSignedSeting();
-                    Toastor.showToast(EnterMeetingActivity.this, "会议已经开始");
+                    meetingCount();
+                    getMeetingChat();
                 } else {
                     Toastor.showToast(EnterMeetingActivity.this, msg.obj.toString());
                 }
             } else if (msg.what == 100) {
-                voiceAdapter.notifyDataSetChanged();
+                getMeetingChat();
+                voiceAdapter = new MeetingChatVoiceRecyclerAdapter(EnterMeetingActivity.this, messages);
                 voiceAdapter.setOnItemClickLitener(EnterMeetingActivity.this);
+                chatRecycler.setAdapter(voiceAdapter);
                 chatRecycler.scrollToPosition(voiceAdapter.getItemCount() - 1);
             }
             if (progress != null && progress.isShowing()) {
@@ -192,11 +215,16 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
 
     private void meetingCount() {
         Date temp = DateUtil.string2Date(esm.getData().getBeginAt() + ":00", "yyyy-MM-dd HH:mm:ss");
-        final long[] time = {(temp.getTime() - new Date().getTime()) / 1000, (new Date().getTime() - temp.getTime()) / 1000};
+        long count = 0;
+        if (esm.getData().getsBegin() != null) {
+            temp = DateUtil.str2Date(esm.getData().getsBegin(), "yyyy-MM-dd HH:mm:ss");
+            count = new Date().getTime() - temp.getTime();
+        }
+        final long[] time = {(temp.getTime() - new Date().getTime()) / 1000, (new Date().getTime() - temp.getTime()) / 1000, count / 1000};
         tvMeetMinute.post(new Runnable() {
             @Override
             public void run() {
-                if (time[0] > 0) {
+                if (time[0] > 0 && esm.getData().getsBegin() == null) {
                     time[0]--;
                     long m = time[0] / 60;
                     long s = time[0] % 60;
@@ -214,9 +242,9 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
                     tvMeetSecond.setText(second);
                     tvMeetMinute.postDelayed(this, 1000);
                 } else if (esm.getData().getState().equals("1")) {
-                    time[1]++;
-                    long m = time[1] / 60;
-                    long s = time[1] % 60;
+                    time[2]++;
+                    long m = time[2] / 60;
+                    long s = time[2] % 60;
                     StringBuffer minute = new StringBuffer();
                     StringBuffer second = new StringBuffer();
                     if (m < 10) {
@@ -304,8 +332,9 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
                     case MotionEvent.ACTION_UP:
                         int lenth = voiceRecorderView.stopRecoding();
                         if (lenth > 0) {
-                            final EMMessage message = EMMessage.createVoiceSendMessage(voiceRecorderView.getVoiceFilePath(), lenth, esm.getData().getGroupId());
+                            EMMessage message = EMMessage.createVoiceSendMessage(voiceRecorderView.getVoiceFilePath(), lenth, esm.getData().getGroupId());
                             //自定义属性
+                            message.setChatType(EMMessage.ChatType.GroupChat);
                             ExtendedChatModel exm = new ExtendedChatModel();
                             exm.setSessionName(esm.getData().getGroupId());
                             exm.setMsgType("MeetMessage");
@@ -320,7 +349,6 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
                             message.setMessageStatusCallback(new EMCallBack() {
                                 @Override
                                 public void onSuccess() {
-                                    messages.add(message);
                                     handler.sendEmptyMessage(100);
                                 }
 
@@ -352,17 +380,24 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
             recyclerview.setAdapter(adapter);
             isSignedSeting();
             meetingCount();
-            EMConversation conversation = EMClient.getInstance().chatManager().getConversation(esm.getData().getGroupId(), EaseCommonUtils.getConversationType(EaseConstant.CHATTYPE_CHATROOM), true);
-            messages = conversation.getAllMessages();
-            for (EMMessage emMessage : messages) {
-                if (emMessage.getType() != EMMessage.Type.VOICE) {
-                    messages.remove(emMessage);
-                }
-            }
+            getMeetingChat();
             voiceAdapter = new MeetingChatVoiceRecyclerAdapter(EnterMeetingActivity.this, messages);
             chatRecycler.setAdapter(voiceAdapter);
             voiceAdapter.setOnItemClickLitener(EnterMeetingActivity.this);
             chatRecycler.scrollToPosition(voiceAdapter.getItemCount() - 1);
+        }
+    }
+
+    private void getMeetingChat() {
+        EMConversation conversation = EMClient.getInstance().chatManager().getConversation(esm.getData().getGroupId(), EaseCommonUtils.getConversationType(EaseConstant.CHATTYPE_CHATROOM), true);
+        messages = conversation.getAllMessages();
+        for (EMMessage emMessage : messages) {
+            String temp = emMessage.getStringAttribute("extended_msg_json", "");
+            ExtendedChatModel extendedChatModel = com.hyphenate.easeui.utils.GsonTools.getPerson(temp, ExtendedChatModel.class);
+            if (extendedChatModel != null && !extendedChatModel.getMsgType().equals("chat_join_me")) {
+            } else {
+                messages.remove(emMessage);
+            }
         }
     }
 
@@ -376,6 +411,11 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
         if (progress != null && progress.isShowing()) {
             progress.dismiss();
         }
+        if (NEED_REFRESH) {
+            httpHelper.postStringBack(HTTP_ENTER_METTING, AppConfig.ENTER_MEETING, enterParmars(), handler, EnterStadiumModel.class);
+        }
+        // register the event listener when enter the foreground
+        EMClient.getInstance().chatManager().addMessageListener(msgListener);
     }
 
     @Override
@@ -385,7 +425,7 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onActivityStopped(Activity activity) {
-
+        NEED_REFRESH = true;
     }
 
     @Override
@@ -557,7 +597,7 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
 //                }
                 if (!message.isListened() && iv_read_status != null && iv_read_status.getVisibility() == View.VISIBLE) {
                     // 隐藏自己未播放这条语音消息的标志
-                    iv_read_status.setVisibility(View.INVISIBLE);
+                    iv_read_status.setVisibility(View.GONE);
                     message.setListened(true);
                     EMClient.getInstance().chatManager().setMessageListened(message);
                 }
@@ -580,6 +620,61 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
         }
         isPlaying = false;
         playMsgId = null;
-        voiceAdapter.notifyDataSetChanged();
+        handler.sendEmptyMessage(100);
     }
+
+    /**
+     * 消息变化监听
+     */
+    EMMessageListener msgListener = new EMMessageListener() {
+
+        @Override
+        public void onMessageReceived(List<EMMessage> messages) {
+
+            for (EMMessage message : messages) {
+                String username = null;
+                // 群组消息
+                if (message.getChatType() == EMMessage.ChatType.GroupChat || message.getChatType() == EMMessage.ChatType.ChatRoom) {
+                    username = message.getTo();
+                    if (message.getType() == EMMessage.Type.TXT) {
+                        EMTextMessageBody txtBody = (EMTextMessageBody) message.getBody();
+                        if (txtBody.getMessage().contains("加入了会议") || txtBody.getMessage().contains("离开了会议")) {
+                            httpHelper.postStringBack(HTTP_ENTER_METTING, AppConfig.ENTER_MEETING, enterParmars(), handler, EnterStadiumModel.class);
+                        }
+                    }
+                } else {
+                    // 单聊消息
+                    username = message.getFrom();
+                }
+
+                // 如果是当前会话的消息，刷新聊天页面
+                if (username.equals(esm.getData().getGroupId())) {
+                    handler.sendEmptyMessage(100);
+
+                    // 声音和震动提示有新消息
+                    EaseUI.getInstance().getNotifier().viberateAndPlayTone(message);
+                } else {
+                    // 如果消息不是和当前聊天ID的消息
+                    EaseUI.getInstance().getNotifier().onNewMsg(message);
+                }
+            }
+        }
+
+        @Override
+        public void onCmdMessageReceived(List<EMMessage> messages) {
+
+        }
+
+        @Override
+        public void onMessageReadAckReceived(List<EMMessage> messages) {
+        }
+
+        @Override
+        public void onMessageDeliveryAckReceived(List<EMMessage> message) {
+        }
+
+        @Override
+        public void onMessageChanged(EMMessage message, Object change) {
+        }
+    };
 }

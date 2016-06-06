@@ -59,7 +59,7 @@ public class MyHttpHelper<T> {
         OkHttpUtils.post().url(url).headers(setHeaders()).params(parames).build().execute(new StringCallback() {
             @Override
             public void onError(Call call, Exception e) {
-
+                String erroMsg = e.toString();
             }
 
             @Override

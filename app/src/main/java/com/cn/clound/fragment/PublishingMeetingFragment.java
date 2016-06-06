@@ -52,6 +52,7 @@ public class PublishingMeetingFragment extends BaseFragment implements OnItemCli
     private int HTTP_QUERY_MEETING_DETAILS = 159;
     private int index;
     private MyHttpHelper httpHelper;
+    private boolean IS_NEED_REFURUSE = false;
     private List<MyMettingModel.MeetingData.MineMetting> lsitMeeting = new ArrayList<>();
     Handler handler = new Handler() {
         @Override
@@ -150,7 +151,10 @@ public class PublishingMeetingFragment extends BaseFragment implements OnItemCli
 
     @Override
     public void onFragmentResumed(Fragment fragment) {
-
+        if (IS_NEED_REFURUSE) {
+            httpHelper.postStringBack(HTTP_GET_PUBLISH_MEETING, AppConfig.GET_PUBLISH_MEETING, getParames(), handler, MyMettingModel.class);
+            IS_NEED_REFURUSE = false;
+        }
     }
 
     @Override
@@ -160,12 +164,12 @@ public class PublishingMeetingFragment extends BaseFragment implements OnItemCli
 
     @Override
     public void onFragmentStopped(Fragment fragment) {
-
+        IS_NEED_REFURUSE = true;
     }
 
     @Override
     public void onFragmentDestroyed(Fragment fragment) {
-
+        IS_NEED_REFURUSE = false;
     }
 
     @Override
