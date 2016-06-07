@@ -15,6 +15,7 @@
         android:padding="10dp">
 
         <LinearLayout
+            android:id="@+id/ll_issued_meeting"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="6dp"
@@ -37,6 +38,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_manager_meeting"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
@@ -59,6 +61,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_manager_issued_people"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"

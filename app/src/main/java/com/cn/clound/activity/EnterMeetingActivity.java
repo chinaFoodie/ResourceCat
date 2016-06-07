@@ -155,12 +155,22 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
                     recyclerview.setAdapter(adapter);
                     isSignedSeting();
                     meetingCount();
-                    getMeetingChat();
+                    if (esm.getData().getMeetingType().equals("1")) {
+                        getMeetingChat();
+                        rlPress2Say.setVisibility(View.VISIBLE);
+                    } else {
+                        rlPress2Say.setVisibility(View.GONE);
+                    }
                 } else {
                     Toastor.showToast(EnterMeetingActivity.this, msg.obj.toString());
                 }
             } else if (msg.what == 100) {
-                getMeetingChat();
+                if (esm.getData().getMeetingType().equals("1")) {
+                    getMeetingChat();
+                    rlPress2Say.setVisibility(View.VISIBLE);
+                } else {
+                    rlPress2Say.setVisibility(View.GONE);
+                }
                 voiceAdapter = new MeetingChatVoiceRecyclerAdapter(EnterMeetingActivity.this, messages);
                 voiceAdapter.setOnItemClickLitener(EnterMeetingActivity.this);
                 chatRecycler.setAdapter(voiceAdapter);
@@ -380,7 +390,12 @@ public class EnterMeetingActivity extends BaseActivity implements View.OnClickLi
             recyclerview.setAdapter(adapter);
             isSignedSeting();
             meetingCount();
-            getMeetingChat();
+            if (esm.getData().getMeetingType().equals("1")) {
+                getMeetingChat();
+                rlPress2Say.setVisibility(View.VISIBLE);
+            } else {
+                rlPress2Say.setVisibility(View.GONE);
+            }
             voiceAdapter = new MeetingChatVoiceRecyclerAdapter(EnterMeetingActivity.this, messages);
             chatRecycler.setAdapter(voiceAdapter);
             voiceAdapter.setOnItemClickLitener(EnterMeetingActivity.this);

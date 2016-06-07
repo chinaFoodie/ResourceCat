@@ -3,8 +3,9 @@ package com.cn.clound.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,22 +13,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.cn.clound.R;
+import com.cn.clound.appconfig.AppConfig;
+import com.cn.clound.application.MyApplication;
 import com.cn.clound.base.BaseActivity;
-import com.cn.clound.base.common.time.DateUtil;
-import com.cn.clound.fragment.HierarchyFragment;
+import com.cn.clound.base.common.assist.Toastor;
+import com.cn.clound.base.common.utils.TelephoneUtil;
+import com.cn.clound.bean.metting.MeetingPublishPersonModel;
 import com.cn.clound.fragment.HistoryMettingFragment;
 import com.cn.clound.fragment.MineMettingFtagment;
+import com.cn.clound.http.MyHttpHelper;
 import com.cn.clound.utils.PopWindowUtil;
-import com.cn.clound.view.PullRefreshLayout;
-import com.cn.clound.view.refreshlinearlayout.PullToRefreshBase;
-import com.cn.clound.view.refreshlinearlayout.PullToRefreshScrollView;
+import com.cn.clound.view.dialog.TipAddMeetingIssuedDialog;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -64,8 +68,30 @@ public class CloudMeetingActivity extends BaseActivity implements View.OnClickLi
     private Fragment mineMettingFragment;
     private Fragment historyMettingFragment;
     private PopWindowUtil popMenu;
-
+    private List<String> listRole = new ArrayList<>();
     private LinkedList<String> data = new LinkedList<String>();
+
+    private MyHttpHelper httpHelper;
+    private int HTTP_GET_MEETING_ISSUED = 163;
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.arg1 == HTTP_GET_MEETING_ISSUED) {
+                if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
+                    MeetingPublishPersonModel mppm = (MeetingPublishPersonModel) msg.obj;
+                    if (mppm.getData().size() > 0) {
+                        startActivity(new Intent(CloudMeetingActivity.this, IssuedMettingActivity.class));
+                    } else {
+                        toastDialog();
+                    }
+                } else {
+                    Toastor.showToast(CloudMeetingActivity.this, msg.obj.toString());
+                }
+            }
+        }
+    };
 
     @Override
     protected int getMainContentViewId() {
@@ -74,6 +100,7 @@ public class CloudMeetingActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+        listRole = MyApplication.getInstance().getRole().getData().getResult();
         init();
     }
 
@@ -81,10 +108,16 @@ public class CloudMeetingActivity extends BaseActivity implements View.OnClickLi
      * 初始化控件
      */
     private void init() {
+        httpHelper = MyHttpHelper.getInstance(this);
         llBack.setVisibility(View.VISIBLE);
         llBack.setOnClickListener(this);
         tvMidTitle.setText(getResources().getString(R.string.activity_cloud_meeting));
-        imgBaseRight.setVisibility(View.VISIBLE);
+        if ((MyApplication.getInstance().getRole() != null && MyApplication.getInstance().getRole().getData().getResult().contains("1"))
+                || MyApplication.getInstance().getRole().getData().getResult().contains("4")) {
+            imgBaseRight.setVisibility(View.VISIBLE);
+        } else {
+            imgBaseRight.setVisibility(View.GONE);
+        }
         imgBaseRight.setImageResource(R.mipmap.dt_img_add);
         imgBaseRight.setOnClickListener(this);
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -93,6 +126,14 @@ public class CloudMeetingActivity extends BaseActivity implements View.OnClickLi
         view.findViewById(R.id.tv_issued_metting).setOnClickListener(this);
         view.findViewById(R.id.tv_manager_metting).setOnClickListener(this);
         view.findViewById(R.id.tv_manager_issued_people).setOnClickListener(this);
+//        LinearLayout llMeetingIssued = (LinearLayout) view.findViewById(R.id.ll_issued_meeting);
+//        LinearLayout llMeetingManager = (LinearLayout) view.findViewById(R.id.ll_manager_meeting);
+        LinearLayout llIssuedPeople = (LinearLayout) view.findViewById(R.id.ll_manager_issued_people);
+        if (listRole.contains("1")) {
+            llIssuedPeople.setVisibility(View.VISIBLE);
+        } else {
+            llIssuedPeople.setVisibility(View.GONE);
+        }
         mainTvs = new TextView[]{tvMineMetting, tvHistoryMetting};
         mainImgs = new ImageView[]{imgMineBottom, imgHistoryBottom};
         mineMettingFragment = new MineMettingFtagment();
@@ -156,7 +197,7 @@ public class CloudMeetingActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.tv_issued_metting:
                 //Todo 发布会议
-                startActivity(new Intent(this, IssuedMettingActivity.class));
+                httpHelper.postStringBack(HTTP_GET_MEETING_ISSUED, AppConfig.GET_PUBLISH_MEETING_PERSON, getParams(), handler, MeetingPublishPersonModel.class);
                 if (popMenu != null && popMenu.isShowing()) {
                     popMenu.dismiss();
                 }
@@ -183,6 +224,12 @@ public class CloudMeetingActivity extends BaseActivity implements View.OnClickLi
         }
     }
 
+    private HashMap<String, String> getParams() {
+        HashMap<String, String> getPerson = new HashMap<String, String>();
+        getPerson.put("token", TelephoneUtil.getIMEI(this));
+        return getPerson;
+    }
+
     public void onTabClicked() {
         if (currentTabIndex != index) {
             FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
@@ -197,5 +244,22 @@ public class CloudMeetingActivity extends BaseActivity implements View.OnClickLi
         mainImgs[currentTabIndex].setVisibility(View.GONE);
         mainImgs[index].setVisibility(View.VISIBLE);
         currentTabIndex = index;
+    }
+
+    private void toastDialog() {
+        new TipAddMeetingIssuedDialog(this).builder().setCancelable(false).
+                setTitle("对不起！").setNegativeButton(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Toastor.showToast(CloudMeetingActivity.this, "取消");
+            }
+        }).setPositiveButton(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Toastor.showToast(CloudMeetingActivity.this, "确定");
+            }
+        }).show();
     }
 }
