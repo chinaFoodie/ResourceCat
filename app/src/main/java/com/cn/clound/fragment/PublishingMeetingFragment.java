@@ -77,12 +77,13 @@ public class PublishingMeetingFragment extends BaseFragment implements OnItemCli
             } else if (msg.arg1 == HTTP_QUERY_MEETING_DETAILS) {
                 if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
                     MeetingDetailsModel mdm = (MeetingDetailsModel) msg.obj;
-                    Intent update = new Intent(getActivity(), IssuedMettingActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("update_meeting_info", mdm);
-                    update.putExtra("meeting_id", lsitMeeting.get(index).getMeetingId());
-                    update.putExtras(bundle);
-                    startActivity(update);
+                    startActivity(new Intent(getActivity(), MeetingDetailsActivity.class).putExtra("is_show_bottom", "show").putExtra("meeting_id", lsitMeeting.get(index).getMeetingId()));
+//                    Intent update = new Intent(getActivity(), IssuedMettingActivity.class);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putSerializable("update_meeting_info", mdm);
+//                    update.putExtra("meeting_id", lsitMeeting.get(index).getMeetingId());
+//                    update.putExtras(bundle);
+//                    startActivity(update);
                 } else {
                     Toastor.showToast(getActivity(), msg.obj.toString());
                 }

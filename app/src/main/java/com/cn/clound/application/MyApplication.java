@@ -22,6 +22,7 @@ import android.view.WindowManager;
 import com.baidu.mapapi.SDKInitializer;
 import com.cn.clound.alarm.AlarmHelper;
 import com.cn.clound.base.BaseApplication;
+import com.cn.clound.bean.User.AllRole;
 import com.cn.clound.bean.User.UserModel;
 import com.cn.clound.broadcastreceiver.DataChangeReceiver;
 import com.cn.clound.easemob.HuanXinHelper;
@@ -50,6 +51,7 @@ public class MyApplication extends BaseApplication {
     public final String PREF_USERNAME = "username";
 
     private UserModel um;
+    private AllRole role;
     private WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
 
     /**
@@ -132,5 +134,13 @@ public class MyApplication extends BaseApplication {
 
     public void setUm(UserModel um) {
         this.um = um;
+    }
+
+    public AllRole getRole() {
+        return role;
+    }
+
+    public void setRole(AllRole role) {
+        this.role = role;
     }
 }

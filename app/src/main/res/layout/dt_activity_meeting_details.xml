@@ -113,8 +113,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="10dp"
+        android:layout_weight="1"
         android:background="@color/colorWhite"
         android:orientation="vertical">
 
@@ -130,6 +131,66 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_joined_menber"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/ll_meeting_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="46dp"
+        android:background="@color/colorGrayMainTab">
+
+        <View
+            android:id="@+id/ll_menu_mid_view"
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            android:background="@color/colorGraySettingDept" />
+
+        <RelativeLayout
+            android:id="@+id/rl_update_meeting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/ll_menu_mid_view">
+
+            <TextView
+                android:id="@+id/tv_add_charge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="修改会议"
+                android:textColor="@color/colorBuleJoin" />
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/tv_add_charge"
+                android:src="@mipmap/img_update_meeting" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_end_meeting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/ll_menu_mid_view">
+
+            <TextView
+                android:id="@+id/tv_add_dept"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="终止会议"
+                android:textColor="@color/colorBuleJoin" />
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/tv_add_dept"
+                android:src="@mipmap/img_update_meeting" />
+        </RelativeLayout>
+    </RelativeLayout>
 </LinearLayout>

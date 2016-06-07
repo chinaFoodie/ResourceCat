@@ -193,7 +193,7 @@ public class HistoryMettingFragment extends BaseFragment implements OnItemClickL
 
     @Override
     public void onItemClick(View view, int position) {
-        startActivity(new Intent(getActivity(), MeetingDetailsActivity.class).putExtra("meeting_id", listMeeting.get(position).getMeetingId()));
+        startActivity(new Intent(getActivity(), MeetingDetailsActivity.class).putExtra("is_show_bottom", "show").putExtra("meeting_id", listMeeting.get(position).getMeetingId()));
     }
 
     @Override

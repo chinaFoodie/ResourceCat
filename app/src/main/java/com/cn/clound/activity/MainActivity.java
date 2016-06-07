@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -26,6 +28,7 @@ import com.cn.clound.base.common.assist.Toastor;
 import com.cn.clound.base.common.utils.GsonTools;
 import com.cn.clound.base.common.utils.TelephoneUtil;
 import com.cn.clound.base.netstate.NetWorkUtil;
+import com.cn.clound.bean.User.AllRole;
 import com.cn.clound.bean.User.UserModel;
 import com.cn.clound.easemob.Constant;
 import com.cn.clound.easemob.HuanXinHelper;
@@ -36,6 +39,7 @@ import com.cn.clound.easemob.ui.GroupsActivity;
 import com.cn.clound.fragment.ContactMainFragment;
 import com.cn.clound.fragment.IndexMainFragment;
 import com.cn.clound.fragment.MessageMainFragment;
+import com.cn.clound.http.MyHttpHelper;
 import com.cn.clound.view.slidingmenu.SlidingMenu;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMContactListener;
@@ -47,6 +51,8 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import butterknife.Bind;
 import okhttp3.Call;
@@ -84,6 +90,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     //本地广播
     private LocalBroadcastManager broadcastManager;
     private BroadcastReceiver broadcastReceiver;
+    private MyHttpHelper httpHelper;
+    private int HTTP_GET_ALL_ROLE = 162;
 
     @Bind(R.id.img_main_work)
     ImageView imgMainWork;
@@ -104,6 +112,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Bind(R.id.rl_main_contacts)
     RelativeLayout rlMainContacts;
 
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.arg1 == HTTP_GET_ALL_ROLE) {
+                if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
+                    AllRole role = (AllRole) msg.obj;
+                    if (role != null) {
+                        MyApplication.getInstance().setRole(role);
+                    }
+                } else {
+                    Toastor.showToast(MainActivity.this, msg.obj.toString());
+                }
+            }
+        }
+    };
+
     @Override
     protected int getMainContentViewId() {
         return R.layout.dt_activity_main;
@@ -112,6 +137,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         init();
+        getAllRole();
         initLeftMenu();
         initHuanXin(savedInstanceState);
     }
@@ -358,6 +384,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      * 初始化视图View
      */
     private void init() {
+        httpHelper = MyHttpHelper.getInstance(this);
         rlMainWork.setOnClickListener(this);
         rlMainContacts.setOnClickListener(this);
         rlMainMessage.setOnClickListener(this);
@@ -580,5 +607,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         @Override
         public void onContactRefused(String username) {
         }
+    }
+
+    private void getAllRole() {
+        httpHelper.postStringBack(HTTP_GET_ALL_ROLE, AppConfig.GET_MINE_ALL_ROLE, roleParams(), handler, AllRole.class);
+    }
+
+    private HashMap<String, String> roleParams() {
+        HashMap<String, String> role = new HashMap<>();
+        role.put("token", TelephoneUtil.getIMEI(this));
+        return role;
     }
 }

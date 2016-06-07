@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cn.clound.R;
-import com.cn.clound.activity.MeetingDetailsActivity;
 import com.cn.clound.activity.MeetingManagerDetailsActivity;
 import com.cn.clound.adapter.HistoryManagerRecyclerAdapter;
 import com.cn.clound.adapter.OnItemClickLitener;

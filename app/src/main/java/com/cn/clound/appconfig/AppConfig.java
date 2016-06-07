@@ -137,6 +137,10 @@ public class AppConfig {
     public static String LEAVE_MEETING = HOST_URL + "/meeting/leave";
     //修改会议
     public static String UPDATE_MEETING = HOST_URL + "/meetingMng/update";
+    //终止会议
+    public static String DROPPED_MEETING = HOST_URL + "/meetingMng/cancel";
+    //获取自己的所有角色
+    public static String GET_MINE_ALL_ROLE = HOST_URL + "/common/findRoleList";
 
     /**********************接口地址配置 end************************/
 
