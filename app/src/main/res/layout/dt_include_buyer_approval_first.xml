@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="采购明细"
+            android:textSize="@dimen/base_mid_title_text20" />
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/dt_arrow_to" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:id="@+id/tv_buyer_wiped_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="总报销金额"
+            android:textSize="@dimen/base_mid_title_text20" />
+
+        <ImageView
+            android:id="@+id/img_buyer_wiped_arrow_to"
+            android:layout_width="10dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/dt_arrow_to" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_toLeftOf="@id/img_buyer_wiped_arrow_to"
+            android:layout_toRightOf="@id/tv_buyer_wiped_title"
+            android:gravity="center_vertical"
+            android:text="0.00元"
+            android:textColor="@color/color_approval_worth"
+            android:textSize="@dimen/base_mid_title_text20"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:text="申请是由"
+            android:textSize="@dimen/base_mid_title_text20" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="10dp"
+            android:maxLines="2"
+            android:text="填写采购是由"
+            android:textColor="@color/colorGrayAddDept"
+            android:textSize="@dimen/base_mid_title_text15" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:text="采购类型"
+            android:textSize="@dimen/base_mid_title_text20" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:lineSpacingExtra="10dp"
+            android:maxLines="2"
+            android:text="填写采购是由"
+            android:textColor="@color/colorGrayAddDept"
+            android:textSize="@dimen/base_mid_title_text15" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:id="@+id/tv_buyer_wiped_desc_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="备注"
+            android:textSize="@dimen/base_mid_title_text20" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/tv_buyer_wiped_desc_title"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:text="0.00元"
+            android:textSize="@dimen/base_mid_title_text20" />
+    </RelativeLayout>
+</LinearLayout>

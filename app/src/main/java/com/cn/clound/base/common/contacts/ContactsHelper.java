@@ -59,7 +59,7 @@ public class ContactsHelper {
             //得到手机中的联系人信息
             getPhoneContacts();
             //得到sim卡中联系人信息
-            getSIMContacts();
+//            getSIMContacts();
         } catch (Exception e) {
             e.printStackTrace();
         }

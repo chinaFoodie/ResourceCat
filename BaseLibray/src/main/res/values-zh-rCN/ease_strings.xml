@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 新加字段转国际化 start -->
-    <string name="app_name">云在教育</string>
+    <string name="app_name">资源猫</string>
     <!-- 新加字段转国际化 end -->
     <string name="text_ack_msg">已读</string>
     <string name="text_delivered_msg">送达</string>

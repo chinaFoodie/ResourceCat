@@ -13,7 +13,9 @@ import java.util.List;
  */
 public class AppConfig {
     //请求主地址
-    public static String HOST_URL = "http://192.168.0.107:7070";//http://192.168.0.112:8080/interface_server
+    public static String HOST_URL = "http://192.168.0.107:7070";
+    //请求主地址备份
+//    public static String HOST_URL = "http://192.168.0.111:8080/interface_server";
     //WeChatA PP_ID
     public static String APP_ID = "wx6c1b5dd66261416e";
     // Tencent QQ APP_ID
@@ -141,6 +143,8 @@ public class AppConfig {
     public static String DROPPED_MEETING = HOST_URL + "/meetingMng/cancel";
     //获取自己的所有角色
     public static String GET_MINE_ALL_ROLE = HOST_URL + "/common/findRoleList";
+    //获取群聊记录
+    public static String GET_CHAT_GROUP_MESSAGE = HOST_URL + "/chat/group";
 
     /**********************接口地址配置 end************************/
 

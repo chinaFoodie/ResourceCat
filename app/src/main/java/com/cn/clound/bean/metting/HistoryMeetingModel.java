@@ -54,8 +54,17 @@ public class HistoryMeetingModel extends BaseModel {
             private String beginAt;
             private String endAt;
             private String meetingId;
+            private String groupId;
             private String name;
             private String typeStr;
+
+            public String getGruopId() {
+                return groupId;
+            }
+
+            public void setGruopId(String groupId) {
+                this.groupId = groupId;
+            }
 
             public String getBeginAt() {
                 return beginAt;

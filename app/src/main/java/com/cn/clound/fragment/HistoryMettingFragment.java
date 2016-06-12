@@ -15,7 +15,9 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 
 import com.cn.clound.R;
+import com.cn.clound.activity.EnterMeetingActivity;
 import com.cn.clound.activity.MeetingDetailsActivity;
+import com.cn.clound.activity.QueryHistoryMeetingMessageActivity;
 import com.cn.clound.adapter.HistoryMettingRecyclerAdapter;
 import com.cn.clound.adapter.MineMettingRecyclerAdapter;
 import com.cn.clound.adapter.OnItemClickLitener;
@@ -24,10 +26,12 @@ import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
 import com.cn.clound.base.common.utils.TelephoneUtil;
 import com.cn.clound.bean.BaseModel;
+import com.cn.clound.bean.metting.HistoryGroupMessageModel;
 import com.cn.clound.bean.metting.HistoryMeetingModel;
 import com.cn.clound.easemob.db.InviteMessgeDao;
 import com.cn.clound.http.MyHttpHelper;
 import com.cn.clound.view.AlertDialog;
+import com.cn.clound.view.CustomProgress;
 import com.cn.clound.view.refreshlinearlayout.PullToRefreshBase;
 import com.cn.clound.view.refreshlinearlayout.PullToRefreshScrollView;
 import com.hyphenate.chat.EMClient;
@@ -53,7 +57,9 @@ public class HistoryMettingFragment extends BaseFragment implements OnItemClickL
     private HistoryMettingRecyclerAdapter adapter;
     private int HTTP_QUERY_HISTORY_MEETING = 143;
     private int HTTP_DELETE_HISTORY_MEETING = 144;
+    private int HTTP_GET_CHAT_GROUP_MESSAGE = 164;
     private MyHttpHelper httpHelper;
+    private CustomProgress progress;
     private List<HistoryMeetingModel.HistoryMeeting.MeetingModel> listMeeting = new ArrayList<>();
 
     Handler handler = new Handler() {
@@ -79,6 +85,19 @@ public class HistoryMettingFragment extends BaseFragment implements OnItemClickL
                 } else {
                     Toastor.showToast(getActivity(), msg.obj.toString());
                 }
+            } else if (msg.arg1 == HTTP_GET_CHAT_GROUP_MESSAGE) {
+                if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
+                    HistoryGroupMessageModel hgmm = (HistoryGroupMessageModel) msg.obj;
+                    if (hgmm != null) {
+                        Intent msgIntent = new Intent(getActivity(), QueryHistoryMeetingMessageActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("history_meeting_message_model", hgmm);
+                        msgIntent.putExtras(bundle);
+                        startActivity(msgIntent);
+                    }
+                } else {
+                    Toastor.showToast(getActivity(), msg.obj.toString());
+                }
             } else if (msg.what == 1002) {
                 final int index = (int) msg.obj;
                 new AlertDialog(getActivity()).builder().setCancelable(false).setTitle("温馨提示").setPositiveButton("确定", new View.OnClickListener() {
@@ -91,6 +110,9 @@ public class HistoryMettingFragment extends BaseFragment implements OnItemClickL
                     public void onClick(View v) {
                     }
                 }).setMsg("是否确认删除此会议？").show();
+            }
+            if (progress != null && progress.isShowing()) {
+                progress.dismiss();
             }
         }
     };
@@ -136,6 +158,7 @@ public class HistoryMettingFragment extends BaseFragment implements OnItemClickL
      * 初始化视图
      */
     private void init() {
+        progress = new CustomProgress(getActivity(), "请稍候...");
         httpHelper = MyHttpHelper.getInstance(getActivity());
         pullToRefreshScrollView
                 .setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
@@ -193,7 +216,18 @@ public class HistoryMettingFragment extends BaseFragment implements OnItemClickL
 
     @Override
     public void onItemClick(View view, int position) {
-        startActivity(new Intent(getActivity(), MeetingDetailsActivity.class).putExtra("is_show_bottom", "show").putExtra("meeting_id", listMeeting.get(position).getMeetingId()));
+        progress.show();
+        httpHelper.postStringBack(HTTP_GET_CHAT_GROUP_MESSAGE, AppConfig.GET_CHAT_GROUP_MESSAGE, getMessage(
+                listMeeting.get(position).getGruopId()), handler, HistoryGroupMessageModel.class);
+    }
+
+    private HashMap<String, String> getMessage(String groupId) {
+        HashMap<String, String> get = new HashMap<String, String>();
+        get.put("groupId", "204629943387161020");
+        get.put("pageNo", "1");
+        get.put("pageSize", "10000");
+        get.put("token", TelephoneUtil.getIMEI(getActivity()));
+        return get;
     }
 
     @Override

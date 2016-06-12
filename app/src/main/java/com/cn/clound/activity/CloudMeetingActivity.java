@@ -26,6 +26,7 @@ import com.cn.clound.fragment.HistoryMettingFragment;
 import com.cn.clound.fragment.MineMettingFtagment;
 import com.cn.clound.http.MyHttpHelper;
 import com.cn.clound.utils.PopWindowUtil;
+import com.cn.clound.view.AlertDialog;
 import com.cn.clound.view.dialog.TipAddMeetingIssuedDialog;
 
 import java.util.ArrayList;
@@ -182,6 +183,20 @@ public class CloudMeetingActivity extends BaseActivity implements View.OnClickLi
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 6708) {
+            new AlertDialog(CloudMeetingActivity.this).builder().setCancelable(false).setTitle("添加成功！")
+                    .setMsg("您已成功添加会议发布人，可在发布人管理中查看管理")
+                    .setNegativeButton("确定", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                        }
+                    }).show();
+        }
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_mine_meeting:
@@ -252,13 +267,17 @@ public class CloudMeetingActivity extends BaseActivity implements View.OnClickLi
 
             @Override
             public void onClick(View v) {
-                Toastor.showToast(CloudMeetingActivity.this, "取消");
+            }
+        }).setAddPublish(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(CloudMeetingActivity.this, AAAAActivity.class).putExtra("come_from_meeting", "meeting_publish"), 6708);
             }
         }).setPositiveButton(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Toastor.showToast(CloudMeetingActivity.this, "确定");
+                startActivityForResult(new Intent(CloudMeetingActivity.this, AAAAActivity.class).putExtra("come_from_meeting", "meeting_publish"), 6708);
             }
         }).show();
     }

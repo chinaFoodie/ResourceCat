@@ -26,6 +26,7 @@ public class TipAddMeetingIssuedDialog {
     private LinearLayout lLayout_bg;
     private boolean showTitle = false;
     private TextView txt_title;
+    private TextView tv2AddPublish;
     private Button btn_neg;
     private Button btn_pos;
     private boolean showPosBtn = false;
@@ -44,6 +45,7 @@ public class TipAddMeetingIssuedDialog {
                 R.layout.dt_tip_add_meeting_publish, null);
         lLayout_bg = (LinearLayout) view.findViewById(R.id.lLayout_bg);
         txt_title = (TextView) view.findViewById(R.id.txt_title);
+        tv2AddPublish = (TextView) view.findViewById(R.id.tv_add_meeting_publish);
         dialog = new Dialog(context, R.style.AlertDialogStyle);
         btn_neg = (Button) view.findViewById(R.id.btn_neg);
         btn_pos = (Button) view.findViewById(R.id.btn_pos);
@@ -95,6 +97,18 @@ public class TipAddMeetingIssuedDialog {
             final View.OnClickListener listener) {
         showPosBtn = true;
         btn_pos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(v);
+                dialog.dismiss();
+            }
+        });
+        return this;
+    }
+
+    public TipAddMeetingIssuedDialog setAddPublish(
+            final View.OnClickListener listener) {
+        tv2AddPublish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.onClick(v);
