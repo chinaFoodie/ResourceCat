@@ -81,6 +81,7 @@ public class MeetingHirstoyMessageRecyclerAdapter extends RecyclerView.Adapter {
                 //txt消息
                 ((FromViewHolder) holder).rlContent.setVisibility(View.GONE);
                 ((FromViewHolder) holder).tvMsgState.setVisibility(View.VISIBLE);
+                ((FromViewHolder) holder).tvMsgState.setText(messages.get(position).getPayload().getBodies().get(0).getMsg());
             } else {
                 //voice消息
             }

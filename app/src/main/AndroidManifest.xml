@@ -374,6 +374,27 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan"></activity>
+        <!--发出的审批->我的审批-->
+        <activity
+            android:name=".activity.DeliveredApprovalActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <!--采购审批详情-->
+        <activity
+            android:name=".activity.BuyerApprovalDetailsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <!--PDF查看器-->
+        <activity
+            android:name=".activity.PDFReadActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
         <!--签到-->
         <activity
             android:name=".activity.SignedActivity"

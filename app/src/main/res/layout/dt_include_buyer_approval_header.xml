@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="110dp">
+
+    <LinearLayout
+        android:id="@+id/ll_buyer_approval_header_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="22dp"
+        android:orientation="vertical">
+
+        <com.hyphenate.easeui.widget.CircleImageView
+            android:id="@+id/civ_buyer_approval_header_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@mipmap/img_empty_defalt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="温世豪"
+            android:textColor="@color/colorWhiteMainTab"
+            android:textSize="@dimen/base_mid_title_text15" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/ll_buyer_approval_header_avatar"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="关仓镇太平小学"
+            android:textColor="@color/colorBlackPerson"
+            android:textSize="@dimen/base_mid_title_text16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@color/color_meeting_net"
+            android:padding="1dp"
+            android:singleLine="true"
+            android:text="采购审批"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/base_mid_title_text16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:singleLine="true"
+            android:text="申请电脑采购审批"
+            android:textColor="@color/colorBuleJoin"
+            android:textSize="@dimen/base_mid_title_text15" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorGraySettingDept" />
+</RelativeLayout>

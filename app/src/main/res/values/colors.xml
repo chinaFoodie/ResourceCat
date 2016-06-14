@@ -23,6 +23,8 @@
     <color name="color_meeting_absent">#ed4c26</color>
     <color name="color_meeting_late">#ffbf24</color>
     <color name="color_approval_worth">#45cf2e</color>
+    <color name="color_approval_tbd">#ff702a</color>
+    <color name="color_approval_time">#dcdcdc</color>
 
     <!--iso7对话框-->
     <color name="alertdialog_line">#c6c6c6</color>

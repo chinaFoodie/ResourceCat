@@ -46,6 +46,7 @@
             android:background="@color/colorGrayAddDept"></View>
 
         <LinearLayout
+            android:id="@+id/ll_delivered_approval"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

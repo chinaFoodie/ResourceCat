@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/rl_buyer_list_details"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
@@ -16,7 +17,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="采购明细"
-            android:textSize="@dimen/base_mid_title_text20" />
+            android:textSize="@dimen/base_mid_title_text16" />
 
         <ImageView
             android:layout_width="10dp"
@@ -26,6 +27,44 @@
             android:layout_marginRight="20dp"
             android:src="@mipmap/dt_arrow_to" />
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_buyer_list_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_buyer_approval_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+        <RelativeLayout
+            android:id="@+id/rl_add_to_approval_details"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorWhite"
+            android:paddingLeft="20dp">
+
+            <TextView
+                android:id="@+id/tv_add_details"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="添加明细"
+                android:textSize="@dimen/base_mid_title_text16" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/tv_add_details"
+                android:src="@mipmap/dt_img_add_org" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -40,7 +79,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="总报销金额"
-            android:textSize="@dimen/base_mid_title_text20" />
+            android:textSize="@dimen/base_mid_title_text16" />
 
         <ImageView
             android:id="@+id/img_buyer_wiped_arrow_to"
@@ -49,9 +88,11 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
-            android:src="@mipmap/dt_arrow_to" />
+            android:src="@mipmap/dt_arrow_to"
+            android:visibility="gone" />
 
         <TextView
+            android:id="@+id/tv_total_claims"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
@@ -60,7 +101,7 @@
             android:gravity="center_vertical"
             android:text="0.00元"
             android:textColor="@color/color_approval_worth"
-            android:textSize="@dimen/base_mid_title_text20"
+            android:textSize="@dimen/base_mid_title_text16"
             android:textStyle="bold" />
     </RelativeLayout>
 
@@ -78,18 +119,19 @@
             android:layout_height="50dp"
             android:gravity="center_vertical"
             android:text="申请是由"
-            android:textSize="@dimen/base_mid_title_text20" />
+            android:textSize="@dimen/base_mid_title_text16" />
 
         <EditText
+            android:id="@+id/et_buyer_reason"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@null"
             android:gravity="center_vertical"
+            android:hint="填写采购是由"
             android:lineSpacingExtra="10dp"
             android:maxLines="2"
-            android:text="填写采购是由"
             android:textColor="@color/colorGrayAddDept"
             android:textSize="@dimen/base_mid_title_text15" />
     </LinearLayout>
@@ -108,18 +150,19 @@
             android:layout_height="50dp"
             android:gravity="center_vertical"
             android:text="采购类型"
-            android:textSize="@dimen/base_mid_title_text20" />
+            android:textSize="@dimen/base_mid_title_text16" />
 
         <EditText
+            android:id="@+id/et_buyer_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@null"
             android:gravity="center_vertical"
+            android:hint="填写采购是由"
             android:lineSpacingExtra="10dp"
             android:maxLines="2"
-            android:text="填写采购是由"
             android:textColor="@color/colorGrayAddDept"
             android:textSize="@dimen/base_mid_title_text15" />
     </LinearLayout>
@@ -137,16 +180,17 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="备注"
-            android:textSize="@dimen/base_mid_title_text20" />
+            android:textSize="@dimen/base_mid_title_text16" />
 
         <EditText
+            android:id="@+id/et_buyer_remark"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/tv_buyer_wiped_desc_title"
             android:background="@null"
             android:gravity="center_vertical"
-            android:text="0.00元"
-            android:textSize="@dimen/base_mid_title_text20" />
+            android:hint="填写备注"
+            android:textSize="@dimen/base_mid_title_text16" />
     </RelativeLayout>
 </LinearLayout>

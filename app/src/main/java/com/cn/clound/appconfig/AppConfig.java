@@ -145,6 +145,10 @@ public class AppConfig {
     public static String GET_MINE_ALL_ROLE = HOST_URL + "/common/findRoleList";
     //获取群聊记录
     public static String GET_CHAT_GROUP_MESSAGE = HOST_URL + "/chat/group";
+    //查询我发起的审批列表
+    public static String QUERY_MINE_DELIVERED_APPROVAL = HOST_URL + "/examine/get/owner";
+    //提交采购审批
+    public static String SUBMIT_BUYER_APPROVAL = HOST_URL + "/examine/commit/pur";
 
     /**********************接口地址配置 end************************/
 

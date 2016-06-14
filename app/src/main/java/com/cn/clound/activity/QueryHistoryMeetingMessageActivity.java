@@ -203,6 +203,7 @@ public class QueryHistoryMeetingMessageActivity extends BaseActivity implements 
             Uri uri = Uri.parse(filePath);
             mediaPlayer.setDataSource(QueryHistoryMeetingMessageActivity.this, uri);
             mediaPlayer.prepare();
+//            mediaPlayer.setVolume(0.4f, 0.4f);
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
                 @Override
@@ -212,7 +213,6 @@ public class QueryHistoryMeetingMessageActivity extends BaseActivity implements 
                     mediaPlayer = null;
                     stopPlayVoice(message, v); // stop animation
                 }
-
             });
             mediaPlayer.start();
             if (!message.getFrom().equals(MyApplication.getInstance().getUm().getData().getUserInfo().getImUser())) {

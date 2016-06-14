@@ -36,6 +36,8 @@ public class ApprovalActivity extends BaseActivity implements View.OnClickListen
     TextView tvMidTitle;
     @Bind(R.id.recycler_approval_menu)
     RecyclerView recyclerView;
+    @Bind(R.id.ll_delivered_approval)
+    LinearLayout llDelivered;
 
     private List<String> mDatas;
     private HomeAdapter mAdapter;
@@ -56,6 +58,7 @@ public class ApprovalActivity extends BaseActivity implements View.OnClickListen
     private void init() {
         llBack.setVisibility(View.VISIBLE);
         llBack.setOnClickListener(this);
+        llDelivered.setOnClickListener(this);
         tvMidTitle.setText(getResources().getString(R.string.activity_approval));
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         initData();
@@ -122,6 +125,9 @@ public class ApprovalActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.ll_base_back:
                 finish();
+                break;
+            case R.id.ll_delivered_approval:
+                startActivity(new Intent(this, DeliveredApprovalActivity.class));
                 break;
             default:
                 break;

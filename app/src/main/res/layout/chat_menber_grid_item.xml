@@ -31,6 +31,5 @@
         android:layout_below="@id/img_chat_menber_head"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:singleLine="true"
-        android:text="ddddd" />
+        android:singleLine="true" />
 </RelativeLayout>

@@ -269,6 +269,13 @@ public class AAAAActivity extends BaseActivity implements FragActCoon, OnItemCli
                         intent.putExtras(bundle);
                         this.setResult(1006, intent);
                         this.finish();
+                    } else if (come.equals("buyer_approval")) {
+                        Intent intent = new Intent();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("meeting_back_data", (Serializable) PublicDataUtil.listBottom);
+                        intent.putExtras(bundle);
+                        this.setResult(1008, intent);
+                        this.finish();
                     } else {
                         //Todo 添加会议发布人
                         httpHelper.postStringBack(HTTP_ADD_PUBLISH_PERSON, AppConfig.ADD_MEETING_PUBLISH_PERSON, addPublish(), handler, BaseModel.class);

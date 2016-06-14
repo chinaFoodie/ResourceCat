@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_title_layout"></include>
+
+    <com.cn.clound.view.refreshlinearlayout.PullToRefreshScrollView
+        android:id="@+id/ptrScrollView_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ptr:ptrAnimationStyle="rotate"
+        ptr:ptrMode="pullDownFromTop">
+
+
+        <com.cn.clound.base.view.SwipeMenuRecyclerView
+            android:id="@+id/recycler_delivered_approval"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.cn.clound.base.view.SwipeMenuRecyclerView>
+    </com.cn.clound.view.refreshlinearlayout.PullToRefreshScrollView>
+</LinearLayout>
