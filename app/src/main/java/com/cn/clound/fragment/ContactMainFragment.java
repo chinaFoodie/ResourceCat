@@ -29,7 +29,7 @@ import com.cn.clound.activity.OrganizationActivity;
 import com.cn.clound.activity.UnallocatedDeptMenberActivity;
 import com.cn.clound.adapter.ContactMainRecyclerAdapter;
 import com.cn.clound.adapter.ContactsMainAdapter;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.application.MyApplication;
 import com.cn.clound.base.BaseFragment;

@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.cn.clound.R;
 import com.cn.clound.adapter.MeetingAbsentOrLateRecyclerAdapter;
 import com.cn.clound.adapter.MeetingDetailsTimeTitleRecyclerAdapter;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseActivity;
 import com.cn.clound.base.common.assist.Toastor;

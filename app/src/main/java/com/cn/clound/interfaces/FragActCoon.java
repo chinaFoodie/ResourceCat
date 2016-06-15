@@ -1,4 +1,4 @@
-package com.cn.clound.adapter;
+package com.cn.clound.interfaces;
 
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.bean.User.BottomUserModel;
@@ -11,7 +11,9 @@ import java.util.List;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016-4-14 18:39:54
  */
-public interface ActFragCoon {
+public interface FragActCoon {
 
-    void actToFrag(List<BottomUserModel> listBottom);
+    void fragToAct(BaseFragment current, BaseFragment nxext);
+
+    void fragToAct(List<BottomUserModel> listBottom);
 }

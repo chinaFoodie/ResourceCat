@@ -3,6 +3,7 @@ package com.cn.clound.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +19,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseActivity;
 import com.cn.clound.base.common.assist.Toastor;
@@ -29,8 +30,15 @@ import com.cn.clound.http.MyHttpHelper;
 import com.cn.clound.view.CustomProgress;
 import com.cn.clound.view.refreshlinearlayout.PullToRefreshBase;
 import com.cn.clound.view.refreshlinearlayout.PullToRefreshScrollView;
+import com.hyphenate.easeui.widget.CircleImageView;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -54,6 +62,7 @@ public class DeliveredApprovalActivity extends BaseActivity implements View.OnCl
     private MyHttpHelper httpHelper;
     private CustomProgress progress;
     private int HTTP_MINE_DELIVERED_APPROVAL = 165;
+    private List<DeliveredApprovalsModel.DeliveredApprovals.DeliveredApproval> listData = new ArrayList<>();
 
     Handler handler = new Handler() {
         @Override
@@ -63,7 +72,8 @@ public class DeliveredApprovalActivity extends BaseActivity implements View.OnCl
                 if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
                     DeliveredApprovalsModel mam = (DeliveredApprovalsModel) msg.obj;
                     if (mam != null) {
-
+                        listData.addAll(mam.getData().getResult());
+                        adapter.notifyDataSetChanged();
                     }
                 } else {
                     Toastor.showToast(DeliveredApprovalActivity.this, msg.obj.toString());
@@ -96,7 +106,7 @@ public class DeliveredApprovalActivity extends BaseActivity implements View.OnCl
         llBack.setOnClickListener(this);
         tvMidTitle.setText("我的审批");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new DeliveredRecyclerAdapter(this);
+        adapter = new DeliveredRecyclerAdapter(this, listData);
         recyclerView.setAdapter(adapter);
         mPtrScrollView
                 .setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
@@ -183,11 +193,27 @@ public class DeliveredApprovalActivity extends BaseActivity implements View.OnCl
      * 我的审批列表适配器
      */
     class DeliveredRecyclerAdapter extends RecyclerView.Adapter {
+        /**
+         * 状态模式初始化ImageLoader
+         */
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.mipmap.ic_launcher)
+                .showImageForEmptyUri(R.mipmap.ic_launcher)
+                .showImageOnFail(R.mipmap.ic_launcher)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
+                .bitmapConfig(Bitmap.Config.ARGB_8888)
+                .displayer(new SimpleBitmapDisplayer())
+                .build();
         private Context context;
         private OnItemClickLitener onItemClickLitener;
+        private List<DeliveredApprovalsModel.DeliveredApprovals.DeliveredApproval> list;
 
-        public DeliveredRecyclerAdapter(Context context) {
+        public DeliveredRecyclerAdapter(Context context,
+                                        List<DeliveredApprovalsModel.DeliveredApprovals.DeliveredApproval> list) {
             this.context = context;
+            this.list = list;
         }
 
         public void setOnItemClickLitener(OnItemClickLitener onItemClickLitener) {
@@ -204,6 +230,11 @@ public class DeliveredApprovalActivity extends BaseActivity implements View.OnCl
 
         @Override
         public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+            ((MyViewHolder) holder).tvApprovalState.setText(list.get(position).getStateStr());
+            ((MyViewHolder) holder).tvApprovalTitle.setText(list.get(position).getName());
+            ((MyViewHolder) holder).tvApprovalDept.setText(list.get(position).getUniteName());
+            ((MyViewHolder) holder).tvApprovalTime.setText(list.get(position).getBeginAt());
+            ImageLoader.getInstance().displayImage(list.get(position).getUserHead(), ((MyViewHolder) holder).imgHead, options);
             if (onItemClickLitener != null) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -217,13 +248,23 @@ public class DeliveredApprovalActivity extends BaseActivity implements View.OnCl
 
         @Override
         public int getItemCount() {
-            return 3;
+            return list == null ? 0 : list.size();
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
+            CircleImageView imgHead;
+            TextView tvApprovalTitle;
+            TextView tvApprovalDept;
+            TextView tvApprovalTime;
+            TextView tvApprovalState;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
+                imgHead = (CircleImageView) itemView.findViewById(R.id.civ_delivered_approval_avatar);
+                tvApprovalTitle = (TextView) itemView.findViewById(R.id.tv_approval_title);
+                tvApprovalDept = (TextView) itemView.findViewById(R.id.tv_approval_dept);
+                tvApprovalTime = (TextView) itemView.findViewById(R.id.tv_approval_time);
+                tvApprovalState = (TextView) itemView.findViewById(R.id.tv_approval_state);
             }
         }
     }

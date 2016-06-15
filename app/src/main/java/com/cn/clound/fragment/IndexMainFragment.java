@@ -20,7 +20,7 @@ import com.cn.clound.activity.CloudMeetingActivity;
 import com.cn.clound.activity.DataCenterActivity;
 import com.cn.clound.activity.MainActivity;
 import com.cn.clound.activity.SignedActivity;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
 import com.cn.clound.utils.DividerItemDecoration;

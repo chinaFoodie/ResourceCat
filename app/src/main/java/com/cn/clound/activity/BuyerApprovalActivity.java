@@ -31,6 +31,7 @@ import com.cn.clound.bean.BaseModel;
 import com.cn.clound.bean.User.BottomUserModel;
 import com.cn.clound.bean.approval.BuyerApprovalDetailModel;
 import com.cn.clound.http.MyHttpHelper;
+import com.cn.clound.interfaces.DateCallBack;
 import com.cn.clound.view.CustomProgress;
 import com.cn.clound.view.dialog.CalendarDialog;
 
@@ -390,7 +391,14 @@ public class BuyerApprovalActivity extends BaseActivity implements View.OnClickL
                 startActivityForResult(appIntent, 6709);
                 break;
             case R.id.rl_choose_approval_date:
-                new CalendarDialog(this).builder().show();
+                CalendarDialog calendarDialog = new CalendarDialog(this).builder();
+                calendarDialog.setDateCallBack(new DateCallBack() {
+                    @Override
+                    public void callBack(Object o) {
+                        Toastor.showToast(BuyerApprovalActivity.this, o.toString());
+                    }
+                });
+                calendarDialog.show();
                 break;
             default:
                 break;

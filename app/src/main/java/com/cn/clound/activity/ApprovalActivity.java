@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.base.BaseActivity;
 import com.cn.clound.utils.DividerItemDecoration;
 

@@ -15,10 +15,9 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 
 import com.cn.clound.R;
-import com.cn.clound.activity.IssuedMettingActivity;
 import com.cn.clound.activity.MeetingDetailsActivity;
 import com.cn.clound.adapter.MineMettingRecyclerAdapter;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;

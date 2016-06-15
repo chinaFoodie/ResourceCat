@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.cn.clound.R;
 import com.cn.clound.adapter.ChatMenberRecyclerAdapter;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.appconfig.PublicDataUtil;
 import com.cn.clound.application.MyApplication;

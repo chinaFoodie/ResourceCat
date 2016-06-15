@@ -22,7 +22,7 @@ import com.cn.clound.activity.AAAAActivity;
 import com.cn.clound.activity.DtChatActivity;
 import com.cn.clound.activity.InviteContactActivity;
 import com.cn.clound.adapter.MessageMainAdapter;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.appconfig.PublicDataUtil;
 import com.cn.clound.application.MyApplication;

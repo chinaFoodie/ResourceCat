@@ -15,12 +15,9 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 
 import com.cn.clound.R;
-import com.cn.clound.activity.EnterMeetingActivity;
-import com.cn.clound.activity.MeetingDetailsActivity;
 import com.cn.clound.activity.QueryHistoryMeetingMessageActivity;
 import com.cn.clound.adapter.HistoryMettingRecyclerAdapter;
-import com.cn.clound.adapter.MineMettingRecyclerAdapter;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
@@ -28,13 +25,11 @@ import com.cn.clound.base.common.utils.TelephoneUtil;
 import com.cn.clound.bean.BaseModel;
 import com.cn.clound.bean.metting.HistoryGroupMessageModel;
 import com.cn.clound.bean.metting.HistoryMeetingModel;
-import com.cn.clound.easemob.db.InviteMessgeDao;
 import com.cn.clound.http.MyHttpHelper;
 import com.cn.clound.view.AlertDialog;
 import com.cn.clound.view.CustomProgress;
 import com.cn.clound.view.refreshlinearlayout.PullToRefreshBase;
 import com.cn.clound.view.refreshlinearlayout.PullToRefreshScrollView;
-import com.hyphenate.chat.EMClient;
 
 import java.util.ArrayList;
 import java.util.HashMap;

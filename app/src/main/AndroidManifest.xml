@@ -388,9 +388,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan"></activity>
-        <!--PDF查看器-->
+        <!--报销审批-->
         <activity
-            android:name=".activity.PDFReadActivity"
+            android:name=".activity.WipedApprovalActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"

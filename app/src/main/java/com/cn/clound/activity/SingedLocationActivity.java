@@ -29,7 +29,7 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.cn.clound.R;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.adapter.SingedLocationRecyclerAdapter;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseActivity;

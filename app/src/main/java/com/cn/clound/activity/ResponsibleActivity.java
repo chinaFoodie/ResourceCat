@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.adapter.ResponsibleAdapter;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.application.MyApplication;
@@ -23,7 +23,6 @@ import com.cn.clound.base.common.assist.Toastor;
 import com.cn.clound.base.common.utils.TelephoneUtil;
 import com.cn.clound.base.view.SwipeMenuRecyclerView;
 import com.cn.clound.bean.BaseModel;
-import com.cn.clound.bean.dept.DTDeptUser;
 import com.cn.clound.bean.dept.FindUnitMangerListModel;
 import com.cn.clound.http.MyHttpHelper;
 import com.cn.clound.view.AlertDialog;

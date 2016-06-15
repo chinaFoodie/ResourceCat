@@ -12,16 +12,10 @@ import android.widget.TextView;
 
 import com.cn.clound.R;
 import com.cn.clound.application.MyApplication;
-import com.cn.clound.base.common.time.DateUtil;
 import com.cn.clound.bean.metting.HistoryGroupMessageModel;
-import com.hyphenate.chat.EMMessage;
-import com.hyphenate.chat.EMTextMessageBody;
-import com.hyphenate.chat.EMVoiceMessageBody;
-import com.hyphenate.easeui.model.ExtendedChatModel;
-import com.hyphenate.easeui.utils.GsonTools;
+import com.cn.clound.interfaces.OnItemVoiceClickListener;
 import com.hyphenate.easeui.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
 

@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.adapter.SignTipRecyclerAdapter;
 import com.cn.clound.alarm.AlarmHelper;
 import com.cn.clound.appconfig.AppConfig;

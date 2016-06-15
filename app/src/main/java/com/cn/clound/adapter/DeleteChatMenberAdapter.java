@@ -13,12 +13,9 @@ import android.widget.TextView;
 
 import com.cn.clound.R;
 import com.cn.clound.activity.ChatGroupMenberActivity;
-import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.view.SwipeMenuLayout;
-import com.cn.clound.bean.BaseModel;
 import com.cn.clound.bean.chat.ChatMenberModel;
-import com.cn.clound.bean.dept.FindUnitMangerListModel;
-import com.cn.clound.http.MyHttpHelper;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.view.AlertDialog;
 import com.hyphenate.easeui.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;

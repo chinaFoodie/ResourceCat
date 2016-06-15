@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.cn.clound.R;
 import com.cn.clound.activity.MeetingManagerDetailsActivity;
 import com.cn.clound.adapter.HistoryManagerRecyclerAdapter;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;

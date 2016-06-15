@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.cn.clound.R;
 import com.cn.clound.base.view.SwipeMenuLayout;
 import com.cn.clound.bean.dept.FindUnitMangerListModel;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.hyphenate.easeui.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;

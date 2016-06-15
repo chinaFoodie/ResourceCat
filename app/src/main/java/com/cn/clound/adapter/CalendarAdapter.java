@@ -73,8 +73,8 @@ public class CalendarAdapter extends BaseAdapter {
 
     public CalendarAdapter(Context context, Resources rs, int jumpMonth, int jumpYear, int year_c, int month_c, int day_c, List<String> lsitClick) {
         this();
-        this.listClick = listClick;
         this.context = context;
+        this.listClick = listClick;
         sc = new SpecialCalendar();
         lc = new LunarCalendar();
         this.res = rs;
@@ -120,7 +120,6 @@ public class CalendarAdapter extends BaseAdapter {
     }
 
     public void refreshAdapter(List<String> list) {
-        this.listClick = list;
         this.notifyDataSetChanged();
     }
 

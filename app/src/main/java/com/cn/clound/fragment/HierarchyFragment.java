@@ -1,7 +1,6 @@
 package com.cn.clound.fragment;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,10 +15,8 @@ import android.widget.TextView;
 
 import com.cn.clound.R;
 import com.cn.clound.activity.AAAAActivity;
-import com.cn.clound.activity.DeptManagerActivity;
-import com.cn.clound.activity.DeptSettingsActivity;
-import com.cn.clound.adapter.ActFragCoon;
-import com.cn.clound.adapter.FragActCoon;
+import com.cn.clound.interfaces.ActFragCoon;
+import com.cn.clound.interfaces.FragActCoon;
 import com.cn.clound.adapter.HierarchyListAdapter;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.cn.clound.R;
 import com.cn.clound.bean.metting.MyMettingModel;
+import com.cn.clound.interfaces.OnItemClickLitener;
 
 import java.util.List;
 

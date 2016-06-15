@@ -11,9 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.base.common.time.DateUtil;
 import com.cn.clound.base.view.SwipeMenuLayout;
 import com.cn.clound.bean.singed.QuerySignModel;
+import com.cn.clound.interfaces.OnItemClickLitener;
 
 import java.util.List;
 

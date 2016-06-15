@@ -15,9 +15,9 @@ import android.widget.TextView;
 
 import com.cn.clound.R;
 import com.cn.clound.adapter.AAABottomChoseChatMenberAdapter;
-import com.cn.clound.adapter.ActFragCoon;
-import com.cn.clound.adapter.FragActCoon;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.ActFragCoon;
+import com.cn.clound.interfaces.FragActCoon;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.appconfig.PublicDataUtil;
 import com.cn.clound.application.MyApplication;

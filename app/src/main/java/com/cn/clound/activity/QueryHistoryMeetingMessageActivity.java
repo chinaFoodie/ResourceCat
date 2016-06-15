@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.cn.clound.R;
 import com.cn.clound.adapter.JoinMeetingRecyclerAdapter;
 import com.cn.clound.adapter.MeetingHirstoyMessageRecyclerAdapter;
-import com.cn.clound.adapter.OnItemVoiceClickListener;
+import com.cn.clound.interfaces.OnItemVoiceClickListener;
 import com.cn.clound.application.MyApplication;
 import com.cn.clound.base.BaseActivity;
 import com.cn.clound.bean.metting.EnterStadiumModel;

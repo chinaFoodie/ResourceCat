@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.adapter.UnAllocatedDeptRecyclerAdapter;
 import com.cn.clound.adapter.UnAllocatedDeptSwipeRecyclerAdapter;
 import com.cn.clound.appconfig.AppConfig;
@@ -27,11 +27,9 @@ import com.cn.clound.base.netstate.NetWorkUtil;
 import com.cn.clound.base.view.SwipeMenuRecyclerView;
 import com.cn.clound.bean.BaseModel;
 import com.cn.clound.bean.dept.UnCallocateMenberModel;
-import com.cn.clound.easemob.db.InviteMessgeDao;
 import com.cn.clound.http.MyHttpHelper;
 import com.cn.clound.view.AlertDialog;
 import com.cn.clound.view.CustomProgress;
-import com.hyphenate.chat.EMClient;
 
 import java.util.ArrayList;
 import java.util.HashMap;

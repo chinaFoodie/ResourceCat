@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.baidu.location.Poi;
 import com.cn.clound.R;
 import com.cn.clound.bean.singed.SingedPoiModel;
+import com.cn.clound.interfaces.OnItemClickLitener;
 
 import java.util.List;
 

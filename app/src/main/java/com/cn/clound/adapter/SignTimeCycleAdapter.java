@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.cn.clound.R;
 import com.cn.clound.bean.singed.TimeCycleModel;
+import com.cn.clound.interfaces.OnItemClickLitener;
 
 import java.util.List;
 

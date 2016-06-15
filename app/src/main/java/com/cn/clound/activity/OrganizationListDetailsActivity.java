@@ -16,9 +16,8 @@ import android.widget.TextView;
 
 import com.cn.clound.R;
 import com.cn.clound.adapter.DeptDetailsListViewAdapter;
-import com.cn.clound.adapter.DeptPepoleAdapter;
 import com.cn.clound.adapter.DeptPepoleRecyclerAdapter;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.application.MyApplication;
 import com.cn.clound.base.BaseActivity;

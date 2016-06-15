@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.adapter.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickLitener;
 import com.cn.clound.adapter.PublishMeetingPersonRecyclerAdapter;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseActivity;
@@ -21,11 +21,9 @@ import com.cn.clound.base.common.assist.Toastor;
 import com.cn.clound.base.common.utils.TelephoneUtil;
 import com.cn.clound.bean.BaseModel;
 import com.cn.clound.bean.metting.MeetingPublishPersonModel;
-import com.cn.clound.easemob.db.InviteMessgeDao;
 import com.cn.clound.http.MyHttpHelper;
 import com.cn.clound.view.AlertDialog;
 import com.cn.clound.view.CustomProgress;
-import com.hyphenate.chat.EMClient;
 
 import java.util.ArrayList;
 import java.util.HashMap;

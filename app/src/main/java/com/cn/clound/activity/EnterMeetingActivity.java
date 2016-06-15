@@ -25,7 +25,7 @@ import android.widget.Toast;
 import com.cn.clound.R;
 import com.cn.clound.adapter.JoinMeetingRecyclerAdapter;
 import com.cn.clound.adapter.MeetingChatVoiceRecyclerAdapter;
-import com.cn.clound.adapter.OnItemVoiceClickListener;
+import com.cn.clound.interfaces.OnItemVoiceClickListener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.application.MyApplication;
 import com.cn.clound.base.BaseActivity;

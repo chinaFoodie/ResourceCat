@@ -1,4 +1,4 @@
-package com.cn.clound.adapter;
+package com.cn.clound.interfaces;
 
 import android.view.View;
 
