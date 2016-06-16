@@ -19,7 +19,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseActivity;
 import com.cn.clound.base.common.assist.Toastor;
@@ -48,7 +48,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016-6-12 18:17:50
  */
-public class DeliveredApprovalActivity extends BaseActivity implements View.OnClickListener, OnItemClickLitener {
+public class DeliveredApprovalActivity extends BaseActivity implements View.OnClickListener, OnItemClickListener {
     @Bind(R.id.ll_base_back)
     LinearLayout llBack;
     @Bind(R.id.tv_base_title)
@@ -207,7 +207,7 @@ public class DeliveredApprovalActivity extends BaseActivity implements View.OnCl
                 .displayer(new SimpleBitmapDisplayer())
                 .build();
         private Context context;
-        private OnItemClickLitener onItemClickLitener;
+        private OnItemClickListener onItemClickLitener;
         private List<DeliveredApprovalsModel.DeliveredApprovals.DeliveredApproval> list;
 
         public DeliveredRecyclerAdapter(Context context,
@@ -216,7 +216,7 @@ public class DeliveredApprovalActivity extends BaseActivity implements View.OnCl
             this.list = list;
         }
 
-        public void setOnItemClickLitener(OnItemClickLitener onItemClickLitener) {
+        public void setOnItemClickLitener(OnItemClickListener onItemClickLitener) {
             this.onItemClickLitener = onItemClickLitener;
         }
 

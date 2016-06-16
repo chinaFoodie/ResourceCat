@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.cn.clound.R;
 import com.cn.clound.adapter.DeptDetailsListViewAdapter;
 import com.cn.clound.adapter.DeptPepoleRecyclerAdapter;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.application.MyApplication;
 import com.cn.clound.base.BaseActivity;
@@ -42,7 +42,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gamil.com)
  * @date 2016-4-18 16:57:53
  */
-public class OrganizationListDetailsActivity extends BaseActivity implements View.OnClickListener, OnItemClickLitener {
+public class OrganizationListDetailsActivity extends BaseActivity implements View.OnClickListener, OnItemClickListener {
     @Bind(R.id.ll_base_back)
     LinearLayout llBack;
     @Bind(R.id.tv_base_title)

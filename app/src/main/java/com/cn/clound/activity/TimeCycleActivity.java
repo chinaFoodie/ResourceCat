@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.adapter.SignTimeCycleAdapter;
 import com.cn.clound.base.BaseActivity;
 import com.cn.clound.base.common.utils.SharePreferceUtil;
@@ -28,7 +28,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016-5-17 14:18:21
  */
-public class TimeCycleActivity extends BaseActivity implements View.OnClickListener, OnItemClickLitener {
+public class TimeCycleActivity extends BaseActivity implements View.OnClickListener, OnItemClickListener {
     @Bind(R.id.tv_base_title)
     TextView tvMidTitle;
     @Bind(R.id.ll_base_left)

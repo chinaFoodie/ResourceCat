@@ -17,7 +17,7 @@ import android.widget.ScrollView;
 import com.cn.clound.R;
 import com.cn.clound.activity.QueryHistoryMeetingMessageActivity;
 import com.cn.clound.adapter.HistoryMettingRecyclerAdapter;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
@@ -43,7 +43,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016年5月23日 16:15:28
  */
-public class HistoryMettingFragment extends BaseFragment implements OnItemClickLitener {
+public class HistoryMettingFragment extends BaseFragment implements OnItemClickListener {
     @Bind(R.id.ptrScrollView_history)
     PullToRefreshScrollView pullToRefreshScrollView;
     @Bind(R.id.recycler_history_metting)

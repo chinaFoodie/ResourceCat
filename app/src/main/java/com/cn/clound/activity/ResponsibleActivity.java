@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.adapter.ResponsibleAdapter;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.application.MyApplication;
@@ -40,7 +40,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gamil.com)
  * @date 2016-4-21 12:20:10
  */
-public class ResponsibleActivity extends BaseActivity implements View.OnClickListener, OnItemClickLitener {
+public class ResponsibleActivity extends BaseActivity implements View.OnClickListener, OnItemClickListener {
     @Bind(R.id.responsible_list_view)
     SwipeMenuRecyclerView listView;
     @Bind(R.id.ll_base_back)

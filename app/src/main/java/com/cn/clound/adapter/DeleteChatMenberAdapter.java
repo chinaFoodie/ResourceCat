@@ -15,7 +15,7 @@ import com.cn.clound.R;
 import com.cn.clound.activity.ChatGroupMenberActivity;
 import com.cn.clound.base.view.SwipeMenuLayout;
 import com.cn.clound.bean.chat.ChatMenberModel;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.view.AlertDialog;
 import com.hyphenate.easeui.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class DeleteChatMenberAdapter extends RecyclerView.Adapter {
     private Context context;
-    private OnItemClickLitener mOnItemClickLitener;
+    private OnItemClickListener mOnItemClickLitener;
     private List<ChatMenberModel.ChatMenberData.ChatMenber> listString;
     private String chooseModel;
     private Handler handler;
@@ -58,7 +58,7 @@ public class DeleteChatMenberAdapter extends RecyclerView.Adapter {
         this.handler = handler;
     }
 
-    public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
+    public void setOnItemClickLitener(OnItemClickListener mOnItemClickLitener) {
         this.mOnItemClickLitener = mOnItemClickLitener;
     }
 

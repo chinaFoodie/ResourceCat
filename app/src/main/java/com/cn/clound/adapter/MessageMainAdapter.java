@@ -15,7 +15,7 @@ import com.cn.clound.application.MyApplication;
 import com.cn.clound.base.common.utils.FuzzyDateTimeFormatterUtil;
 import com.cn.clound.base.common.utils.GsonTools;
 import com.cn.clound.base.view.SwipeMenuLayout;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMGroup;
@@ -43,7 +43,7 @@ import java.util.List;
 public class MessageMainAdapter extends RecyclerView.Adapter<MessageMainAdapter.MyViewHolder> {
     private List<EMConversation> listString;
     private Context context;
-    private OnItemClickLitener mOnItemClickLitener;
+    private OnItemClickListener mOnItemClickLitener;
     private Handler handler;
 
     /**
@@ -169,11 +169,11 @@ public class MessageMainAdapter extends RecyclerView.Adapter<MessageMainAdapter.
         }
     }
 
-    public OnItemClickLitener getmOnItemClickLitener() {
+    public OnItemClickListener getmOnItemClickLitener() {
         return mOnItemClickLitener;
     }
 
-    public void setmOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
+    public void setmOnItemClickLitener(OnItemClickListener mOnItemClickLitener) {
         this.mOnItemClickLitener = mOnItemClickLitener;
     }
 

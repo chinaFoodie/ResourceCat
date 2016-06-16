@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.cn.clound.R;
 import com.cn.clound.bean.singed.TimeCycleModel;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 
 import java.util.List;
 
@@ -23,9 +23,9 @@ import java.util.List;
 public class SignTimeCycleAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<TimeCycleModel> listPoi;
-    private OnItemClickLitener onItemClickLitener;
+    private OnItemClickListener onItemClickLitener;
 
-    public void setOnItemClickLitener(OnItemClickLitener onItemClickLitener) {
+    public void setOnItemClickLitener(OnItemClickListener onItemClickLitener) {
         this.onItemClickLitener = onItemClickLitener;
     }
 

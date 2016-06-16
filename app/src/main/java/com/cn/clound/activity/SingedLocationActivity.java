@@ -29,7 +29,7 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.cn.clound.R;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.adapter.SingedLocationRecyclerAdapter;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseActivity;
@@ -53,7 +53,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gamil.com)
  * @date 2016-5-9 20:00:59
  */
-public class SingedLocationActivity extends BaseActivity implements View.OnClickListener, OnItemClickLitener {
+public class SingedLocationActivity extends BaseActivity implements View.OnClickListener, OnItemClickListener {
     @Bind(R.id.ll_base_back)
     LinearLayout llBack;
     @Bind(R.id.tv_base_title)

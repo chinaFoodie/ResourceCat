@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.cn.clound.R;
 import com.cn.clound.activity.MeetingManagerDetailsActivity;
 import com.cn.clound.adapter.HistoryManagerRecyclerAdapter;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
@@ -35,7 +35,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016-5-31 10:31:47
  */
-public class ManagerHistoryFragment extends BaseFragment implements OnItemClickLitener {
+public class ManagerHistoryFragment extends BaseFragment implements OnItemClickListener {
     @Bind(R.id.recycler_manager_history)
     RecyclerView recyclerView;
 

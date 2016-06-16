@@ -22,7 +22,7 @@ import com.cn.clound.activity.AAAAActivity;
 import com.cn.clound.activity.DtChatActivity;
 import com.cn.clound.activity.InviteContactActivity;
 import com.cn.clound.adapter.MessageMainAdapter;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.appconfig.PublicDataUtil;
 import com.cn.clound.application.MyApplication;
@@ -57,7 +57,7 @@ import butterknife.Bind;
  * @version 1.00
  * @date 2016年3月30日13:15:52
  */
-public class MessageMainFragment extends BaseFragment implements OnItemClickLitener, View.OnClickListener {
+public class MessageMainFragment extends BaseFragment implements OnItemClickListener, View.OnClickListener {
     @Bind(R.id.message_fragment_title)
     View parent;
     @Bind(R.id.message_swipeRefreshLayout)

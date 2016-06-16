@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.cn.clound.R;
 import com.cn.clound.base.view.SwipeMenuLayout;
 import com.cn.clound.bean.User.DTUser;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.hyphenate.easeui.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -27,14 +27,14 @@ import java.util.List;
  * @date 2016-5-6 12:47:20
  */
 public class ContactMainRecyclerAdapter extends RecyclerView.Adapter {
-    private OnItemClickLitener onItemClickLitener;
+    private OnItemClickListener onItemClickLitener;
     private Handler handler;
 
-    public OnItemClickLitener getOnItemClickLitener() {
+    public OnItemClickListener getOnItemClickLitener() {
         return onItemClickLitener;
     }
 
-    public void setOnItemClickLitener(OnItemClickLitener onItemClickLitener) {
+    public void setOnItemClickLitener(OnItemClickListener onItemClickLitener) {
         this.onItemClickLitener = onItemClickLitener;
     }
 

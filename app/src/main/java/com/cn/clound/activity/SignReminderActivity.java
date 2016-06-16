@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.adapter.SignTipRecyclerAdapter;
 import com.cn.clound.alarm.AlarmHelper;
 import com.cn.clound.appconfig.AppConfig;
@@ -41,7 +41,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016年5月14日 10:41:00
  */
-public class SignReminderActivity extends BaseActivity implements View.OnClickListener, OnItemClickLitener {
+public class SignReminderActivity extends BaseActivity implements View.OnClickListener, OnItemClickListener {
     @Bind(R.id.tv_base_title)
     TextView tvMidTitle;
     @Bind(R.id.img_base_right)

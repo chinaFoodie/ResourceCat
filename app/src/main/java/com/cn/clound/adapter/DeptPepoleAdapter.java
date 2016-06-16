@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.cn.clound.R;
 import com.cn.clound.base.view.SwipeMenuLayout;
 import com.cn.clound.bean.dept.FindDepUserListModel;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.hyphenate.easeui.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -32,7 +32,7 @@ import java.util.List;
 public class DeptPepoleAdapter extends RecyclerView.Adapter<DeptPepoleAdapter.MyViewHolder> {
     private Context context;
     private List<FindDepUserListModel.DepUser> listUser;
-    private OnItemClickLitener mOnItemClickLitener;
+    private OnItemClickListener mOnItemClickLitener;
     private Handler handler;
     /**
      * 状态模式初始化ImageLoader
@@ -54,7 +54,7 @@ public class DeptPepoleAdapter extends RecyclerView.Adapter<DeptPepoleAdapter.My
         this.handler = handler;
     }
 
-    public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
+    public void setOnItemClickLitener(OnItemClickListener mOnItemClickLitener) {
         this.mOnItemClickLitener = mOnItemClickLitener;
     }
 

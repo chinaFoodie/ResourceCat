@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.cn.clound.R;
 import com.cn.clound.bean.User.DTUser;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.hyphenate.easeui.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -27,7 +27,7 @@ import java.util.List;
 public class BottomChoseChatMenberAdapter extends RecyclerView.Adapter<BottomChoseChatMenberAdapter.MyViewHolder> {
     private Context context;
     private List<DTUser> listUser;
-    private OnItemClickLitener mOnItemClickLitener;
+    private OnItemClickListener mOnItemClickLitener;
     /**
      * 状态模式初始化ImageLoader
      */
@@ -47,7 +47,7 @@ public class BottomChoseChatMenberAdapter extends RecyclerView.Adapter<BottomCho
         this.listUser = listUser;
     }
 
-    public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
+    public void setOnItemClickLitener(OnItemClickListener mOnItemClickLitener) {
         this.mOnItemClickLitener = mOnItemClickLitener;
     }
 

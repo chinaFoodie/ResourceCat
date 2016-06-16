@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.adapter.PublishMeetingPersonRecyclerAdapter;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseActivity;
@@ -37,7 +37,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016-6-1 14:57:29
  */
-public class PublishPersonManagerActivity extends BaseActivity implements View.OnClickListener, OnItemClickLitener {
+public class PublishPersonManagerActivity extends BaseActivity implements View.OnClickListener, OnItemClickListener {
     @Bind(R.id.ll_base_back)
     LinearLayout llBack;
     @Bind(R.id.tv_base_title)

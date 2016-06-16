@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.base.BaseActivity;
 import com.cn.clound.utils.DividerItemDecoration;
 
@@ -29,7 +29,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gamil.com)
  * @date 2016年4月15日 17:54:50
  */
-public class ApprovalActivity extends BaseActivity implements View.OnClickListener, OnItemClickLitener {
+public class ApprovalActivity extends BaseActivity implements View.OnClickListener, OnItemClickListener {
     @Bind(R.id.ll_base_back)
     LinearLayout llBack;
     @Bind(R.id.tv_base_title)
@@ -158,10 +158,10 @@ public class ApprovalActivity extends BaseActivity implements View.OnClickListen
     }
 
     class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
-        private OnItemClickLitener mOnItemClickLitener;
+        private OnItemClickListener mOnItemClickLitener;
         private int[] images = new int[]{R.mipmap.img_aooroval_buyer, R.mipmap.img_aooroval_paid, R.mipmap.img_aooroval_common};
 
-        public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
+        public void setOnItemClickLitener(OnItemClickListener mOnItemClickLitener) {
             this.mOnItemClickLitener = mOnItemClickLitener;
         }
 

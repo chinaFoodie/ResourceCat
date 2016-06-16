@@ -26,10 +26,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cn.clound.R;
+import com.cn.clound.activity.WipedApprovalActivity;
 import com.cn.clound.base.BaseActivity;
 import com.cn.clound.view.CustomProgress;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -98,7 +101,7 @@ public class GalleryActivity extends BaseActivity implements View.OnClickListene
                 Intent mIntent = new Intent(GalleryActivity.this, ShowImageActivity.class);
                 mIntent.putStringArrayListExtra("data", (ArrayList<String>) childList);
                 mIntent.putExtra("folder_name", list.get(position).getFolderName());
-                startActivity(mIntent);
+                startActivityForResult(mIntent, 6711);
             }
         });
     }
@@ -138,6 +141,18 @@ public class GalleryActivity extends BaseActivity implements View.OnClickListene
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 6711) {
+            Intent picIntent = new Intent();
+            Bundle bundle = data.getExtras();
+            picIntent.putExtras(bundle);
+            this.setResult(1005, picIntent);
+            this.finish();
+        }
+    }
+
     /**
      * 利用ContentProvider扫描手机中的图片，此方法在运行在子线程中
      */
@@ -164,7 +179,7 @@ public class GalleryActivity extends BaseActivity implements View.OnClickListene
                     String path = mCursor.getString(mCursor.getColumnIndex(MediaStore.Images.Media.DATA));
                     // 获取该图片的父路径名
                     String parentName = new File(path).getParentFile().getName();
-                    // 根据父路径名将图片放入到mGruopMap中
+                    // 根据父路径名将图片放入到mGroupMap中
                     if (!mGruopMap.containsKey(parentName)) {
                         List<String> chileList = new ArrayList<String>();
                         chileList.add(path);
@@ -184,15 +199,15 @@ public class GalleryActivity extends BaseActivity implements View.OnClickListene
     /**
      * 组装分组界面GridView的数据源，因为我们扫描手机的时候将图片信息放在HashMap中 所以需要遍历HashMap将数据组装成List
      *
-     * @param mGruopMap
+     * @param mGroupMap
      * @return
      */
-    private List<ImageBean> subGroupOfImage(HashMap<String, List<String>> mGruopMap) {
-        if (mGruopMap.size() == 0) {
+    private List<ImageBean> subGroupOfImage(HashMap<String, List<String>> mGroupMap) {
+        if (mGroupMap.size() == 0) {
             return null;
         }
-        List<ImageBean> list = new ArrayList<ImageBean>();
-        Iterator<Map.Entry<String, List<String>>> it = mGruopMap.entrySet().iterator();
+        List<ImageBean> list = new ArrayList<>();
+        Iterator<Map.Entry<String, List<String>>> it = mGroupMap.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<String, List<String>> entry = it.next();
             ImageBean mImageBean = new ImageBean();
@@ -278,24 +293,25 @@ public class GalleryActivity extends BaseActivity implements View.OnClickListene
             viewHolder.mTextViewCounts.setText(Integer.toString(mImageBean.getImageCounts()));
             // 给ImageView设置路径Tag,这是异步加载图片的小技巧
             viewHolder.mImageView.setTag(path);
-
+            //
+            ImageLoader.getInstance().displayImage("file://" + path, viewHolder.mImageView);
             // 利用NativeImageLoader类加载本地图片
-            Bitmap bitmap = NativeImageLoader.getInstance().loadNativeImage(path, mPoint, new NativeImageLoader.NativeImageCallBack() {
+//            Bitmap bitmap = NativeImageLoader.getInstance().loadNativeImage(path, mPoint, new NativeImageLoader.NativeImageCallBack() {
+//
+//                @Override
+//                public void onImageLoader(Bitmap bitmap, String path) {
+//                    ImageView mImageView = (ImageView) mGridView.findViewWithTag(path);
+//                    if (bitmap != null && mImageView != null) {
+//                        mImageView.setImageBitmap(bitmap);
+//                    }
+//                }
+//            });
 
-                @Override
-                public void onImageLoader(Bitmap bitmap, String path) {
-                    ImageView mImageView = (ImageView) mGridView.findViewWithTag(path);
-                    if (bitmap != null && mImageView != null) {
-                        mImageView.setImageBitmap(bitmap);
-                    }
-                }
-            });
-
-            if (bitmap != null) {
-                viewHolder.mImageView.setImageBitmap(bitmap);
-            } else {
-                viewHolder.mImageView.setImageResource(R.drawable.friends_sends_pictures_no);
-            }
+//            if (bitmap != null) {
+//                viewHolder.mImageView.setImageBitmap(bitmap);
+//            } else {
+//                viewHolder.mImageView.setImageResource(R.drawable.friends_sends_pictures_no);
+//            }
             return convertView;
         }
 

@@ -29,7 +29,7 @@ import com.cn.clound.activity.OrganizationActivity;
 import com.cn.clound.activity.UnallocatedDeptMenberActivity;
 import com.cn.clound.adapter.ContactMainRecyclerAdapter;
 import com.cn.clound.adapter.ContactsMainAdapter;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.application.MyApplication;
 import com.cn.clound.base.BaseFragment;
@@ -57,7 +57,7 @@ import butterknife.Bind;
  * @version 1.00
  * @date 2016年3月30日13:15:52
  */
-public class ContactMainFragment extends BaseFragment implements OnItemClickLitener {
+public class ContactMainFragment extends BaseFragment implements OnItemClickListener {
     @Bind(R.id.tv_base_title)
     TextView tvMidTitle;
     @Bind(R.id.main_contacts_sidebar)

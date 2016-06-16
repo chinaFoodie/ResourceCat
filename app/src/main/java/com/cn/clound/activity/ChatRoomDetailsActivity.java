@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.cn.clound.R;
 import com.cn.clound.adapter.ChatMenberRecyclerAdapter;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.appconfig.PublicDataUtil;
 import com.cn.clound.application.MyApplication;
@@ -53,7 +53,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gamil.com)
  * @date 2016-5-3 14:52:31
  */
-public class ChatRoomDetailsActivity extends BaseActivity implements View.OnClickListener, OnItemClickLitener {
+public class ChatRoomDetailsActivity extends BaseActivity implements View.OnClickListener, OnItemClickListener {
     @Bind(R.id.ll_base_back)
     LinearLayout llBack;
     @Bind(R.id.tv_base_title)

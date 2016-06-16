@@ -2,6 +2,7 @@ package com.cn.clound.base.common.gallery;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.cn.clound.base.BaseActivity;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -31,7 +33,10 @@ import java.util.Map;
 import butterknife.Bind;
 
 /**
- * Created by Administrator on 2016/6/16.
+ * 显示相册图片
+ *
+ * @author ChunfaLee(ly09219@gmail.com)
+ * @date 2016-6-16 11:41:11
  */
 public class ShowImageActivity extends BaseActivity implements View.OnClickListener {
     @Bind(R.id.child_grid)
@@ -40,8 +45,11 @@ public class ShowImageActivity extends BaseActivity implements View.OnClickListe
     LinearLayout llBack;
     @Bind(R.id.tv_base_title)
     TextView tvMidTitle;
+    @Bind(R.id.tv_base_right)
+    TextView tvBaseRight;
     private List<String> list;
     private ChildAdapter adapter;
+    private List<String> listWiped = new ArrayList<>();
 
     @Override
     protected int getMainContentViewId() {
@@ -59,6 +67,9 @@ public class ShowImageActivity extends BaseActivity implements View.OnClickListe
     private void init() {
         llBack.setVisibility(View.VISIBLE);
         llBack.setOnClickListener(this);
+        tvBaseRight.setVisibility(View.VISIBLE);
+        tvBaseRight.setText("确定");
+        tvBaseRight.setOnClickListener(this);
         tvMidTitle.setText(getIntent().getStringExtra("folder_name"));
         list = getIntent().getStringArrayListExtra("data");
         adapter = new ChildAdapter(this, list, mGridView);
@@ -106,6 +117,14 @@ public class ShowImageActivity extends BaseActivity implements View.OnClickListe
             case R.id.ll_base_back:
                 this.finish();
                 break;
+            case R.id.tv_base_right:
+                Intent picIntent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("wiped_pic_list", (Serializable) listWiped);
+                picIntent.putExtras(bundle);
+                this.setResult(1005, picIntent);
+                this.finish();
+                break;
             default:
                 break;
         }
@@ -121,11 +140,13 @@ public class ShowImageActivity extends BaseActivity implements View.OnClickListe
         private GridView mGridView;
         private List<String> list;
         protected LayoutInflater mInflater;
+        private Context context;
 
         public ChildAdapter(Context context, List<String> list, GridView mGridView) {
             this.list = list;
             this.mGridView = mGridView;
             mInflater = LayoutInflater.from(context);
+            this.context = context;
         }
 
         @Override
@@ -153,7 +174,6 @@ public class ShowImageActivity extends BaseActivity implements View.OnClickListe
                 viewHolder = new ViewHolder();
                 viewHolder.mImageView = (MyImageView) convertView.findViewById(R.id.child_image);
                 viewHolder.mCheckBox = (CheckBox) convertView.findViewById(R.id.child_checkbox);
-
                 //用来监听ImageView的宽和高
                 viewHolder.mImageView.setOnMeasureListener(new MyImageView.OnMeasureListener() {
 
@@ -168,6 +188,7 @@ public class ShowImageActivity extends BaseActivity implements View.OnClickListe
                 viewHolder = (ViewHolder) convertView.getTag();
                 viewHolder.mImageView.setImageResource(R.drawable.friends_sends_pictures_no);
             }
+            viewHolder.mCheckBox.setVisibility(View.VISIBLE);
             viewHolder.mImageView.setTag(path);
             viewHolder.mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -175,14 +196,17 @@ public class ShowImageActivity extends BaseActivity implements View.OnClickListe
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     //如果是未选中的CheckBox,则添加动画
                     if (!mSelectMap.containsKey(position) || !mSelectMap.get(position)) {
+                        if (listWiped.contains(list.get(position))) {
+                            listWiped.remove(list.get(position));
+                        } else {
+                            listWiped.add(list.get(position));
+                        }
                         addAnimation(viewHolder.mCheckBox);
                     }
                     mSelectMap.put(position, isChecked);
                 }
             });
-
             viewHolder.mCheckBox.setChecked(mSelectMap.containsKey(position) ? mSelectMap.get(position) : false);
-
             //利用NativeImageLoader类加载本地图片
             Bitmap bitmap = NativeImageLoader.getInstance().loadNativeImage(path, mPoint, new NativeImageLoader.NativeImageCallBack() {
 

@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cn.clound.R;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.adapter.UnAllocatedDeptRecyclerAdapter;
 import com.cn.clound.adapter.UnAllocatedDeptSwipeRecyclerAdapter;
 import com.cn.clound.appconfig.AppConfig;
@@ -77,7 +77,7 @@ public class UnallocatedDeptMenberActivity extends BaseActivity implements View.
                         if (MyApplication.getInstance().getUm() != null && MyApplication.getInstance().getUm().getData().getUserInfo().getIsAdmin().equals("1")) {
                             swipeAdapter = new UnAllocatedDeptSwipeRecyclerAdapter(UnallocatedDeptMenberActivity.this, list, handler);
                             swipeRecycler.setAdapter(swipeAdapter);
-                            swipeAdapter.setOnItemClickLitener(new OnItemClickLitener() {
+                            swipeAdapter.setOnItemClickLitener(new OnItemClickListener() {
                                 @Override
                                 public void onItemClick(View view, int position) {
                                     if (!"fragment".equals(whereFrom)) {
@@ -112,7 +112,7 @@ public class UnallocatedDeptMenberActivity extends BaseActivity implements View.
                         } else {
                             adapter = new UnAllocatedDeptRecyclerAdapter(UnallocatedDeptMenberActivity.this, list);
                             recyclerView.setAdapter(adapter);
-                            adapter.setOnItemClickLitener(new OnItemClickLitener() {
+                            adapter.setOnItemClickLitener(new OnItemClickListener() {
 
                                 @Override
                                 public void onItemClick(View view, int position) {

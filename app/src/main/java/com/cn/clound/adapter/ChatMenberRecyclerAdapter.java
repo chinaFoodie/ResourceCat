@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.cn.clound.R;
 import com.cn.clound.bean.chat.ChatMenberModel;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.hyphenate.easeui.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -28,7 +28,7 @@ import java.util.List;
 public class ChatMenberRecyclerAdapter extends RecyclerView.Adapter<ChatMenberRecyclerAdapter.MyViewHolder> {
     private Context context;
     private List<ChatMenberModel.ChatMenberData.ChatMenber> listUser;
-    private OnItemClickLitener mOnItemClickLitener;
+    private OnItemClickListener mOnItemClickLitener;
     private boolean isCreate;
     /**
      * 状态模式初始化ImageLoader
@@ -50,7 +50,7 @@ public class ChatMenberRecyclerAdapter extends RecyclerView.Adapter<ChatMenberRe
         this.isCreate = isCreate;
     }
 
-    public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
+    public void setOnItemClickLitener(OnItemClickListener mOnItemClickLitener) {
         this.mOnItemClickLitener = mOnItemClickLitener;
     }
 

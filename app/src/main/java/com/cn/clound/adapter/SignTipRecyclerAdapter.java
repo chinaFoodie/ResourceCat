@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.cn.clound.R;
 import com.cn.clound.base.view.SwipeMenuLayout;
 import com.cn.clound.bean.singed.QuerySignModel;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 
 import java.util.List;
 
@@ -27,13 +27,13 @@ public class SignTipRecyclerAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<QuerySignModel.QuerySign> listSign;
     private Handler handler;
-    private OnItemClickLitener onItemClickLitener;
+    private OnItemClickListener onItemClickLitener;
 
-    public OnItemClickLitener getOnItemClickLitener() {
+    public OnItemClickListener getOnItemClickLitener() {
         return onItemClickLitener;
     }
 
-    public void setOnItemClickLitener(OnItemClickLitener onItemClickLitener) {
+    public void setOnItemClickLitener(OnItemClickListener onItemClickLitener) {
         this.onItemClickLitener = onItemClickLitener;
     }
 

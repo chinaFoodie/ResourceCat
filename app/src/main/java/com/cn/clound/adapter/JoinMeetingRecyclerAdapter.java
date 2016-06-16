@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.cn.clound.R;
 import com.cn.clound.bean.metting.EnterStadiumModel;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.hyphenate.easeui.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -28,7 +28,7 @@ import java.util.List;
 public class JoinMeetingRecyclerAdapter extends RecyclerView.Adapter<JoinMeetingRecyclerAdapter.MyViewHolder> {
     private Context context;
     private List<EnterStadiumModel.Stadium.MeetingUser> listUser;
-    private OnItemClickLitener mOnItemClickLitener;
+    private OnItemClickListener mOnItemClickLitener;
     /**
      * 状态模式初始化ImageLoader
      */
@@ -48,7 +48,7 @@ public class JoinMeetingRecyclerAdapter extends RecyclerView.Adapter<JoinMeeting
         this.listUser = listUser;
     }
 
-    public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
+    public void setOnItemClickLitener(OnItemClickListener mOnItemClickLitener) {
         this.mOnItemClickLitener = mOnItemClickLitener;
     }
 

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.cn.clound.R;
 import com.cn.clound.bean.singed.GroupSingedModel;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 
 import java.util.List;
 
@@ -22,9 +22,9 @@ import java.util.List;
 public class GroupRecordRecyclerAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<GroupSingedModel.GroupData.GroupModel> list;
-    private OnItemClickLitener onItemClickLitener;
+    private OnItemClickListener onItemClickLitener;
 
-    public void setOnItemClickLitener(OnItemClickLitener onItemClickLitener) {
+    public void setOnItemClickLitener(OnItemClickListener onItemClickLitener) {
         this.onItemClickLitener = onItemClickLitener;
     }
 

@@ -19,7 +19,7 @@ import com.cn.clound.R;
 import com.cn.clound.activity.EnterMeetingActivity;
 import com.cn.clound.activity.MeetingDetailsActivity;
 import com.cn.clound.adapter.MineMettingRecyclerAdapter;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.application.MyApplication;
 import com.cn.clound.base.BaseFragment;
@@ -48,7 +48,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016-5-23 16:14:22
  */
-public class MineMettingFtagment extends BaseFragment implements View.OnClickListener, OnItemClickLitener {
+public class MineMettingFtagment extends BaseFragment implements View.OnClickListener, OnItemClickListener {
     @Bind(R.id.ptrScrollView_home)
     PullToRefreshScrollView mPtrScrollView;
     @Bind(R.id.recycler_mine_metting)

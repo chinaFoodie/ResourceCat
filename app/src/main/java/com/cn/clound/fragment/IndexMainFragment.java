@@ -20,7 +20,7 @@ import com.cn.clound.activity.CloudMeetingActivity;
 import com.cn.clound.activity.DataCenterActivity;
 import com.cn.clound.activity.MainActivity;
 import com.cn.clound.activity.SignedActivity;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
 import com.cn.clound.utils.DividerItemDecoration;
@@ -122,7 +122,7 @@ public class IndexMainFragment extends BaseFragment implements View.OnClickListe
         mRecyclerView.addItemDecoration(dividerVERTICAL);
         mRecyclerView.addItemDecoration(dividerHORIZONTAL);
         mRecyclerView.setAdapter(mAdapter = new HomeAdapter());
-        mAdapter.setOnItemClickLitener(new OnItemClickLitener() {
+        mAdapter.setOnItemClickLitener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 switch (position) {
@@ -211,10 +211,10 @@ public class IndexMainFragment extends BaseFragment implements View.OnClickListe
     }
 
     class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
-        private OnItemClickLitener mOnItemClickLitener;
+        private OnItemClickListener mOnItemClickLitener;
         private int[] images = new int[]{R.mipmap.dt_main_work_data_center, R.mipmap.dt_main_work_meeting, R.mipmap.dt_main_work_examine, R.mipmap.dt_main_work_location};
 
-        public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
+        public void setOnItemClickLitener(OnItemClickListener mOnItemClickLitener) {
             this.mOnItemClickLitener = mOnItemClickLitener;
         }
 

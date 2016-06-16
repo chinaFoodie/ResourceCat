@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.cn.clound.R;
 import com.cn.clound.base.common.time.DateUtil;
 import com.cn.clound.bean.metting.MyMettingModel;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 
 import java.util.Date;
 import java.util.List;
@@ -26,9 +26,9 @@ public class MineMettingRecyclerAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<MyMettingModel.MeetingData.MineMetting> listMetting;
     private long[] count;
-    private OnItemClickLitener onItemClickLitener;
+    private OnItemClickListener onItemClickLitener;
 
-    public void setOnItemClickLitener(OnItemClickLitener onItemClickLitener) {
+    public void setOnItemClickLitener(OnItemClickListener onItemClickLitener) {
         this.onItemClickLitener = onItemClickLitener;
     }
 

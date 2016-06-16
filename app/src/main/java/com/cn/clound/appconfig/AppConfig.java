@@ -149,6 +149,8 @@ public class AppConfig {
     public static String QUERY_MINE_DELIVERED_APPROVAL = HOST_URL + "/examine/get/owner";
     //提交采购审批
     public static String SUBMIT_BUYER_APPROVAL = HOST_URL + "/examine/commit/pur";
+    //提交报销审批
+    public static String SUBMIT_WIPED_APPROVAL = HOST_URL + "/examine/commit/exp";
 
     /**********************接口地址配置 end************************/
 

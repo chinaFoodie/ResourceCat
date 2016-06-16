@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.cn.clound.R;
 import com.cn.clound.base.view.SwipeMenuLayout;
 import com.cn.clound.bean.dept.UnCallocateMenberModel;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.hyphenate.easeui.widget.CircleImageView;
 
 import java.util.List;
@@ -24,10 +24,10 @@ import java.util.List;
 public class UnAllocatedDeptSwipeRecyclerAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<UnCallocateMenberModel.CallocateMenberModel.UnCallocateMenber> list;
-    private OnItemClickLitener onItemClickLitener;
+    private OnItemClickListener onItemClickLitener;
     private Handler handler;
 
-    public void setOnItemClickLitener(OnItemClickLitener onItemClickLitener) {
+    public void setOnItemClickLitener(OnItemClickListener onItemClickLitener) {
         this.onItemClickLitener = onItemClickLitener;
     }
 

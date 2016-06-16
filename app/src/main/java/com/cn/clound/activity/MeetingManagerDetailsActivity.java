@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.cn.clound.R;
 import com.cn.clound.adapter.MeetingAbsentOrLateRecyclerAdapter;
 import com.cn.clound.adapter.MeetingDetailsTimeTitleRecyclerAdapter;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseActivity;
 import com.cn.clound.base.common.assist.Toastor;
@@ -141,7 +141,7 @@ public class MeetingManagerDetailsActivity extends BaseActivity implements View.
                             recyclerViewTimeLine.setVisibility(View.GONE);
                         }
                         timeAdapter.notifyDataSetChanged();
-                        timeAdapter.setOnItemClickLitener(new OnItemClickLitener() {
+                        timeAdapter.setOnItemClickLitener(new OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
                                 progress.show();

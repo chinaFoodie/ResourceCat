@@ -17,7 +17,7 @@ import com.cn.clound.R;
 import com.cn.clound.adapter.AAABottomChoseChatMenberAdapter;
 import com.cn.clound.interfaces.ActFragCoon;
 import com.cn.clound.interfaces.FragActCoon;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.appconfig.PublicDataUtil;
 import com.cn.clound.application.MyApplication;
@@ -45,7 +45,7 @@ import butterknife.Bind;
 /**
  * Created by Administrator on 2016/4/29.
  */
-public class AAAAActivity extends BaseActivity implements FragActCoon, OnItemClickLitener, View.OnClickListener {
+public class AAAAActivity extends BaseActivity implements FragActCoon, OnItemClickListener, View.OnClickListener {
     @Bind(R.id.tv_chose_menber_count)
     TextView tvCount;
     @Bind(R.id.recycler_chat_menber)

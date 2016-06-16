@@ -8,7 +8,8 @@
     <com.cn.clound.base.common.gallery.MyImageView
         android:id="@+id/child_image"
         android:layout_width="fill_parent"
-        android:layout_height="100dip"
+        android:layout_height="76dip"
+        android:layout_margin="4dp"
         android:background="@drawable/friends_sends_pictures_no"
         android:scaleType="fitXY" />
 

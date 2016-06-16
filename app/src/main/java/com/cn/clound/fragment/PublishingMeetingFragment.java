@@ -17,7 +17,7 @@ import android.widget.ScrollView;
 import com.cn.clound.R;
 import com.cn.clound.activity.MeetingDetailsActivity;
 import com.cn.clound.adapter.MineMettingRecyclerAdapter;
-import com.cn.clound.interfaces.OnItemClickLitener;
+import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseFragment;
 import com.cn.clound.base.common.assist.Toastor;
@@ -40,7 +40,7 @@ import butterknife.Bind;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016-5-31 10:28:21
  */
-public class PublishingMeetingFragment extends BaseFragment implements OnItemClickLitener {
+public class PublishingMeetingFragment extends BaseFragment implements OnItemClickListener {
     @Bind(R.id.ptrScrollView_home)
     PullToRefreshScrollView mPtrScrollView;
     @Bind(R.id.recycler_mine_metting)
