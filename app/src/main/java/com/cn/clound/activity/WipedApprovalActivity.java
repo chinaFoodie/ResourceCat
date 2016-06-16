@@ -1,9 +1,14 @@
 package com.cn.clound.activity;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.PersistableBundle;
+import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -11,6 +16,17 @@ import android.widget.TextView;
 
 import com.cn.clound.R;
 import com.cn.clound.base.BaseActivity;
+import com.cn.clound.base.common.Log;
+import com.cn.clound.base.common.assist.Toastor;
+import com.cn.clound.base.common.gallery.GalleryActivity;
+import com.cn.clound.view.ActionSheetDialog;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Locale;
 
 import butterknife.Bind;
 
@@ -37,6 +53,8 @@ public class WipedApprovalActivity extends BaseActivity implements View.OnClickL
     RelativeLayout rlWipedDetails;
     @Bind(R.id.recycler_wiped_approval_picture)
     RecyclerView recyclerViewWipedPic;
+    @Bind(R.id.ll_get_wiped_pic)
+    LinearLayout llGetWiped;
 
     @Override
     protected int getMainContentViewId() {
@@ -63,6 +81,7 @@ public class WipedApprovalActivity extends BaseActivity implements View.OnClickL
         tvBaseRight.setOnClickListener(this);
 
         rlWipedDetails.setOnClickListener(this);
+        llGetWiped.setOnClickListener(this);
     }
 
     @Override
@@ -101,6 +120,44 @@ public class WipedApprovalActivity extends BaseActivity implements View.OnClickL
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            String sdStatus = Environment.getExternalStorageState();
+            if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // 检测sd是否可用
+                return;
+            }
+            new DateFormat();
+            String name = DateFormat.format("yyyyMMddhhMMss", Calendar.getInstance(Locale.CHINA)) + ".jpeg";
+            Bundle bundle = data.getExtras();
+            Bitmap bitmap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式
+            FileOutputStream b = null;
+            File file = new File("/sdcard/image/");
+            file.mkdirs();// 创建文件夹
+            String fileName = "/sdcard/image/" + name;
+            try {
+                b = new FileOutputStream(fileName);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    b.flush();
+                    b.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            Toastor.showToast(this, fileName);
+            try {
+//                view.setImageBitmap(bitmap);// 将图片显示在ImageView里
+            } catch (Exception e) {
+                Log.e("error", e.getMessage());
+            }
+        }
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rl_swiped_list_details:
@@ -128,6 +185,29 @@ public class WipedApprovalActivity extends BaseActivity implements View.OnClickL
                     tvBaseRight.setText("提交");
                     tvMidTitle.setText("报销审批");
                 }
+                break;
+            case R.id.ll_get_wiped_pic:
+                new ActionSheetDialog(WipedApprovalActivity.this).builder()
+                        .setTitle("添加图片")
+                        .setCancelable(false)
+                        .setCanceledOnTouchOutside(false)
+                        .addSheetItem("拍照", ActionSheetDialog.SheetItemColor.Red,
+                                new ActionSheetDialog.OnSheetItemClickListener() {
+                                    @Override
+                                    public void onClick(int which) {
+                                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                        startActivityForResult(intent, 6710);
+                                    }
+                                })
+                        .addSheetItem("相册选取", ActionSheetDialog.SheetItemColor.Red,
+                                new ActionSheetDialog.OnSheetItemClickListener() {
+                                    @Override
+                                    public void onClick(int which) {
+                                        Intent galleyIntent = new Intent(WipedApprovalActivity.this, GalleryActivity.class);
+                                        startActivity(galleyIntent);
+                                    }
+                                })
+                        .show();
                 break;
             default:
                 break;

@@ -395,6 +395,20 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan"></activity>
+        <!--获取相册-->
+        <activity
+            android:name=".base.common.gallery.GalleryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <!--显示图片-->
+        <activity
+            android:name=".base.common.gallery.ShowImageActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
         <!--签到-->
         <activity
             android:name=".activity.SignedActivity"

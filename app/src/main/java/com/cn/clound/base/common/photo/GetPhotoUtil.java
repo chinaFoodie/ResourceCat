@@ -22,7 +22,7 @@ import java.io.IOException;
  * @author ChunfaLee(ly09219@gmail.com)
  * @date 2016年3月29日11:46:12
  */
-class GetPhotoUtil {
+public class GetPhotoUtil {
 
     /**
      * 从相册获取图片
