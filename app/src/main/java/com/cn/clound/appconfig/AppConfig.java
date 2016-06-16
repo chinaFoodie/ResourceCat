@@ -151,10 +151,14 @@ public class AppConfig {
     public static String SUBMIT_BUYER_APPROVAL = HOST_URL + "/examine/commit/pur";
     //提交报销审批
     public static String SUBMIT_WIPED_APPROVAL = HOST_URL + "/examine/commit/exp";
+    //提交通用审批
+    public static String SUBMIT_COMMON_APPROVAL = HOST_URL + "/examine/commit/comm";
 
     /**********************接口地址配置 end************************/
 
-    /***************部门管理静态变量*************/
+    /***************
+     * 部门管理静态变量
+     *************/
     public static String DEPT_MANAGER_NAME = "";
     public static String DEPT_MANAGER_PHONE = "";
     public static String DEPT_NAMAGER_DUTY = "";

@@ -144,6 +144,7 @@ public class ApprovalActivity extends BaseActivity implements View.OnClickListen
                 startActivity(new Intent(this, WipedApprovalActivity.class));
                 break;
             case 2:
+                startActivity(new Intent(this, CommonApprovalActivity.class));
                 break;
             case 3:
                 break;
