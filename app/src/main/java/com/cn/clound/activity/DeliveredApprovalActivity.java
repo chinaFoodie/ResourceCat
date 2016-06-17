@@ -19,6 +19,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.cn.clound.R;
+import com.cn.clound.bean.approval.ApprovalDetailsModel;
+import com.cn.clound.bean.approval.ApprovalModel;
 import com.cn.clound.interfaces.OnItemClickListener;
 import com.cn.clound.appconfig.AppConfig;
 import com.cn.clound.base.BaseActivity;
@@ -61,7 +63,9 @@ public class DeliveredApprovalActivity extends BaseActivity implements View.OnCl
     private DeliveredRecyclerAdapter adapter;
     private MyHttpHelper httpHelper;
     private CustomProgress progress;
+    private int index = 0;
     private int HTTP_MINE_DELIVERED_APPROVAL = 165;
+    private int HTTP_GET_APPROVAL_DETAILS = 176;
     private List<DeliveredApprovalsModel.DeliveredApprovals.DeliveredApproval> listData = new ArrayList<>();
 
     Handler handler = new Handler() {
@@ -74,6 +78,22 @@ public class DeliveredApprovalActivity extends BaseActivity implements View.OnCl
                     if (mam != null) {
                         listData.addAll(mam.getData().getResult());
                         adapter.notifyDataSetChanged();
+                    }
+                } else {
+                    Toastor.showToast(DeliveredApprovalActivity.this, msg.obj.toString());
+                }
+            } else if (msg.arg1 == HTTP_GET_APPROVAL_DETAILS) {
+                if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
+                    ApprovalDetailsModel adm = (ApprovalDetailsModel) msg.obj;
+                    if (adm != null) {
+                        Intent intent = new Intent();
+                        intent.setClass(DeliveredApprovalActivity.this, BuyerApprovalDetailsActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("approval_details_model", adm);
+                        intent.putExtra("approval_come_from", "mine_send_approval");
+                        intent.putExtra("approval_id", listData.get(index).getId());
+                        intent.putExtras(bundle);
+                        DeliveredApprovalActivity.this.startActivity(intent);
                     }
                 } else {
                     Toastor.showToast(DeliveredApprovalActivity.this, msg.obj.toString());
@@ -181,7 +201,17 @@ public class DeliveredApprovalActivity extends BaseActivity implements View.OnCl
 
     @Override
     public void onItemClick(View view, int position) {
-        startActivity(new Intent(this, BuyerApprovalDetailsActivity.class));
+        index = position;
+        httpHelper.postStringBack(HTTP_GET_APPROVAL_DETAILS, AppConfig.GET_APPROVAL_DETAILS, details(listData.get(position).getId()), handler, ApprovalDetailsModel.class);
+    }
+
+    private HashMap<String, String> details(String id) {
+        HashMap<String, String> details = new HashMap<>();
+        details.put("token", TelephoneUtil.getIMEI(this));
+        details.put("id", id);
+        details.put("pageNo", "1");
+        details.put("pageSize", "1000");
+        return details;
     }
 
     @Override

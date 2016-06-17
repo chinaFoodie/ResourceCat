@@ -19,6 +19,7 @@ import com.cn.clound.application.MyApplication;
 import com.cn.clound.base.BaseActivity;
 import com.cn.clound.base.common.assist.Toastor;
 import com.cn.clound.base.common.utils.TelephoneUtil;
+import com.cn.clound.bean.BaseModel;
 import com.cn.clound.bean.choose.RadioOrMultDeptUser;
 import com.cn.clound.bean.dept.FindDepUserListModel;
 import com.cn.clound.http.MyHttpHelper;
@@ -49,6 +50,7 @@ public class DeptMenberChooseActivity extends BaseActivity implements View.OnCli
     private int index = -1;
     private MyHttpHelper httpHelper;
     private int HTTP_FLAG_GET_MENBERS = 116;
+    private int HTTP_FORWARD_APPROVAL = 175;
     private List<RadioOrMultDeptUser> listUser = new ArrayList<RadioOrMultDeptUser>();
     private DeptDetailsChooseListViewAdapter adapter;
     private CustomProgress progress;
@@ -74,6 +76,16 @@ public class DeptMenberChooseActivity extends BaseActivity implements View.OnCli
                     } else {
                         Toastor.showToast(DeptMenberChooseActivity.this, msg.obj.toString());
                     }
+                } else {
+                    Toastor.showToast(DeptMenberChooseActivity.this, msg.obj.toString());
+                }
+            } else if (msg.arg1 == HTTP_FORWARD_APPROVAL) {
+                if (msg.what == Integer.parseInt(AppConfig.SUCCESS)) {
+                    AppConfig.APPROVAL = "";
+                    Toastor.showToast(DeptMenberChooseActivity.this, "转审成功");
+                    Intent intent = new Intent(DeptMenberChooseActivity.this, ApprovalMessageActivity.class);
+                    startActivity(intent);
+                    DeptMenberChooseActivity.this.finish();
                 } else {
                     Toastor.showToast(DeptMenberChooseActivity.this, msg.obj.toString());
                 }
@@ -182,6 +194,8 @@ public class DeptMenberChooseActivity extends BaseActivity implements View.OnCli
                                 finish();
                             }
                         }
+                    } else if (!AppConfig.APPROVAL.equals("")) {
+                        httpHelper.postStringBack(HTTP_FORWARD_APPROVAL, AppConfig.FORWARD_APPROVAL, forward(), handler, BaseModel.class);
                     } else {
                         Intent backIntent = new Intent(DeptMenberChooseActivity.this, DeptSettingsActivity.class);
                         AppConfig.DEPT_MANAGER_NAME = listUser.get(index).getUser().getName();
@@ -197,6 +211,23 @@ public class DeptMenberChooseActivity extends BaseActivity implements View.OnCli
             default:
                 break;
         }
+    }
+
+    private HashMap<String, String> forward() {
+        HashMap<String, String> forward = new HashMap<String, String>();
+        forward.put("token", TelephoneUtil.getIMEI(this));
+        forward.put("id", AppConfig.APPROVAL);
+        RadioOrMultDeptUser temp = null;
+        for (RadioOrMultDeptUser rdu : listUser) {
+            if (rdu.isHadChecked()) {
+                temp = rdu;
+            }
+        }
+        if (temp != null) {
+            forward.put("userId", temp.getUser().getUserNo());
+            forward.put("deptId", temp.getUser().getDepId());
+        }
+        return forward;
     }
 
     @Override

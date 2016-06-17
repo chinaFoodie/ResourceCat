@@ -153,6 +153,18 @@ public class AppConfig {
     public static String SUBMIT_WIPED_APPROVAL = HOST_URL + "/examine/commit/exp";
     //提交通用审批
     public static String SUBMIT_COMMON_APPROVAL = HOST_URL + "/examine/commit/comm";
+    //查询需要我的审批列表
+    public static String QUERY_AWAIT_APPROVAL = HOST_URL + "/examine/get";
+    //获取审批详情
+    public static String GET_APPROVAL_DETAILS = HOST_URL + "/examine/detail";
+    //通过审批
+    public static String PASS_APPROVAL = HOST_URL + "/examine/pass";
+    //拒绝审批
+    public static String REFUSE_APPROVAL = HOST_URL + "/examine/refuse";
+    //转交审批
+    public static String FORWARD_APPROVAL = HOST_URL + "/examine/forward";
+    //撤销审批
+    public static String REVOKE_APPROVAL = HOST_URL + "/examine/revoke";
 
     /**********************接口地址配置 end************************/
 
@@ -169,6 +181,7 @@ public class AppConfig {
     public static String CHAT_GROUP_REFUSER = "";
 
     public static boolean DEPT_MENBER_MUTIL = false;
+    public static String APPROVAL = "";
     public static List<RadioOrMultDeptUser> listTemp = new ArrayList<RadioOrMultDeptUser>();
 
     public static boolean BACK_SHUA_XIN = false;

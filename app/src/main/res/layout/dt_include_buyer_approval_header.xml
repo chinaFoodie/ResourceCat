@@ -23,7 +23,8 @@
             android:layout_marginTop="10dp"
             android:text="温世豪"
             android:textColor="@color/colorWhiteMainTab"
-            android:textSize="@dimen/base_mid_title_text15" />
+            android:textSize="@dimen/base_mid_title_text15"
+            android:id="@+id/tv_approval_user_name" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,7 +41,8 @@
             android:singleLine="true"
             android:text="关仓镇太平小学"
             android:textColor="@color/colorBlackPerson"
-            android:textSize="@dimen/base_mid_title_text16" />
+            android:textSize="@dimen/base_mid_title_text16"
+            android:id="@+id/tv_approval_unit_name" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -51,7 +53,8 @@
             android:singleLine="true"
             android:text="采购审批"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/base_mid_title_text16" />
+            android:textSize="@dimen/base_mid_title_text16"
+            android:id="@+id/tv_approval_type" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,7 +63,8 @@
             android:singleLine="true"
             android:text="申请电脑采购审批"
             android:textColor="@color/colorBuleJoin"
-            android:textSize="@dimen/base_mid_title_text15" />
+            android:textSize="@dimen/base_mid_title_text15"
+            android:id="@+id/tv_approval_name" />
     </LinearLayout>
 
     <ImageView

@@ -30,6 +30,7 @@
                     android:paddingLeft="16dp"></android.support.v7.widget.RecyclerView>
 
                 <LinearLayout
+                    android:id="@+id/ll_approval_total_money"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:orientation="horizontal"
@@ -45,6 +46,7 @@
                         android:textSize="@dimen/base_mid_title_text15" />
 
                     <TextView
+                        android:id="@+id/tv_approval_total_money"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="8dp"
@@ -128,7 +130,9 @@
                     android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
             </LinearLayout>
 
-            <include layout="@layout/dt_include_approval_bottom" />
+            <include
+                android:id="@+id/include_approval_bottom"
+                layout="@layout/dt_include_approval_bottom" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
