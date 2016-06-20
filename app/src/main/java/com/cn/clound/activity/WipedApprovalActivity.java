@@ -35,7 +35,6 @@ import com.cn.clound.base.common.utils.GsonTools;
 import com.cn.clound.base.common.utils.TelephoneUtil;
 import com.cn.clound.bean.BaseModel;
 import com.cn.clound.bean.User.BottomUserModel;
-import com.cn.clound.bean.approval.BuyerApprovalDetailModel;
 import com.cn.clound.bean.approval.WipedApprovalModel;
 import com.cn.clound.http.MyHttpHelper;
 import com.cn.clound.interfaces.OnItemClickListener;
@@ -331,15 +330,23 @@ public class WipedApprovalActivity extends BaseActivity implements View.OnClickL
                 }
             }
             Toastor.showToast(this, fileName);
+            listWiped.add(fileName);
+            wipedPicAdapter = new WipedPicAdapter(this, listWiped);
+            recyclerViewWipedPic.setAdapter(wipedPicAdapter);
+            wipedPicAdapter.setOnItemClickListener(this);
             try {
 //                view.setImageBitmap(bitmap);// 将图片显示在ImageView里
             } catch (Exception e) {
                 Log.e("error", e.getMessage());
             }
         } else if (requestCode == 6712) {
+            if (data == null) {
+                return;
+            }
             Bundle bundle = data.getExtras();
             if (bundle != null) {
-                listWiped = (List<String>) bundle.getSerializable("wiped_pic_list");
+                List<String> tempList = (List<String>) bundle.getSerializable("wiped_pic_list");
+                listWiped.addAll(tempList);
                 wipedPicAdapter = new WipedPicAdapter(this, listWiped);
                 recyclerViewWipedPic.setAdapter(wipedPicAdapter);
                 wipedPicAdapter.setOnItemClickListener(this);

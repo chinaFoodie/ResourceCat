@@ -472,7 +472,27 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan"></activity>
-
+        <!--个人中心界面-->
+        <activity
+            android:name=".activity.PersonalInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <!--密码保护界面-->
+        <activity
+            android:name=".activity.PasswordProtectionActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <!--手势密码界面-->
+        <activity
+            android:name=".activity.GesturePasswordActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
         <!-- 登陆 -->
         <activity
             android:name=".easemob.ui.LoginActivity"

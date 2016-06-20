@@ -144,6 +144,9 @@ public class GalleryActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (data == null) {
+            return;
+        }
         if (requestCode == 6711) {
             Intent picIntent = new Intent();
             Bundle bundle = data.getExtras();

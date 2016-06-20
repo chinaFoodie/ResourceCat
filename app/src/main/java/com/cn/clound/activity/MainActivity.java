@@ -375,6 +375,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         leftMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
         leftMenu.setMenu(R.layout.dt_left_menu_layout);
         LinearLayout leftMenuBack = (LinearLayout) leftMenu.findViewById(R.id.ll_base_back);
+        TextView tvLeftTitle = (TextView) leftMenu.findViewById(R.id.tv_base_title);
+        tvLeftTitle.setText("用户中心");
+        leftMenu.findViewById(R.id.rl_personal_info).setOnClickListener(this);
+        leftMenu.findViewById(R.id.rl_password_protected).setOnClickListener(this);
         leftMenu.findViewById(R.id.btn_exit).setOnClickListener(this);
         leftMenuBack.setOnClickListener(this);
         leftMenuBack.setVisibility(View.VISIBLE);
@@ -510,6 +514,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             //测试环信退出
             case R.id.btn_exit:
                 hxExit();
+                break;
+            case R.id.rl_personal_info:
+                startActivity(new Intent(this, PersonalInfoActivity.class));
+                break;
+            case R.id.rl_password_protected:
+                startActivity(new Intent(this, PasswordProtectionActivity.class));
                 break;
             default:
                 break;

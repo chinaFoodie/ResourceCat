@@ -2,15 +2,193 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorGraySettingDept"
     android:orientation="vertical">
 
     <include layout="@layout/base_title_layout" />
 
-    <Button
-        android:id="@+id/btn_exit"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlackPerson"
-        android:text="退出"
-        android:textColor="@color/colorWhite" />
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_personal_info"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorWhite"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="个人信息"
+                    android:textColor="@color/colorBlackPerson"
+                    android:textSize="@dimen/base_mid_title_text16" />
+
+                <ImageView
+                    android:id="@+id/img_person_info"
+                    android:layout_width="10dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/dt_arrow_to" />
+
+                <com.cn.clound.view.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@id/img_person_info"
+                    android:src="@mipmap/img_join_header_qq" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_password_protected"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@color/colorWhite"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="密码保护"
+                    android:textColor="@color/colorBlackPerson"
+                    android:textSize="@dimen/base_mid_title_text16" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/dt_arrow_to" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_user_protocol"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorWhite"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="用户使用协议"
+                    android:textColor="@color/colorBlackPerson"
+                    android:textSize="@dimen/base_mid_title_text16" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/dt_arrow_to" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_about_us"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@color/colorWhite"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="关于我们"
+                    android:textColor="@color/colorBlackPerson"
+                    android:textSize="@dimen/base_mid_title_text16" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/dt_arrow_to" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@color/colorWhite"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="意见反馈"
+                    android:textColor="@color/colorBlackPerson"
+                    android:textSize="@dimen/base_mid_title_text16" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/dt_arrow_to" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_help"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@color/colorWhite"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="帮助"
+                    android:textColor="@color/colorBlackPerson"
+                    android:textSize="@dimen/base_mid_title_text16" />
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/dt_arrow_to" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_exit"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorWhite"
+                android:text="安全退出"
+                android:textColor="@color/actionsheet_red"
+                android:textSize="@dimen/base_mid_title_text16" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGraySettingDept"
+    android:orientation="vertical">
+
+    <include layout="@layout/base_title_layout" />
+
+    <RelativeLayout
+        android:id="@+id/rl_personal_info_avatar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorWhite"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="头像"
+            android:textColor="@color/colorBlackPerson"
+            android:textSize="@dimen/base_mid_title_text16" />
+
+        <ImageView
+            android:id="@+id/img_person_info"
+            android:layout_width="10dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/dt_arrow_to" />
+
+        <com.hyphenate.easeui.widget.CircleImageView
+            android:id="@+id/civ_personal_avatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/img_person_info" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="0.5dp"
+        android:background="@color/colorWhite"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="姓名"
+            android:textColor="@color/colorBlackPerson"
+            android:textSize="@dimen/base_mid_title_text16" />
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/dt_arrow_to"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="0.5dp"
+        android:background="@color/colorWhite"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="手机号"
+            android:textColor="@color/colorBlackPerson"
+            android:textSize="@dimen/base_mid_title_text16" />
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/dt_arrow_to"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="0.5dp"
+        android:background="@color/colorWhite"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="职位"
+            android:textColor="@color/colorBlackPerson"
+            android:textSize="@dimen/base_mid_title_text16" />
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/dt_arrow_to"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</LinearLayout>
